@@ -1,0 +1,759 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #eee;
+}
+
+h3, h4 {
+    margin: 1em 0 0 0;
+}
+
+a {
+    color: #eb7b29;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input {
+    border: solid #ccc 2px;
+    border-radius: 5px;
+    font-size: 2em;
+    padding: 5px;
+    width: 100%;
+}
+
+header {
+    background: #000;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#2c2c2c), to(#000));
+    background: -webkit-linear-gradient(#2c2c2c, #000);
+    background: -moz-linear-gradient(#2c2c2c, #000);
+    background: -ms-linear-gradient(#2c2c2c, #000);
+    background: -o-linear-gradient(#2c2c2c, #000);
+    background: linear-gradient(#2c2c2c, #000);
+    border-bottom: solid #ccc 3px;
+    padding: 1em 0;
+}
+
+.header-logo {
+    color: #fff;
+    font-family: 'Sonsie One', cursive;
+    font-size: 4em;
+    font-weight: 400;
+    margin: 0;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+}
+
+.inner-header {
+    position: relative;
+}
+
+.inner-header, .inner-container, .inner-footer {
+    padding: 0 25px;
+}
+
+.container {
+    background: white;
+    padding: 1em 0 2em 0;
+}
+
+.section {
+    color: #999;
+}
+
+.section.active {
+    color: #000;
+}
+
+.section-header {
+    margin: 1.5em 0 0.5em 0;
+}
+
+.section-header.first {
+    margin: 0.5em 0 0.8em 0;
+}
+
+.code {
+    background: #eee;
+    border: solid #ccc 2px;
+    border-radius: 5px;
+    color: #999;
+    font-family: "courier new", serif;
+    font-size: 0.8em;
+    margin: 5px 0;
+    padding: 10px;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.code.active {
+    color: #333;
+}
+
+
+.button-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.button-list li {
+    float: left;
+    margin: 0 0 1em 0;
+    width: 100%;
+}
+
+.button {
+    border-radius: 7px;
+    display: block;
+    font-size: 1.3em;
+    font-weight: 700;
+    height: auto;
+    text-align: center;
+    width: 100%;
+}
+
+.button.twitch{
+    background: #6441A5;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#B9A3E3), to(#6441A5));
+    background: -webkit-linear-gradient(#B9A3E3, #6441A5);
+    background: -moz-linear-gradient(#B9A3E3, #6441A5);
+    background: -ms-linear-gradient(#B9A3E3, #6441A5);
+    background: -o-linear-gradient(#B9A3E3, #6441A5);
+    background: linear-gradient(#B9A3E3, #6441A5);
+    border:1px solid #6441A5;
+    box-shadow:
+        inset 0 1px 1px 0 #fff,
+        0 2px 0 -1px rgba(0,0,0,0.2);
+}
+
+.button.justin {
+    background: #222;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#888), to(#222));
+    background: -webkit-linear-gradient(#888, #222);
+    background: -moz-linear-gradient(#888, #222);
+    background: -ms-linear-gradient(#888, #222);
+    background: -o-linear-gradient(#888, #222);
+    background: linear-gradient(#888, #222);
+    border:1px solid #000;
+    box-shadow:
+        inset 0 1px 1px 0 #fff,
+        0 2px 0 -1px rgba(0,0,0,0.2);
+}
+
+.button.ustream {
+    background: #499aff;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#4c9cff), to(#2063ce));
+    background: -webkit-linear-gradient(#4c9cff, #2063ce);
+    background: -moz-linear-gradient(#4c9cff, #2063ce);
+    background: -ms-linear-gradient(#4c9cff, #2063ce);
+    background: -o-linear-gradient(#4c9cff, #2063ce);
+    background: linear-gradient(#4c9cff, #2063ce);
+    border:1px solid #2063ce;
+    box-shadow:
+        inset 0 1px 1px 0 #fff,
+        0 2px 0 -1px rgba(0,0,0,0.2);
+}
+
+.button.active {
+    background: #f5be96;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#f5be96), to(#eb7b29));
+    background: -webkit-linear-gradient(#f5be96, #eb7b29);
+    background: -moz-linear-gradient(#f5be96, #eb7b29);
+    background: -ms-linear-gradient(#f5be96, #eb7b29);
+    background: -o-linear-gradient(#f5be96, #eb7b29);
+    background: linear-gradient(#f5be96, #eb7b29);
+    border: solid #eb7b29 1px;
+    box-shadow:
+        inset 0 1px 1px 0 #fff,
+        0 2px 0 -1px rgba(0,0,0,0.2);
+}
+
+.button.disabled {
+    background: #888;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ccc), to(#888));
+    background: -webkit-linear-gradient(#ccc, #888);
+    background: -moz-linear-gradient(#ccc, #888);
+    background: -ms-linear-gradient(#ccc, #888);
+    background: -o-linear-gradient(#ccc, #888);
+    background: linear-gradient(#ccc, #888);
+    border:1px solid #888;
+    box-shadow:
+        inset 0 1px 1px 0 #fff,
+        0 2px 0 -1px rgba(0,0,0,0.2);
+}
+
+.service-logo {
+    height: auto;
+    max-width: 100%;
+}
+
+.usage {
+    color: #999;
+    display: block;
+    font-size: 0.6em;
+    margin: 0;
+}
+
+.readonly {
+    background: #eee;
+    color: #999;
+}
+
+.preview {
+    background: #eee;
+    border: solid #ccc 1px;
+    border-radius: 5px;
+    color: #ccc;
+    cursor: default;
+    display: inline-block;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 3px 0 0 0;
+    padding: 4px 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.preview.available {
+    background: #f5be96;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#f5be96), to(#eb7b29));
+    background: -webkit-linear-gradient(#f5be96, #eb7b29);
+    background: -moz-linear-gradient(#f5be96, #eb7b29);
+    background: -ms-linear-gradient(#f5be96, #eb7b29);
+    background: -o-linear-gradient(#f5be96, #eb7b29);
+    background: linear-gradient(#f5be96, #eb7b29);
+    border: solid #eb7b29 1px;
+    color: white;
+    cursor: pointer;
+}
+
+.preview.active {
+    background: #f5be96;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#f5be96), to(#eb7b29));
+    background: -webkit-linear-gradient(#f5be96, #eb7b29);
+    background: -moz-linear-gradient(#f5be96, #eb7b29);
+    background: -ms-linear-gradient(#f5be96, #eb7b29);
+    background: -o-linear-gradient(#f5be96, #eb7b29);
+    background: linear-gradient(#f5be96, #eb7b29);
+    border-top: solid #eb7b29 1px;
+    border-right: solid #eb7b29 1px;
+    border-bottom: none;
+    border-left: solid #eb7b29 1px;
+    border-radius: 5px 5px 0 0;
+    color: white;
+    cursor: pointer;
+}
+
+.iframe-preview, .image-preview, .bbcode-preview {
+    border: solid #fab843 1px;
+    border-radius: 0 5px 5px 5px;
+    display: none;
+    margin: 0 0 20px 0;
+    padding: 15px;
+    width: 100%;
+}
+
+footer {
+    background: #eee;
+    border-top: solid #ccc 3px;
+    margin: 0;
+    padding: 0 0 15px 0;
+}
+
+footer p {
+    color: #333;
+    font-size: 0.8em;
+}
+
+.footer-social-icons {
+    font-size: 0.8em;
+    list-style-type: none;
+    margin: 1em 0 0 0;
+    padding: 0;
+}
+
+.copy {
+    color: #666;
+    font-size: 0.85em;
+}
+
+.footer-section {
+    float: none;
+    margin: 0 0 20px 0;
+    width: 100%;
+}
+
+/* Twitch Widget */
+.twitch-widget {
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #262626;
+    display: block;
+    font-size: 0.9em;
+    height: 64px;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    width: 100%;
+}
+
+.twitch-widget a {
+    color: #6441A5;
+    text-decoration: none;
+}
+
+.twitch-widget a:hover {
+    text-decoration: underline;
+}
+
+.twitch-widget ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.icon {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.user-name {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.online {
+    background: red;
+    border-radius: 5px;
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+}
+
+.viewers {
+    color: #666;
+    display: block;
+    font-size: 0.75em;
+}
+
+/* Justin Widget */
+.justin-widget {
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #262626;
+    display: block;
+    font-size: 0.9em;
+    height: 64px;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    width: 100%;
+}
+
+.justin-widget a {
+    color: #0066CC;
+    text-decoration: none;
+}
+
+.justin-widget a:hover {
+    text-decoration: underline;
+}
+
+.justin-widget ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.icon {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.user-name {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.online {
+    background: red;
+    border-radius: 5px;
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+}
+
+.viewers {
+    color: #666;
+    display: block;
+    font-size: 0.75em;
+}
+
+.icon-eye {
+    margin: -3px 3px 0 0;
+}
+
+/* UStream Widget */
+.ustream-widget {
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #262626;
+    display: block;
+    font-size: 0.9em;
+    height: 64px;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    width: 100%;
+}
+
+.ustream-widget a {
+    color: #2487fe;
+    text-decoration: none;
+}
+
+.ustream-widget a:hover {
+    text-decoration: underline;
+}
+
+.ustream-widget ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.icon {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.user-name {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.online {
+    background: red;
+    border-radius: 5px;
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+}
+
+.viewers {
+    color: #666;
+    display: block;
+    font-size: 0.75em;
+}
+
+.desktop {
+    display: none;
+}
+
+.mobile {
+    display: block;
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    h1 {
+        padding: 0;
+    }
+
+    .inner-header, .inner-container, .inner-footer {
+        margin: 0 auto;
+        max-width: 60.000em; /* 960px */
+    }
+
+    .button-list li {
+        float: left;
+        margin: 0 2% 0 0;
+        width: 32%;
+    }
+
+    .button-list li:last-child {
+        margin: 0;
+    }
+
+    .usage {
+        display: inline-block;
+        font-size: 0.8em;
+        margin: 0 0 0 10px;
+    }
+
+    .footer-section {
+        float: left;
+        margin: 0 2% 0 0;
+        width: 32%;
+    }
+
+    .footer-section:last-child {
+        margin: 0;
+    }
+
+    .footer-section.ad {
+        margin: 1em 0;
+        text-align: right;
+    }
+
+    .desktop {
+        display: block;
+    }
+
+    .mobile {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 108em) {
+    body {
+        font-size: 2em;
+    }
+}
+
+/* ==========================================================================
+   Custom Fonts
+   ========================================================================== */
+
+@font-face {
+    font-family: 'icomoon';
+    src:url('../fonts/icomoon.eot');
+    src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.woff') format('woff'),
+        url('../fonts/icomoon.ttf') format('truetype'),
+        url('../fonts/icomoon.svg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon-user:before, .icon-eye:before, .icon-github:before, .icon-twitter:before, .icon-feed:before {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+.icon-user:before {
+    content: "\e000";
+}
+.icon-eye:before {
+    content: "\e001";
+}
+.icon-github:before {
+    content: "\e002";
+}
+.icon-twitter:before {
+    content: "\e003";
+}
+.icon-feed:before {
+    content: "\e004";
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
