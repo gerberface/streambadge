@@ -601,28 +601,37 @@ footer p {
     font-style: normal;
 }
 
-.icon-user:before, .icon-eye:before, .icon-github:before, .icon-twitter:before, .icon-feed:before {
-    font-family: 'icomoon';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
+.icon-user:before, .icon-eye:before, .icon-github:before, .icon-twitter:before, .icon-feed:before, .icon-steam:before, .icon-google-plus:before, .icon-facebook:before {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
 }
 .icon-user:before {
-    content: "\e000";
+	content: "\e000";
 }
 .icon-eye:before {
-    content: "\e001";
+	content: "\e001";
 }
 .icon-github:before {
-    content: "\e002";
+	content: "\e002";
 }
 .icon-twitter:before {
-    content: "\e003";
+	content: "\e003";
 }
 .icon-feed:before {
-    content: "\e004";
+	content: "\e004";
+}
+.icon-steam:before {
+	content: "\e005";
+}
+.icon-google-plus:before {
+	content: "\e006";
+}
+.icon-facebook:before {
+	content: "\e007";
 }
 
 /* ==========================================================================
