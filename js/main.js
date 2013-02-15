@@ -7,11 +7,11 @@
     com.sb.generateCode = function() {
         $("#iframe-code").html('<iframe src="http://streambadge.com/' + com.sb.service + '/?username=' + com.sb.username + '" style="border:none;height:64px;width:100%"></iframe>');
         $("#html-code").html('<a href="http://' + com.sb.service + '.tv/' + com.sb.username + '"><img src="http://streambadge.com/' + com.sb.service + '/' + com.sb.username + '.png" alt=""></a>');
-        $("#bbcode-code").html('[url="http://' + com.sb.service + '.tv/' + com.sb.username + '"][img]http://streambadge.com/' + com.sb.service + '/' + com.sb.username + '.png[/img][/url]');
+        $("#bbcode-code").html('[url=http://' + com.sb.service + '.tv/' + com.sb.username + '][img]http://streambadge.com/' + com.sb.service + '/' + com.sb.username + '.png[/img][/url]');
         // Mobile
         $("#iframe-code-mobile").html('&lt;iframe src="http://streambadge.com/' + com.sb.service + '/?username=' + com.sb.username + '" style="border:none;height:64px;width:100%"&gt;&lt;/iframe&gt;');
         $("#html-code-mobile").html('&lt;a href="http://' + com.sb.service + '.tv/' + com.sb.username + '"&gt;&lt;img src="http://streambadge.com/' + com.sb.service + '/' + com.sb.username + '.png" alt=""&gt;&lt;/a&gt;');
-        $("#bbcode-code-mobile").html('[url="http://' + com.sb.service + '.tv/' + com.sb.username + '"][img]http://streambadge.com/' + com.sb.service + '/' + com.sb.username + '.png[/img][/url]');
+        $("#bbcode-code-mobile").html('[url=http://' + com.sb.service + '.tv/' + com.sb.username + '][img]http://streambadge.com/' + com.sb.service + '/' + com.sb.username + '.png[/img][/url]');
     };
 
     // Initial textarea value
