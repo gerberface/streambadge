@@ -578,6 +578,15 @@ footer p {
     .mobile {
         display: none;
     }
+	
+	/* IE */
+	.lt-ie10 .code.desktop {
+		display: none;
+	}
+	
+	.lt-ie10 .code.mobile {
+		display: block;
+	}
 }
 
 @media only screen and (min-width: 108em) {
