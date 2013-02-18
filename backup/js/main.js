@@ -3,17 +3,15 @@
     com.sb = {};
     com.sb.service = "";
     com.sb.username = "";
-	com.sb.iframe_theme = "";
-	com.sb.image_theme = "";
 
     com.sb.generateCode = function() {
-        $("#iframe-code").html('<iframe src="http://streambadge.com/' + com.sb.service + '/?username=' + com.sb.username + com.sb.iframe_theme + '" style="border:none;height:64px;width:100%"></iframe>');
-        $("#html-code").html('<a href="http://' + com.sb.service + '.tv/' + com.sb.username + '"><img src="http://streambadge.com/' + com.sb.service + '/' + com.sb.image_theme + com.sb.username + '.png" alt=""></a>');
-        $("#bbcode-code").html('[url=http://' + com.sb.service + '.tv/' + com.sb.username + '][img]http://streambadge.com/' + com.sb.service + '/' + com.sb.image_theme + com.sb.username + '.png[/img][/url]');
+        $("#iframe-code").html('<iframe src="http://streambadge.com/' + com.sb.service + '/?username=' + com.sb.username + '" style="border:none;height:64px;width:100%"></iframe>');
+        $("#html-code").html('<a href="http://' + com.sb.service + '.tv/' + com.sb.username + '"><img src="http://streambadge.com/' + com.sb.service + '/' + com.sb.username + '.png" alt=""></a>');
+        $("#bbcode-code").html('[url=http://' + com.sb.service + '.tv/' + com.sb.username + '][img]http://streambadge.com/' + com.sb.service + '/' + com.sb.username + '.png[/img][/url]');
         // Mobile
-        $("#iframe-code-mobile").html('&lt;iframe src="http://streambadge.com/' + com.sb.service + '/?username=' + com.sb.username + com.sb.iframe_theme + '" style="border:none;height:64px;width:100%"&gt;&lt;/iframe&gt;');
-        $("#html-code-mobile").html('&lt;a href="http://' + com.sb.service + '.tv/' + com.sb.username + '"&gt;&lt;img src="http://streambadge.com/' + com.sb.service + '/' + com.sb.image_theme + com.sb.username + '.png" alt=""&gt;&lt;/a&gt;');
-        $("#bbcode-code-mobile").html('[url=http://' + com.sb.service + '.tv/' + com.sb.username + '][img]http://streambadge.com/' + com.sb.service + '/' + com.sb.image_theme + com.sb.username + '.png[/img][/url]');
+        $("#iframe-code-mobile").html('&lt;iframe src="http://streambadge.com/' + com.sb.service + '/?username=' + com.sb.username + '" style="border:none;height:64px;width:100%"&gt;&lt;/iframe&gt;');
+        $("#html-code-mobile").html('&lt;a href="http://' + com.sb.service + '.tv/' + com.sb.username + '"&gt;&lt;img src="http://streambadge.com/' + com.sb.service + '/' + com.sb.username + '.png" alt=""&gt;&lt;/a&gt;');
+        $("#bbcode-code-mobile").html('[url=http://' + com.sb.service + '.tv/' + com.sb.username + '][img]http://streambadge.com/' + com.sb.service + '/' + com.sb.username + '.png[/img][/url]');
     };
 
     // Initial textarea value
@@ -23,7 +21,7 @@
     $("#twitch-button").click(function() {
         var $this = $(this);
         if ($this.hasClass("active")) {
-            button_click($this, "");			
+            button_click($this, "");
         } else {
             button_click($this, "twitch");
         }
@@ -34,7 +32,7 @@
         if ($this.hasClass("active")) {
             button_click($this, "");
         } else {
-            button_click($this, "justin");
+            button_click($(this), "justin");
         }
     });
 
@@ -43,30 +41,9 @@
         if ($this.hasClass("active")) {
             button_click($this, "");
         } else {
-            button_click($this, "ustream");
+            button_click($(this), "ustream");
         }
     });
-	
-	// Theme click event
-	$("#theme-light").click(function() {
-		com.sb.iframe_theme = "&theme=light";
-		com.sb.image_theme = "light/";		
-		com.sb.generateCode();
-		$(".iframe-preview,.image-preview,.bbcode-preview").slideUp();
-		if (com.sb.username != "") {
-			$(".preview").addClass("available").removeClass("active");
-		}
-	});
-	
-	$("#theme-dark").click(function() {
-		com.sb.iframe_theme = "&theme=dark";
-		com.sb.image_theme = "dark/";
-		com.sb.generateCode();
-		$(".iframe-preview,.image-preview,.bbcode-preview").slideUp();
-		if (com.sb.username != "") {
-			$(".preview").addClass("available").removeClass("active");
-		}
-	});
 
     // Username input event
     $("#username-input").keyup(function() {
@@ -104,34 +81,27 @@
     // Preview button click event
     $("#iframe-preview-button").click(function() {
         $(this).toggleClass("available").toggleClass("active");
-        $("#iframe-preview").attr('src','http://streambadge.com/' + com.sb.service + '/?username=' + com.sb.username + com.sb.iframe_theme);
+        $("#iframe-preview").attr('src','http://streambadge.com/' + com.sb.service + '/?username=' + com.sb.username);
         $(".iframe-preview").slideToggle();
         return false;
     });
 
     $("#image-preview-button").click(function() {
         $(this).toggleClass("available").toggleClass("active");
-        $("#image-preview").attr('src','http://streambadge.com/' + com.sb.service + '/' + com.sb.image_theme + com.sb.username + '.png');
+        $("#image-preview").attr('src','http://streambadge.com/' + com.sb.service + '/' + com.sb.username + '.png');
         $(".image-preview").slideToggle();
         return false;
     });
 
     $("#bbcode-preview-button").click(function() {
         $(this).toggleClass("available").toggleClass("active");
-        $("#bbcode-preview").attr('src','http://streambadge.com/' + com.sb.service + '/' + com.sb.image_theme + com.sb.username + '.png');
+        $("#bbcode-preview").attr('src','http://streambadge.com/' + com.sb.service + '/' + com.sb.username + '.png');
         $(".bbcode-preview").slideToggle();
         return false;
     });
 
     // Service button method
-    var button_click = function(button, service) {		
-		// Theme		
-		if (service == "twitch") {
-			$("#section-theme").slideDown();
-		} else {
-			$("#section-theme").slideUp();		
-		}
-		
+    var button_click = function(button, service) {
         if (button.hasClass("active")) {
             $(".button").removeClass("active").removeClass("disabled");
             $("#username-input").val("");

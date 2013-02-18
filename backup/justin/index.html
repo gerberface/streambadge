@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>UStream.tv Widget</title>
+        <title>Justin.tv Widget</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="../css/normalize.min.css">
@@ -14,13 +14,11 @@
         <script src="../js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
-        <div class="ustream-widget" id="ustream-widget"></div>
+        <div class="justin-widget" id="justin-widget"></div>
         <script src="../js/vendor/jquery-1.9.0.min.js"></script>
         <script>
         (function() {
-            var user_name, api_key, query_string;
-
-            api_key = "EE028473488E26E1424E67B209A3C423";
+            var user_name, query_string;
 
             query_string = function () {
                 var query_string = {};
@@ -45,19 +43,14 @@
             user_name = query_string.username;
 
             if (typeof(user_name) === 'undefined' || user_name === "") {
-                $("#ustream-widget").html("<ul><li>Please add a username</li></ul>");
+                $("#justin-widget").html("<ul><li>Please add a username</li></ul>");
             } else {
-                $.getJSON('http://api.ustream.tv/json/channel/live/search/username:eq:' + user_name + '?key=' + api_key + '&callback=?', function(data) {
-
-                    if (data != null) {
-                        $("#ustream-widget").html("<ul class='ustream-widget-list'><li class='user-name'><a href='http://ustream.tv/" + user_name + "'><img src='" + data[0].imageUrl.small + "' width='44' height='44' alt='" + user_name + " channel logo' class='icon'>" + user_name + "</a></li><li class='live'><b>LIVE</b> <span class='online'></span> " + data[0].title + "</li><li class='viewers'><img src='../img/eye-gray.png' width='14' height='14' alt='' class='icon-eye' /> " + data[0].viewersNow + "</li></ul>");
+                $.getJSON('http://api.justin.tv/api/stream/list.json?channel=' + user_name + '&callback=?', function(data) {
+                    if (data[0]) {
+                        $("#justin-widget").html("<ul><li><a href='http://justin.tv/" + user_name + "' class='user-name'><img src='" + data[0].channel.image_url_small + "' width='64' height='64' alt='" + user_name + " channel logo' class='icon'>" + user_name + "</a></li><li><b>LIVE</b> <span class='online'></span> " + data[0].title + "</li><li><span class='viewers'><img src='../img/eye.png' width='16' height='16' alt='' class='icon-eye' /> " + data[0].channel_count + "</span></li></ul>");
                     } else {
-                        $.getJSON('http://api.ustream.tv/json/user/' + user_name + '/getInfo?key=' + api_key + '&callback=?', function(data) {
-                            if (data != null) {
-                                $("#ustream-widget").html("<ul class='ustream-widget-list'><li class='user-name'><a href='http://ustream.tv/" + user_name + "'><img src='" + data.imageUrl.small + "' width='44' height='44' alt='" + user_name + " channel logo' class='icon'>" + user_name + "</a></li><li class='live'><b>Offline</b></li></ul>");
-                            } else {
-                                $("#ustream-widget").html("<ul class='ustream-widget-list'><li class='user-name'><a href='http://ustream.tv/" + user_name + "'><img src='../img/ustream-no-image.png' width='44' height='44' alt='' class='icon'>" + user_name + "</a></li><li class='live'><b>Offline</b></li></ul>");
-                            }
+                        $.getJSON('http://api.justin.tv/api/channel/show/list.json?channel=' + user_name + '&callback=?', function(data) {
+                            $("#justin-widget").html("<ul><li><a href='http://justin.tv/" + user_name + "' class='user-name'><img src='" + data.image_url_small + "' width='64' height='64' alt='" + user_name + " channel logo' class='icon'>" + user_name + "</a></li><li><b>Offline</b></li></ul>");
                         });
                     }
                 });

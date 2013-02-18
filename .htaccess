@@ -335,6 +335,7 @@ FileETag None
   RewriteEngine On
   RewriteBase /
   RewriteRule ^twitch/([^/]*)\.png$ /twitch/badge.php?username=$1 [L]
+  RewriteRule ^twitch/([^/]*)/([^/]*)\.png$ /twitch/badge.php?username=$2&theme=$1 [L]
   RewriteRule ^justin/([^/]*)\.png$ /justin/badge.php?username=$1 [L]
   RewriteRule ^ustream/([^/]*)\.png$ /ustream/badge.php?username=$1 [L]
 </IfModule>
