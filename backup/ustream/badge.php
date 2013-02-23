@@ -10,6 +10,50 @@ $key = "EE028473488E26E1424E67B209A3C423";
 $font = '../fonts/arial.ttf';
 $font_bold = '../fonts/arialbd.ttf';
 
+$title_text_color_1 = 36;
+$title_text_color_2 = 135;
+$title_text_color_3 = 254;
+
+$black_text_color_1 = 51;
+$black_text_color_2 = 51;
+$black_text_color_3 = 51;
+
+$gray_text_color_1 = 128;
+$gray_text_color_2 = 128;
+$gray_text_color_3 = 128;
+
+$bg_color_1 = 255;
+$bg_color_2 = 255;
+$bg_color_3 = 255;
+
+// Username
+$username_font_size = 12;
+$username_x = 64;
+$username_y = 23;
+
+// Live
+$live_font_size = 9;
+$live_x = 64;
+$live_y = 38;
+
+// Live icon
+$live_icon_x = 91;
+$live_icon_y = 29;
+
+// Game
+$game_font_size = 9;
+$game_x = 103;
+$game_y = 38;
+
+// Eye icon
+$eye_icon_x = 64;
+$eye_icon_y = 41;
+
+// Viewers
+$viewers_font_size = 7.5;
+$viewers_x = 81;
+$viewers_y = 52;
+
 // Get JSON
 $data = json_decode(file_get_contents('http://api.ustream.tv/json/channel/live/search/username:eq:' . $username . '?key=' . $key));
 
@@ -26,14 +70,14 @@ if ($data->results != null) {
         $image = "../img/ustream-no-image.png";
     }
     $image_live = "../img/live.png";
-    $image_eye = "../img/eye.png";
+    $image_eye = "../img/eye-gray.png";
 
     // Calculate the image width based on strings of text
-    $bbox = imagettfbbox(20, 0, $font_bold, $username);
-    $width1 = abs($bbox[2] - $bbox[0]) + 85;
+    $bbox = imagettfbbox($username_font_size, 0, $font_bold, $username);
+    $width1 = abs($bbox[2] - $bbox[0]) + 75;
 
-    $bbox = imagettfbbox(10, 0, $font_bold, $game);
-    $width2 = abs($bbox[2] - $bbox[0]) + 125;
+    $bbox = imagettfbbox($game_font_size, 0, $font_bold, $game);
+    $width2 = abs($bbox[2] - $bbox[0]) + 110;
 
     if (($width1 < 300) && ($width2 < 300)) {
         $iWidth = 300;
@@ -47,10 +91,10 @@ if ($data->results != null) {
     $im = imagecreatetruecolor($iWidth, 64);
 
     // Colors
-    $title_text_color = imagecolorallocate($im, 36, 135, 254);
-    $black_text_color = imagecolorallocate($im, 38, 38, 38);
-    $gray_text_color = imagecolorallocate($im, 102, 102, 102);
-    $bg_color = imagecolorallocate($im, 255, 255, 255);
+    $title_text_color = imagecolorallocate($im, $title_text_color_1, $title_text_color_2, $title_text_color_3);
+    $black_text_color = imagecolorallocate($im, $black_text_color_1, $black_text_color_2, $black_text_color_3);
+    $gray_text_color = imagecolorallocate($im, $gray_text_color_1, $gray_text_color_2, $gray_text_color_3);
+    $bg_color = imagecolorallocate($im, $bg_color_1, $bg_color_2, $bg_color_3);
 
     // Set the background
     imagefilledrectangle($im, 0, 0, $iWidth, 64, $bg_color);
@@ -78,7 +122,7 @@ if ($data->results != null) {
     $iconHeight=imagesy($icon);
 
     // Paste the logo
-    imagecopyresampled($im, $icon, 0, 0, 0, 0, 64, 64, $iconWidth, $iconHeight);
+    imagecopyresampled($im, $icon, 10, 10, 0, 0, 44, 44, $iconWidth, $iconHeight);
 
     // Live icon
     $live_icon = imagecreatefrompng($image_live); //png file
@@ -89,7 +133,7 @@ if ($data->results != null) {
     $iconHeight=imagesy($live_icon);
 
     // Paste the logo
-    imagecopy($im, $live_icon, 106, 30, 0, 0, $iconWidth, $iconHeight);
+    imagecopy($im, $live_icon, $live_icon_x, $live_icon_y, 0, 0, $iconWidth, $iconHeight);
 
     // Viewers icon
     $eye_icon = imagecreatefrompng($image_eye); //png file
@@ -100,60 +144,44 @@ if ($data->results != null) {
     $iconHeight=imagesy($eye_icon);
 
     // Paste the logo
-    imagecopy($im, $eye_icon, 76, 45, 0, 0, $iconWidth, $iconHeight);
+    imagecopy($im, $eye_icon, $eye_icon_x, $eye_icon_y, 0, 0, $iconWidth, $iconHeight);
 
     // Username
     // ------------------------------
     // First we create our bounding box for the username text
-    $bbox = imagettfbbox(20, 0, $font_bold, $username);
-
-    // This is our cordinates for X and Y
-    $x = 74;
-    $y = 22;
+    $bbox = imagettfbbox($username_font_size, 0, $font_bold, $username);
 
     // Write it
-    imagettftext($im, 16, 0, $x, $y, $title_text_color, $font_bold, $username);
+    imagettftext($im, $username_font_size, 0, $username_x, $username_y, $title_text_color, $font_bold, $username);
 
     // Live
     // ------------------------------
     // Create the next bounding box for the live text
-    $bbox = imagettfbbox(10, 0, $font_bold, $live);
-
-    // Set the cordinates so its next to the first text
-    $x = 74;
-    $y = 41;
+    $bbox = imagettfbbox($live_font_size, 0, $font_bold, $live);
 
     // Write it
-    imagettftext($im, 10, 0, $x, $y, $black_text_color, $font_bold, $live);
+    imagettftext($im, $live_font_size, 0, $live_x, $live_y, $black_text_color, $font_bold, $live);
 
     // Game
     // ------------------------------
     // Create the next bounding box for the game text
-    $bbox = imagettfbbox(10, 0, $font_bold, $game);
-
-    // Set the cordinates so its next to the first text
-    $x = 122;
-    $y = 41;
+    $bbox = imagettfbbox($game_font_size, 0, $font_bold, $game);
 
     // Write it
-    imagettftext($im, 10, 0, $x, $y, $black_text_color, $font, $game);
+    imagettftext($im, $game_font_size, 0, $game_x, $game_y, $black_text_color, $font, $game);
 
     // Viewers
     // ------------------------------
     // Create the next bounding box for the viewers text
-    $bbox = imagettfbbox(10, 0, $font, $viewers);
-
-    // Set the cordinates so its next to the second text
-    $x = 98;
-    $y = 57;
+    $bbox = imagettfbbox($viewers_font_size, 0, $font, $viewers);
 
     // Write it
-    imagettftext($im, 8, 0, $x, $y, $gray_text_color, $font, $viewers);
+    imagettftext($im, $viewers_font_size, 0, $viewers_x, $viewers_y, $gray_text_color, $font, $viewers);
 } else {
     // Channel data
     $data = json_decode(file_get_contents('http://api.ustream.tv/json/user/' . $username . '/getInfo?key=' . $key));
 
-    if ($data->results != null) {
+    if ($data->results->imageUrl != null) {
 
         // Strings
         $offline = "Offline";
@@ -166,8 +194,8 @@ if ($data->results != null) {
         }
 
         // Calculate the image width based on strings of text
-        $bbox = imagettfbbox(20, 0, $font_bold, $username);
-        $width1 = abs($bbox[2] - $bbox[0]) + 85;
+        $bbox = imagettfbbox($username_font_size, 0, $font_bold, $username);
+        $width1 = abs($bbox[2] - $bbox[0]) + 75;
 
         if ($width1 < 300) {
             $iWidth = 300;
@@ -179,10 +207,10 @@ if ($data->results != null) {
         $im = imagecreatetruecolor($iWidth, 64);
 
         // Colors
-        $title_text_color = imagecolorallocate($im, 36, 135, 254);
-        $black_text_color = imagecolorallocate($im, 38, 38, 38);
-        $gray_text_color = imagecolorallocate($im, 102, 102, 102);
-        $bg_color = imagecolorallocate($im, 255, 255, 255);
+        $title_text_color = imagecolorallocate($im, $title_text_color_1, $title_text_color_2, $title_text_color_3);
+		$black_text_color = imagecolorallocate($im, $black_text_color_1, $black_text_color_2, $black_text_color_3);
+		$gray_text_color = imagecolorallocate($im, $gray_text_color_1, $gray_text_color_2, $gray_text_color_3);
+		$bg_color = imagecolorallocate($im, $bg_color_1, $bg_color_2, $bg_color_3);
 
         // Set the background
         imagefilledrectangle($im, 0, 0, $iWidth, 64, $bg_color);
@@ -210,41 +238,33 @@ if ($data->results != null) {
         $iconHeight=imagesy($icon);
 
         // Paste the logo
-        imagecopyresampled($im, $icon, 0, 0, 0, 0, 64, 64, $iconWidth, $iconHeight);
+        imagecopyresampled($im, $icon, 10, 10, 0, 0, 44, 44, $iconWidth, $iconHeight);
 
         // Username
         // ------------------------------
         // First we create our bounding box for the username text
-        $bbox = imagettfbbox(20, 0, $font_bold, $username);
-
-        // This is our cordinates for X and Y
-        $x = 74;
-        $y = 22;
+        $bbox = imagettfbbox($username_font_size, 0, $font_bold, $username);
 
         // Write it
-        imagettftext($im, 16, 0, $x, $y, $title_text_color, $font_bold, $username);
+        imagettftext($im, $username_font_size, 0, $username_x, $username_y, $title_text_color, $font_bold, $username);
 
         // Offline
         // ------------------------------
         // Create the next bounding box for the offline text
-        $bbox = imagettfbbox(10, 0, $font_bold, $offline);
-
-        // Set the cordinates so its next to the first text
-        $x = 74;
-        $y = 41;
+        $bbox = imagettfbbox($live_font_size, 0, $font_bold, $offline);
 
         // Write it
-        imagettftext($im, 10, 0, $x, $y, $black_text_color, $font_bold, $offline);
+        imagettftext($im, $live_font_size, 0, $live_x, $live_y, $black_text_color, $font_bold, $offline);
     } else {
         // Strings
-        $offline = "Not available.";
+        $offline = "Offline";
 
         // Images
         $image = "../img/ustream-no-image.png";
 
         // Calculate the image width based on strings of text
-        $bbox = imagettfbbox(20, 0, $font_bold, $username);
-        $width1 = abs($bbox[2] - $bbox[0]) + 85;
+        $bbox = imagettfbbox($username_font_size, 0, $font_bold, $username);
+        $width1 = abs($bbox[2] - $bbox[0]) + 75;
 
         if ($width1 < 300) {
             $iWidth = 300;
@@ -256,10 +276,10 @@ if ($data->results != null) {
         $im = imagecreatetruecolor($iWidth, 64);
 
         // Colors
-        $title_text_color = imagecolorallocate($im, 36, 135, 254);
-        $black_text_color = imagecolorallocate($im, 38, 38, 38);
-        $gray_text_color = imagecolorallocate($im, 102, 102, 102);
-        $bg_color = imagecolorallocate($im, 255, 255, 255);
+        $title_text_color = imagecolorallocate($im, $title_text_color_1, $title_text_color_2, $title_text_color_3);
+		$black_text_color = imagecolorallocate($im, $black_text_color_1, $black_text_color_2, $black_text_color_3);
+		$gray_text_color = imagecolorallocate($im, $gray_text_color_1, $gray_text_color_2, $gray_text_color_3);
+		$bg_color = imagecolorallocate($im, $bg_color_1, $bg_color_2, $bg_color_3);
 
         // Set the background
         imagefilledrectangle($im, 0, 0, $iWidth, 64, $bg_color);
@@ -287,31 +307,23 @@ if ($data->results != null) {
         $iconHeight=imagesy($icon);
 
         // Paste the logo
-        imagecopyresampled($im, $icon, 0, 0, 0, 0, 64, 64, $iconWidth, $iconHeight);
+        imagecopyresampled($im, $icon, 10, 10, 0, 0, 44, 44, $iconWidth, $iconHeight);
 
         // Username
         // ------------------------------
         // First we create our bounding box for the username text
-        $bbox = imagettfbbox(20, 0, $font_bold, $username);
-
-        // This is our cordinates for X and Y
-        $x = 74;
-        $y = 22;
+        $bbox = imagettfbbox($username_font_size, 0, $font_bold, $username);
 
         // Write it
-        imagettftext($im, 16, 0, $x, $y, $title_text_color, $font_bold, $username);
+        imagettftext($im, $username_font_size, 0, $username_x, $username_y, $title_text_color, $font_bold, $username);
 
         // Offline
         // ------------------------------
         // Create the next bounding box for the offline text
-        $bbox = imagettfbbox(10, 0, $font_bold, $offline);
-
-        // Set the cordinates so its next to the first text
-        $x = 74;
-        $y = 41;
+        $bbox = imagettfbbox($live_font_size, 0, $font_bold, $offline);
 
         // Write it
-        imagettftext($im, 10, 0, $x, $y, $black_text_color, $font_bold, $offline);
+        imagettftext($im, $live_font_size, 0, $live_x, $live_y, $black_text_color, $font_bold, $offline);
     }
 }
 
@@ -322,3 +334,9 @@ imagepng($im);
 imagedestroy($im);
 
 ?>
+<script>
+var _gaq=[['_setAccount','UA-37973757-2'],['_trackPageview']];
+(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>

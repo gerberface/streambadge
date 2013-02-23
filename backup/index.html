@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+        <title>Streambadge: Embed and Share Your Live Streaming Status</title>
+        <meta name="description" content="Streambadge helps you gain viewership by displaying your live stream status. Select your video stream service, add your username, and grab the code! Streambadge currently works with Twitch.tv, Justin.tv, and UStream.tv!">        
+		<meta content='http://streambadge.com/img/streambadge.png' property='og:image'/>
+        <meta content='https://streambadge.com/img/streambadge.png' property='og:image:secure_url'/>
+        <link rel="canonical" href="http://streambadge.com/">
+        <link rel="shortcut icon" href="/favicon.png">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">		
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 9]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+		<div class="container">
+		
+			<header>            
+				<h1 id="logo" class="header-logo">Streambadge</h1>            
+			</header>                    
+
+			<div class="app">
+			
+				<section id="section-service" class="section active">
+					<h2 class="section-header first">1. Select your streaming service:</h2>
+					<ul class="button-list clearfix">
+						<li><button id="twitch-button" class="button twitch"><img src="img/twitch-logo.png" width="300" height="64" alt="Twitch.tv logo" class="service-logo" /></button></li>
+						<li><button id="justin-button" class="button justin"><img src="img/justin-logo.png" width="300" height="64" alt="Justin.tv logo" class="service-logo" /></button></li>
+						<li><button id="ustream-button" class="button ustream"><img src="img/ustream-logo.png" width="300" height="64" alt="UStream.tv logo" class="service-logo" /></button></li>
+					</ul>
+				</section>
+				
+				<section id="section-theme" class="section section-theme active">
+					<h3 class="section-info-title">Select a theme <span class="usage">(optional)</span></h3>                    
+					<ul class="select-theme-list">
+						<li><input type="radio" id="theme-light" name="theme" value="light" class="theme-input"><label for="theme-light">Light</label></li>
+						<li><input type="radio" id="theme-dark" name="theme" value="dark" class="theme-input"><label for="theme-dark">Dark</label></li>
+					</ul>
+				</section>
+
+				<section id="section-username" class="section">
+					<h2 class="section-header">2. Enter your service username:</h2>
+					<input type="text" id="username-input" class="readonly" readonly="readonly" />
+				</section>
+
+				<section id="section-code" class="section">
+					<h2 class="section-header">3. Grab the code:</h2>
+					<h3 class="section-info-title">iFrame <span class="usage">(HTML and CSS)</span></h3>
+					<div class="anchor-link clearfix">
+					  <textarea id="iframe-code" class="code desktop" readonly="readonly"></textarea>
+					  <div id="iframe-code-mobile" class="code mobile"></div>
+					  <button id="iframe-preview-button" class="preview">Preview</button>
+					  <div class="iframe-preview">
+						<iframe id="iframe-preview" src="/" style="border:none;height:64px;width:100%"></iframe>
+					  </div>
+					</div>
+					<h3 class="section-info-title">HTML Image <span class="usage">(For your website or blog)</span></h3>
+					<div class="anchor-link clearfix">
+					  <textarea id="html-code" class="code desktop" readonly="readonly"></textarea>
+					  <div id="html-code-mobile" class="code mobile"></div>
+					  <button id="image-preview-button" class="preview">Preview</button>
+					  <div class="image-preview">
+						<img id="image-preview" src="/" alt="" />
+					  </div>
+					</div>
+					<h3 class="section-info-title">BBCode Image <span class="usage">(For your forum signature)</span></h3>
+					<div class="anchor-link clearfix">
+					  <textarea id="bbcode-code" class="code desktop" readonly="readonly"></textarea>
+					  <div id="bbcode-code-mobile" class="code mobile"></div>
+					  <button id="bbcode-preview-button" class="preview">Preview</button>
+					  <div class="bbcode-preview">
+						<img id="bbcode-preview" src="/" alt="" />
+					  </div>
+					</div>
+				</section>
+				
+			</div>
+			
+			<footer>
+            
+				<div class="clearfix">
+					<section class="footer-section">
+						<h4>About</h4>
+						<p><b>Streambadge</b> helps you gain viewership by displaying your live stream status. Select your video stream service, add your username, and grab the code! Paste the code to your website, blog, forum signature, or where ever you like!</p>
+						<p><b>Streambadge</b> accesses your live stream information through various service API requests. Current services include; <a href="http://twitch.tv">Twitch.tv</a>, <a href="http://justin.tv">Justin.tv</a>, and <a href="http://ustream.tv">UStream.tv</a>.</p>
+					</section>
+
+					<section class="footer-section">
+						<h4>Support</h4>
+						<p>Questions or concerns? Found a bug? Please report any issues on our <a href="https://github.com/svinkle/streambadge/issues">GitHub issues</a> page.</p>
+						<h4>Follow</h4>
+						<ul class="footer-social-icons">
+							<li><a href="http://twitter.com/streambadge"><span aria-hidden="true" class="icon-twitter"></span> Twitter</a></li>							
+							<li><a href="http://github.com/svinkle/streambadge"><span aria-hidden="true" class="icon-github"></span> GitHub</a></li>							
+						</ul>
+					</section>
+
+					<section class="footer-section ad">
+						<script type="text/javascript"><!--
+							google_ad_client = "ca-pub-7872526658272213";
+							/* Streambadge Footer */
+							google_ad_slot = "5669629075";
+							google_ad_width = 250;
+							google_ad_height = 250;
+							//-->
+						</script>
+						<script type="text/javascript"
+						src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+						</script>
+					</section>
+				</div>
+				<div class="copy">
+					<p>&copy; <span id="year">2012</span> Streambadge.com.</p>
+					<p>Streambadge is not sponsored by or affiliated with Twitch.tv, Justin.tv, or UStream.tv. "Twitch" logo &copy; Justin.tv Inc. "Justin.tv" logo &copy; Justin.tv Inc. "UStream" logo &copy; Ustream Inc.</p>
+				</div>
+            
+			</footer>
+            
+        </div>        
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            var _gaq=[['_setAccount','UA-37973757-2'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>

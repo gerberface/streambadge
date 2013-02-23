@@ -81,17 +81,15 @@ a:hover {
 }
 
 input {
-    border: solid #ccc 2px;
-    border-radius: 5px;
+    border: solid #ccc 2px;    
     font-size: 2em;
     padding: 5px;
     width: 100%;
 }
 
 header {
-    background: #222 url(/img/xlarge-logo.png) 0 50% no-repeat;    
-    border-bottom: solid #ccc 3px;
-    padding: 2em 0;
+    background: #000;        
+    padding: 1em 2em;
 }
 
 .header-logo {
@@ -103,17 +101,10 @@ header {
     text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
 }
 
-.inner-header {
-    position: relative;
-}
-
-.inner-header, .inner-container, .inner-footer {
-    padding: 0 25px;
-}
-
-.container {
-    background: white;
-    padding: 1em 0 2em 0;
+.app {	
+	background: #fff;
+	margin: 1em 0;
+	padding: 1em 2em 2em 2em;
 }
 
 .section {
@@ -132,10 +123,13 @@ header {
     margin: 0.5em 0 0.8em 0;
 }
 
+.section-theme {
+	display: none;
+}
+
 .code {
     background: #eee;
-    border: solid #ccc 2px;
-    border-radius: 5px;
+	border: solid #ccc 2px;  
     color: #999;
     font-family: "courier new", serif;
     font-size: 0.8em;
@@ -163,83 +157,30 @@ header {
 }
 
 .button {
-    border-radius: 7px;
-    display: block;
-    font-size: 1.3em;
-    font-weight: 700;
+	border: none;
     height: auto;
-    text-align: center;
     width: 100%;
 }
 
 .button.twitch{
     background: #6441A5;
-    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#B9A3E3), to(#6441A5));
-    background: -webkit-linear-gradient(#B9A3E3, #6441A5);
-    background: -moz-linear-gradient(#B9A3E3, #6441A5);
-    background: -ms-linear-gradient(#B9A3E3, #6441A5);
-    background: -o-linear-gradient(#B9A3E3, #6441A5);
-    background: linear-gradient(#B9A3E3, #6441A5);
-    border:1px solid #6441A5;
-    box-shadow:
-        inset 0 1px 1px 0 #fff,
-        0 2px 0 -1px rgba(0,0,0,0.2);
+  
 }
 
 .button.justin {
-    background: #222;
-    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#888), to(#222));
-    background: -webkit-linear-gradient(#888, #222);
-    background: -moz-linear-gradient(#888, #222);
-    background: -ms-linear-gradient(#888, #222);
-    background: -o-linear-gradient(#888, #222);
-    background: linear-gradient(#888, #222);
-    border:1px solid #000;
-    box-shadow:
-        inset 0 1px 1px 0 #fff,
-        0 2px 0 -1px rgba(0,0,0,0.2);
+    background: #333;
 }
 
 .button.ustream {
-    background: #499aff;
-    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#4c9cff), to(#2063ce));
-    background: -webkit-linear-gradient(#4c9cff, #2063ce);
-    background: -moz-linear-gradient(#4c9cff, #2063ce);
-    background: -ms-linear-gradient(#4c9cff, #2063ce);
-    background: -o-linear-gradient(#4c9cff, #2063ce);
-    background: linear-gradient(#4c9cff, #2063ce);
-    border:1px solid #2063ce;
-    box-shadow:
-        inset 0 1px 1px 0 #fff,
-        0 2px 0 -1px rgba(0,0,0,0.2);
+    background: #2063ce;
 }
 
 .button.active {
-    background: #f5be96;
-    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#f5be96), to(#eb7b29));
-    background: -webkit-linear-gradient(#f5be96, #eb7b29);
-    background: -moz-linear-gradient(#f5be96, #eb7b29);
-    background: -ms-linear-gradient(#f5be96, #eb7b29);
-    background: -o-linear-gradient(#f5be96, #eb7b29);
-    background: linear-gradient(#f5be96, #eb7b29);
-    border: solid #eb7b29 1px;
-    box-shadow:
-        inset 0 1px 1px 0 #fff,
-        0 2px 0 -1px rgba(0,0,0,0.2);
+    background: #eb7b29;
 }
 
 .button.disabled {
     background: #888;
-    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ccc), to(#888));
-    background: -webkit-linear-gradient(#ccc, #888);
-    background: -moz-linear-gradient(#ccc, #888);
-    background: -ms-linear-gradient(#ccc, #888);
-    background: -o-linear-gradient(#ccc, #888);
-    background: linear-gradient(#ccc, #888);
-    border:1px solid #888;
-    box-shadow:
-        inset 0 1px 1px 0 #fff,
-        0 2px 0 -1px rgba(0,0,0,0.2);
 }
 
 .service-logo {
@@ -260,53 +201,33 @@ header {
 }
 
 .preview {
-    background: #eee;
-    border: solid #ccc 1px;
-    border-radius: 5px;
-    color: #ccc;
+    background: #ccc;    
+	border: none;
+    color: #777;
     cursor: default;
     display: inline-block;
     font-size: 0.8em;
     font-weight: bold;
-    margin: 3px 0 0 0;
-    padding: 4px 8px;
+    margin: 0.5em 0 0 0;
+    padding: 0.5em 1em;
     text-decoration: none;
     text-transform: uppercase;
 }
 
 .preview.available {
-    background: #f5be96;
-    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#f5be96), to(#eb7b29));
-    background: -webkit-linear-gradient(#f5be96, #eb7b29);
-    background: -moz-linear-gradient(#f5be96, #eb7b29);
-    background: -ms-linear-gradient(#f5be96, #eb7b29);
-    background: -o-linear-gradient(#f5be96, #eb7b29);
-    background: linear-gradient(#f5be96, #eb7b29);
-    border: solid #eb7b29 1px;
+    background: #eb7b29;    
     color: white;
     cursor: pointer;
 }
 
 .preview.active {
-    background: #f5be96;
-    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#f5be96), to(#eb7b29));
-    background: -webkit-linear-gradient(#f5be96, #eb7b29);
-    background: -moz-linear-gradient(#f5be96, #eb7b29);
-    background: -ms-linear-gradient(#f5be96, #eb7b29);
-    background: -o-linear-gradient(#f5be96, #eb7b29);
-    background: linear-gradient(#f5be96, #eb7b29);
-    border-top: solid #eb7b29 1px;
-    border-right: solid #eb7b29 1px;
-    border-bottom: none;
-    border-left: solid #eb7b29 1px;
-    border-radius: 5px 5px 0 0;
+    background: #eb7b29;    	
     color: white;
     cursor: pointer;
 }
 
-.iframe-preview, .image-preview, .bbcode-preview {
-    border: solid #fab843 1px;
-    border-radius: 0 5px 5px 5px;
+.iframe-preview, .image-preview, .bbcode-preview {    
+	border: solid #eb7b29 1px;
     display: none;
     margin: 0 0 20px 0;
     padding: 15px;
@@ -314,14 +235,13 @@ header {
 }
 
 footer {
-    background: #eee;
-    border-top: solid #ccc 3px;
+    background: #000;    
+	color: #ccc;
     margin: 0;
-    padding: 0 0 15px 0;
+    padding: 1em 2em;
 }
 
 footer p {
-    color: #333;
     font-size: 0.8em;
 }
 
@@ -333,7 +253,6 @@ footer p {
 }
 
 .copy {
-    color: #666;
     font-size: 0.85em;
 }
 
@@ -343,24 +262,30 @@ footer p {
     width: 100%;
 }
 
+.section-header {
+	font-size: 1.2em;
+}
+
+.section-info-title {
+	font-size: 1em;
+}
+
 /* Twitch Widget */
 .twitch-widget {
-    background: #fff;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    color: #262626;
+    box-sizing: border-box;    
     display: block;
-    font-size: 0.9em;
     height: 64px;
     margin: 0;
-    padding: 0;
+    padding: 10px;
     text-decoration: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
     width: 100%;
 }
 
 .twitch-widget a {
-    color: #6441A5;
     text-decoration: none;
 }
 
@@ -368,50 +293,96 @@ footer p {
     text-decoration: underline;
 }
 
-.twitch-widget ul {
+.twitch-widget-list {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.icon {
+.twitch-widget .icon {
     float: left;
     margin: 0 10px 0 0;
 }
 
-.user-name {
-    font-size: 1.4em;
-    font-weight: bold;
+.twitch-widget .user-name {    
+	font-size: 1em;
+	font-weight: 700;
+	line-height: 1;
 }
 
-.online {
-    background: red;
-    border-radius: 5px;
-    display: inline-block;
-    height: 10px;
-    width: 10px;
-}
-
-.viewers {
-    color: #666;
-    display: block;
+.twitch-widget .live {	
     font-size: 0.75em;
+	line-height: 1.4;
+}
+
+.twitch-widget .online {
+    background: red;
+    border-radius: 4px;    	
+	display: inline-block;
+    height: 8px;
+	line-height: 1;
+    width: 8px;
+}
+
+.twitch-widget .icon-eye {
+	display: inline-block;
+	margin: -3px 0 0 0;
+}
+
+.twitch-widget .viewers {
+    color: #808080;
+    display: block;
+    font-size: 0.65em;
+	line-height: 1.3;
+}
+
+.twitch-widget.dark {
+	background: #2b2b2b;
+}
+
+.twitch-widget.dark a {
+    color: #b9a3e3;
+}
+
+.twitch-widget.dark .user-name a {
+	color: #b9a3e3;
+}
+
+.twitch-widget.dark .live {
+	color: #ccc;
+}
+
+.twitch-widget.light {
+	background: #eaeaea;
+}
+
+.twitch-widget.light a {
+    color: #6441a5;
+}
+
+.twitch-widget.light .user-name a {
+	color: #6441a5;
+}
+
+.twitch-widget.light .live {
+	color: #333;
 }
 
 /* Justin Widget */
 .justin-widget {
-    background: #fff;
+    background: #f3f3f3;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     color: #262626;
     display: block;
-    font-size: 0.9em;
     height: 64px;
     margin: 0;
-    padding: 0;
-    text-decoration: none;
-    width: 100%;
+    padding: 10px;
+	text-decoration: none;
+	text-overflow: ellipsis;    
+	white-space: nowrap;
+    width: 100%;	
 }
 
 .justin-widget a {
@@ -423,38 +394,47 @@ footer p {
     text-decoration: underline;
 }
 
-.justin-widget ul {
+.justin-widget-list {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.icon {
+.justin-widget .icon {
     float: left;
     margin: 0 10px 0 0;
 }
 
-.user-name {
-    font-size: 1.4em;
-    font-weight: bold;
+.justin-widget .user-name {
+    font-size: 1em;
+	font-weight: 700;
+	line-height: 1;
 }
 
-.online {
-    background: red;
-    border-radius: 5px;
-    display: inline-block;
-    height: 10px;
-    width: 10px;
-}
-
-.viewers {
-    color: #666;
-    display: block;
+.justin-widget .live {	
     font-size: 0.75em;
+	line-height: 1.4;
 }
 
-.icon-eye {
-    margin: -3px 3px 0 0;
+.justin-widget .online {
+    background: red;
+    border-radius: 4px;    	
+	display: inline-block;
+    height: 8px;
+	line-height: 1;
+    width: 8px;
+}
+
+.justin-widget .icon-eye {
+	display: inline-block;
+	margin: -3px 0 0 0;
+}
+
+.justin-widget .viewers {
+    color: #808080;
+    display: block;
+    font-size: 0.65em;
+	line-height: 1.3;
 }
 
 /* UStream Widget */
@@ -465,11 +445,12 @@ footer p {
     box-sizing: border-box;
     color: #262626;
     display: block;
-    font-size: 0.9em;
     height: 64px;
     margin: 0;
-    padding: 0;
+    padding: 10px;
     text-decoration: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
     width: 100%;
 }
 
@@ -482,34 +463,59 @@ footer p {
     text-decoration: underline;
 }
 
-.ustream-widget ul {
+.ustream-widget-list {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.icon {
+.ustream-widget .icon {
     float: left;
     margin: 0 10px 0 0;
 }
 
-.user-name {
-    font-size: 1.4em;
-    font-weight: bold;
+.ustream-widget .user-name {
+    font-size: 1em;
+	font-weight: 700;
+	line-height: 1;
 }
 
-.online {
-    background: red;
-    border-radius: 5px;
-    display: inline-block;
-    height: 10px;
-    width: 10px;
-}
-
-.viewers {
-    color: #666;
-    display: block;
+.ustream-widget .live {	
     font-size: 0.75em;
+	line-height: 1.4;
+}
+
+.ustream-widget .online {
+    background: red;
+    border-radius: 4px;   
+	display: inline-block; 	
+    height: 8px;
+	line-height: 1;
+    width: 8px;
+}
+
+.ustream-widget .icon-eye {
+	display: inline-block;
+	margin: -3px 0 0 0;
+}
+
+.ustream-widget .viewers {
+    color: #808080;
+    display: block;
+    font-size: 0.65em;
+	line-height: 1.3;
+}
+
+.select-theme-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.theme-input {
+	border: none;
+	display: inline-block;
+	width: 0.5em;
 }
 
 .desktop {
@@ -529,9 +535,9 @@ footer p {
         padding: 0;
     }
 
-    .inner-header, .inner-container, .inner-footer {
+    .container {
         margin: 0 auto;
-        max-width: 50.000em;
+        max-width: 60.000em; /* 960px */		
     }
 
     .button-list li {
@@ -564,7 +570,15 @@ footer p {
         margin: 1em 0;
         text-align: right;
     }
-
+	
+	.section-header {
+		font-size: 1.5em;
+	}
+	
+	.section-info-title {
+		font-size: 1.17em;
+	}
+	
     .desktop {
         display: block;
     }

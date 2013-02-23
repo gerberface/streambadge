@@ -50,13 +50,13 @@
                 $.getJSON('http://api.ustream.tv/json/channel/live/search/username:eq:' + user_name + '?key=' + api_key + '&callback=?', function(data) {
 
                     if (data != null) {
-                        $("#ustream-widget").html("<ul><li><a href='http://ustream.tv/" + user_name + "' class='user-name'><img src='" + data[0].imageUrl.small + "' width='64' height='64' alt='" + user_name + " channel logo' class='icon'>" + user_name + "</a></li><li><b>LIVE</b> <span class='online'></span> " + data[0].title + "</li><li><span class='viewers'><img src='../img/eye.png' width='16' height='16' alt='' class='icon-eye' /> " + data[0].viewersNow + "</span></li></ul>");
+                        $("#ustream-widget").html("<ul class='ustream-widget-list'><li class='user-name'><a href='http://ustream.tv/" + user_name + "' target='_blank'><img src='" + data[0].imageUrl.small + "' width='44' height='44' alt='" + user_name + " channel logo' class='icon'>" + user_name + "</a></li><li class='live'><b>LIVE</b> <span class='online'></span> " + data[0].title + "</li><li class='viewers'><img src='../img/eye-gray.png' width='14' height='14' alt='' class='icon-eye' /> " + data[0].viewersNow + "</li></ul>");
                     } else {
                         $.getJSON('http://api.ustream.tv/json/user/' + user_name + '/getInfo?key=' + api_key + '&callback=?', function(data) {
                             if (data != null) {
-                                $("#ustream-widget").html("<ul><li><a href='http://ustream.tv/" + user_name + "' class='user-name'><img src='" + data.imageUrl.small + "' width='64' height='64' alt='" + user_name + " channel logo' class='icon'>" + user_name + "</a></li><li><b>Offline</b></li></ul>");
+                                $("#ustream-widget").html("<ul class='ustream-widget-list'><li class='user-name'><a href='http://ustream.tv/" + user_name + "' target='_blank'><img src='" + data.imageUrl.small + "' width='44' height='44' alt='" + user_name + " channel logo' class='icon'>" + user_name + "</a></li><li class='live'><b>Offline</b></li></ul>");
                             } else {
-                                $("#ustream-widget").html("<ul><li><a href='http://ustream.tv/" + user_name + "' class='user-name'><img src='../img/ustream-no-image.png' width='64' height='64' alt='' class='icon'>" + user_name + "</a></li><li><b>Offline</b></li></ul>");
+                                $("#ustream-widget").html("<ul class='ustream-widget-list'><li class='user-name'><a href='http://ustream.tv/" + user_name + "' target='_blank'><img src='../img/ustream-no-image.png' width='44' height='44' alt='' class='icon'>" + user_name + "</a></li><li class='live'><b>Offline</b></li></ul>");
                             }
                         });
                     }
@@ -66,10 +66,10 @@
         })();
         </script>
         <script>
-            /*var _gaq=[['_setAccount','UA-37973757-1'],['_trackPageview']];
+            var _gaq=[['_setAccount','UA-37973757-2'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));*/
+            s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
     </body>
 </html>

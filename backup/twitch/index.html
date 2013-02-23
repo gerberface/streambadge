@@ -43,6 +43,9 @@
                 }();
 
                 user_name = query_string.username;
+				theme = (query_string.theme ? query_string.theme : "light");
+				
+				$("#twitch-widget").addClass(theme);
 
                 if (typeof(user_name) === 'undefined' || user_name === "") {
                     $("#twitch-widget").html("<ul><li>Please add a username</li></ul>");
@@ -54,7 +57,7 @@
                             } else {
                                 image = "../img/twitch-no-image.png";
                             }
-                            $("#twitch-widget").html("<ul><li><a href='http://twitch.tv/" + user_name + "' class='user-name'><img src='" + image + "' width='64' height='64' alt='" + user_name + " channel logo' class='icon'>" + user_name + "</a></li><li><b>LIVE</b> <span class='online'></span> " + (data.stream.game ? "<a href='http://www.twitch.tv/directory/game/" + encodeURIComponent(data.stream.game) + "'>" + data.stream.game + "</a>" : "") + "</li><li><span class='viewers'><img src='../img/eye.png' width='16' height='16' alt='' class='icon-eye' /> " + data.stream.viewers + "</span></li></ul>");
+                            $("#twitch-widget").html("<ul class='twitch-widget-list'><li class='user-name'><a href='http://twitch.tv/" + user_name + "' target='_blank'><img src='" + image + "' width='44' height='44' alt='" + user_name + " channel logo' class='icon'>" + user_name + "</a></li><li class='live'><b>LIVE</b> <span class='online'></span> playing " + (data.stream.game ? "<a href='http://www.twitch.tv/directory/game/" + encodeURIComponent(data.stream.game) + "' target='_blank'>" + data.stream.game + "</a>" : "") + "</li><li class='viewers'><img src='../img/eye-gray.png' width='14' height='14' alt='' class='icon-eye' /> " + data.stream.viewers + "</span></li></ul>");
                         } else {
                             $.getJSON('https://api.twitch.tv/kraken/channels/' + user_name + '?client_id=' + api_key + '&callback=?', function(data) {
                                 if (data.logo) {
@@ -62,7 +65,7 @@
                                 } else {
                                     image = "../img/twitch-no-image.png";
                                 }
-                                $("#twitch-widget").html("<ul><li><a href='http://twitch.tv/" + user_name + "' class='user-name'><img src='" + image + "' width='64' height='64' alt='Twitch logo' class='icon'>" + user_name + "</a></li><li><b>Offline</b></li></ul>");
+                                $("#twitch-widget").html("<ul class='twitch-widget-list'><li><a href='http://twitch.tv/" + user_name + "' class='user-name' target='_blank'><img src='" + image + "' width='44' height='44' alt='" + user_name + " channel logo' class='icon'>" + user_name + "</a></li><li class='live'><b>Offline</b></li></ul>");
                             });
                         }
                     });
@@ -71,7 +74,7 @@
             })();
         </script>
         <script>
-            var _gaq=[['_setAccount','UA-37973757-1'],['_trackPageview']];
+            var _gaq=[['_setAccount','UA-37973757-2'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
