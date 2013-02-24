@@ -200,7 +200,7 @@
     var date = new Date();
     com.$selectors.year.html(date.getFullYear());
 
-    com.$selectors.logo.fitText(1.2, { minFontSize: '25px', maxFontSize: '50px' });
+    com.$selectors.logo.fitText(1.2, { minFontSize: '20px', maxFontSize: '80px' });
 
     // Query string
     com.sb.query_string = function () {
@@ -224,82 +224,88 @@
     }();
 
     // Justin widget
-    com.sb.justin_widget = {};
-    com.sb.justin_widget.$justin_widget = $("#justin-widget");
+	if ($("#justin-widget").length) {
+		com.sb.justin_widget = {};
+		com.sb.justin_widget.$justin_widget = $("#justin-widget");
 
-    com.sb.justin_widget.username = com.sb.query_string.username;
+		com.sb.justin_widget.username = com.sb.query_string.username;
 
-    if (typeof(com.sb.justin_widget.username) === 'undefined' || com.sb.justin_widget.username === "") {
-        com.sb.justin_widget.$justin_widget.html("<ul><li>Please add a username</li></ul>");
-    } else {
-        $.getJSON('http://api.justin.tv/api/stream/list.json?channel=' + com.sb.justin_widget.username + '&callback=?', function(data) {
-            if (data[0]) {
-                com.sb.justin_widget.$justin_widget.html("<ul class='justin-widget-list'><li class='user-name'><a href='http://justin.tv/" + com.sb.justin_widget.username + "' target='_blank'><img src='" + data[0].channel.image_url_small + "' width='44' height='44' alt='" + com.sb.justin_widget.username + " channel logo' class='icon'>" + com.sb.justin_widget.username + "</a></li><li class='live'><b>LIVE</b> <span class='online'></span> " + data[0].title + "</li><li class='viewers'><img src='../img/eye-gray.png' width='14' height='14' alt='' class='icon-eye' /> " + data[0].channel_count + "</li></ul>");
-            } else {
-                $.getJSON('http://api.justin.tv/api/channel/show/list.json?channel=' + com.sb.justin_widget.username + '&callback=?', function(data) {
-                    com.sb.justin_widget.$justin_widget.html("<ul class='justin-widget-list'><li><a href='http://justin.tv/" + com.sb.justin_widget.username + "' class='user-name' target='_blank'><img src='" + data.image_url_small + "' width='44' height='44' alt='" + com.sb.justin_widget.username + " channel logo' class='icon'>" + com.sb.justin_widget.username + "</a></li><li class='live'><b>Offline</b></li></ul>");
-                });
-            }
-        });
-    }
+		if (typeof(com.sb.justin_widget.username) === 'undefined' || com.sb.justin_widget.username === "") {
+			com.sb.justin_widget.$justin_widget.html("<ul><li>Please add a username</li></ul>");
+		} else {
+			$.getJSON('http://api.justin.tv/api/stream/list.json?channel=' + com.sb.justin_widget.username + '&callback=?', function(data) {
+				if (data[0]) {
+					com.sb.justin_widget.$justin_widget.html("<ul class='justin-widget-list'><li class='user-name'><a href='http://justin.tv/" + com.sb.justin_widget.username + "' target='_blank'><img src='" + data[0].channel.image_url_small + "' width='44' height='44' alt='" + com.sb.justin_widget.username + " channel logo' class='icon'>" + com.sb.justin_widget.username + "</a></li><li class='live'><b>LIVE</b> <span class='online'></span> " + data[0].title + "</li><li class='viewers'><img src='../img/eye-gray.png' width='14' height='14' alt='' class='icon-eye' /> " + data[0].channel_count + "</li></ul>");
+				} else {
+					$.getJSON('http://api.justin.tv/api/channel/show/list.json?channel=' + com.sb.justin_widget.username + '&callback=?', function(data) {
+						com.sb.justin_widget.$justin_widget.html("<ul class='justin-widget-list'><li><a href='http://justin.tv/" + com.sb.justin_widget.username + "' class='user-name' target='_blank'><img src='" + data.image_url_small + "' width='44' height='44' alt='" + com.sb.justin_widget.username + " channel logo' class='icon'>" + com.sb.justin_widget.username + "</a></li><li class='live'><b>Offline</b></li></ul>");
+					});
+				}
+			});
+		}
+	}
 
     // Twitch widget
-    com.sb.twitch_widget = {};
-    com.sb.twitch_widget.api_key = "5j0r5b7qb7kro03fvka3o8kbq262wwm";
-    com.sb.twitch_widget.username = com.sb.query_string.username;
-    com.sb.twitch_widget.theme = (com.sb.query_string.theme ? com.sb.query_string.theme : "light");
-    com.sb.twitch_widget.$twitch_widget = $("#twitch-widget");
+	if ($("#twitch-widget").length) {
+		com.sb.twitch_widget = {};
+		com.sb.twitch_widget.api_key = "5j0r5b7qb7kro03fvka3o8kbq262wwm";
+		com.sb.twitch_widget.username = com.sb.query_string.username;
+		com.sb.twitch_widget.theme = (com.sb.query_string.theme ? com.sb.query_string.theme : "light");
+		com.sb.twitch_widget.$twitch_widget = $("#twitch-widget");
 
-    com.sb.twitch_widget.$twitch_widget.addClass(com.sb.twitch_widget.theme);
+		com.sb.twitch_widget.$twitch_widget.addClass(com.sb.twitch_widget.theme);
 
-    if (typeof(com.sb.twitch_widget.username) === 'undefined' || com.sb.twitch_widget.username === "") {
-        com.sb.twitch_widget.$twitch_widget.html("<ul><li>Please add a username</li></ul>");
-    } else {
-        $.getJSON('https://api.twitch.tv/kraken/streams/' + com.sb.twitch_widget.username + '?client_id=' + com.sb.twitch_widget.api_key + '&callback=?', function(data) {
-            if (data.stream) {
-                if (data.stream.channel.logo) {
-                    com.sb.twitch_widget.image = data.stream.channel.logo;
-                } else {
-                    com.sb.twitch_widget.image = "../img/twitch-no-image.png";
-                }
-                com.sb.twitch_widget.$twitch_widget.html("<ul class='twitch-widget-list'><li class='user-name'><a href='http://twitch.tv/" + com.sb.twitch_widget.username + "' target='_blank'><img src='" + com.sb.twitch_widget.image + "' width='44' height='44' alt='" + com.sb.twitch_widget.username + " channel logo' class='icon'>" + com.sb.twitch_widget.username + "</a></li><li class='live'><b>LIVE</b> <span class='online'></span> playing " + (data.stream.game ? "<a href='http://www.twitch.tv/directory/game/" + encodeURIComponent(data.stream.game) + "' target='_blank'>" + data.stream.game + "</a>" : "") + "</li><li class='viewers'><img src='../img/eye-gray.png' width='14' height='14' alt='' class='icon-eye' /> " + data.stream.viewers + "</span></li></ul>");
-            } else {
-                $.getJSON('https://api.twitch.tv/kraken/channels/' + com.sb.twitch_widget.username + '?client_id=' + com.sb.twitch_widget.api_key + '&callback=?', function(data) {
-                    if (data.logo) {
-                        com.sb.twitch_widget.image = data.logo;
-                    } else {
-                        com.sb.twitch_widget.image = "../img/twitch-no-image.png";
-                    }
-                    com.sb.twitch_widget.$twitch_widget.html("<ul class='twitch-widget-list'><li><a href='http://twitch.tv/" + com.sb.twitch_widget.username + "' class='user-name' target='_blank'><img src='" + com.sb.twitch_widget.image + "' width='44' height='44' alt='" + com.sb.twitch_widget.username + " channel logo' class='icon'>" + com.sb.twitch_widget.username + "</a></li><li class='live'><b>Offline</b></li></ul>");
-                });
-            }
-        });
-    }
+		if (typeof(com.sb.twitch_widget.username) === 'undefined' || com.sb.twitch_widget.username === "") {
+			com.sb.twitch_widget.$twitch_widget.html("<ul><li>Please add a username</li></ul>");
+		} else {
+			$.getJSON('https://api.twitch.tv/kraken/streams/' + com.sb.twitch_widget.username + '?client_id=' + com.sb.twitch_widget.api_key + '&callback=?', function(data) {
+				if (data.stream) {
+					if (data.stream.channel.logo) {
+						com.sb.twitch_widget.image = data.stream.channel.logo;
+					} else {
+						com.sb.twitch_widget.image = "../img/twitch-no-image.png";
+					}
+					com.sb.twitch_widget.$twitch_widget.html("<ul class='twitch-widget-list'><li class='user-name'><a href='http://twitch.tv/" + com.sb.twitch_widget.username + "' target='_blank'><img src='" + com.sb.twitch_widget.image + "' width='44' height='44' alt='" + com.sb.twitch_widget.username + " channel logo' class='icon'>" + com.sb.twitch_widget.username + "</a></li><li class='live'><b>LIVE</b> <span class='online'></span> playing " + (data.stream.game ? "<a href='http://www.twitch.tv/directory/game/" + encodeURIComponent(data.stream.game) + "' target='_blank'>" + data.stream.game + "</a>" : "") + "</li><li class='viewers'><img src='../img/eye-gray.png' width='14' height='14' alt='' class='icon-eye' /> " + data.stream.viewers + "</span></li></ul>");
+				} else {
+					$.getJSON('https://api.twitch.tv/kraken/channels/' + com.sb.twitch_widget.username + '?client_id=' + com.sb.twitch_widget.api_key + '&callback=?', function(data) {
+						if (data.logo) {
+							com.sb.twitch_widget.image = data.logo;
+						} else {
+							com.sb.twitch_widget.image = "../img/twitch-no-image.png";
+						}
+						com.sb.twitch_widget.$twitch_widget.html("<ul class='twitch-widget-list'><li><a href='http://twitch.tv/" + com.sb.twitch_widget.username + "' class='user-name' target='_blank'><img src='" + com.sb.twitch_widget.image + "' width='44' height='44' alt='" + com.sb.twitch_widget.username + " channel logo' class='icon'>" + com.sb.twitch_widget.username + "</a></li><li class='live'><b>Offline</b></li></ul>");
+					});
+				}
+			});
+		}
+	}
 
     // Ustream widget
-    com.sb.ustream_widget = {};
-    com.sb.ustream_widget.$ustream_widget = $("#ustream-widget");
-    com.sb.ustream_widget.api_key = "EE028473488E26E1424E67B209A3C423";
-    com.sb.ustream_widget.username = com.sb.query_string.username;
+	if ($("#ustream-widget").length) {
+		com.sb.ustream_widget = {};
+		com.sb.ustream_widget.$ustream_widget = $("#ustream-widget");
+		com.sb.ustream_widget.api_key = "EE028473488E26E1424E67B209A3C423";
+		com.sb.ustream_widget.username = com.sb.query_string.username;
 
-    if (typeof(com.sb.ustream_widget.username) === 'undefined' || com.sb.ustream_widget.username === "") {
-        com.sb.ustream_widget.$ustream_widget.html("<ul><li>Please add a username</li></ul>");
-    } else {
-        $.getJSON('http://api.ustream.tv/json/channel/live/search/username:eq:' + com.sb.ustream_widget.username + '?key=' + com.sb.ustream_widget.api_key + '&callback=?', function(data) {
+		if (typeof(com.sb.ustream_widget.username) === 'undefined' || com.sb.ustream_widget.username === "") {
+			com.sb.ustream_widget.$ustream_widget.html("<ul><li>Please add a username</li></ul>");
+		} else {
+			$.getJSON('http://api.ustream.tv/json/channel/live/search/username:eq:' + com.sb.ustream_widget.username + '?key=' + com.sb.ustream_widget.api_key + '&callback=?', function(data) {
 
-            if (data != null) {
-                com.sb.ustream_widget.$ustream_widget.html("<ul class='ustream-widget-list'><li class='user-name'><a href='http://ustream.tv/" + com.sb.ustream_widget.username + "' target='_blank'><img src='" + data[0].imageUrl.small + "' width='44' height='44' alt='" + com.sb.ustream_widget.username + " channel logo' class='icon'>" + com.sb.ustream_widget.username + "</a></li><li class='live'><b>LIVE</b> <span class='online'></span> " + data[0].title + "</li><li class='viewers'><img src='../img/eye-gray.png' width='14' height='14' alt='' class='icon-eye' /> " + data[0].viewersNow + "</li></ul>");
-            } else {
-                $.getJSON('http://api.ustream.tv/json/user/' + com.sb.ustream_widget.username + '/getInfo?key=' + com.sb.ustream_widget.api_key + '&callback=?', function(data) {
-                    if (data != null) {
-                        com.sb.ustream_widget.$ustream_widget.html("<ul class='ustream-widget-list'><li class='user-name'><a href='http://ustream.tv/" + com.sb.ustream_widget.username + "' target='_blank'><img src='" + data.imageUrl.small + "' width='44' height='44' alt='" + com.sb.ustream_widget.username + " channel logo' class='icon'>" + com.sb.ustream_widget.username + "</a></li><li class='live'><b>Offline</b></li></ul>");
-                    } else {
-                        com.sb.ustream_widget.$ustream_widget.html("<ul class='ustream-widget-list'><li class='user-name'><a href='http://ustream.tv/" + com.sb.ustream_widget.username + "' target='_blank'><img src='../img/ustream-no-image.png' width='44' height='44' alt='' class='icon'>" + com.sb.ustream_widget.username + "</a></li><li class='live'><b>Offline</b></li></ul>");
-                    }
-                });
-            }
-        });
-    }
+				if (data != null) {
+					com.sb.ustream_widget.$ustream_widget.html("<ul class='ustream-widget-list'><li class='user-name'><a href='http://ustream.tv/" + com.sb.ustream_widget.username + "' target='_blank'><img src='" + data[0].imageUrl.small + "' width='44' height='44' alt='" + com.sb.ustream_widget.username + " channel logo' class='icon'>" + com.sb.ustream_widget.username + "</a></li><li class='live'><b>LIVE</b> <span class='online'></span> " + data[0].title + "</li><li class='viewers'><img src='../img/eye-gray.png' width='14' height='14' alt='' class='icon-eye' /> " + data[0].viewersNow + "</li></ul>");
+				} else {
+					$.getJSON('http://api.ustream.tv/json/user/' + com.sb.ustream_widget.username + '/getInfo?key=' + com.sb.ustream_widget.api_key + '&callback=?', function(data) {
+						if (data != null) {
+							com.sb.ustream_widget.$ustream_widget.html("<ul class='ustream-widget-list'><li class='user-name'><a href='http://ustream.tv/" + com.sb.ustream_widget.username + "' target='_blank'><img src='" + data.imageUrl.small + "' width='44' height='44' alt='" + com.sb.ustream_widget.username + " channel logo' class='icon'>" + com.sb.ustream_widget.username + "</a></li><li class='live'><b>Offline</b></li></ul>");
+						} else {
+							com.sb.ustream_widget.$ustream_widget.html("<ul class='ustream-widget-list'><li class='user-name'><a href='http://ustream.tv/" + com.sb.ustream_widget.username + "' target='_blank'><img src='../img/ustream-no-image.png' width='44' height='44' alt='' class='icon'>" + com.sb.ustream_widget.username + "</a></li><li class='live'><b>Offline</b></li></ul>");
+						}
+					});
+				}
+			});
+		}
+	}
 
     // Unload global var
     $(window).unload(function() {

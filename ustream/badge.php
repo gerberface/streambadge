@@ -327,16 +327,21 @@ if ($data->results != null) {
     }
 }
 
+// php-ga
+require_once("../php-ga/autoload.php");
+use UnitedPrototype\GoogleAnalytics;
+$tracker = new GoogleAnalytics\Tracker('UA-37973757-2', 'streambadge.com');
+$visitor = new GoogleAnalytics\Visitor();
+$visitor->setIpAddress($_SERVER['REMOTE_ADDR']);
+$visitor->setUserAgent($_SERVER['HTTP_USER_AGENT']);
+$session = new GoogleAnalytics\Session();
+$page = new GoogleAnalytics\Page('/ustream/badge.php');
+$page->setTitle('UStream (image badge)');
+$tracker->trackPageview($page, $session, $visitor);
+
 // Output to browser
 header('Content-Type: image/png');
 
 imagepng($im);
 imagedestroy($im);
-
 ?>
-<script>
-var _gaq=[['_setAccount','UA-37973757-2'],['_trackPageview']];
-(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-s.parentNode.insertBefore(g,s)}(document,'script'));
-</script>

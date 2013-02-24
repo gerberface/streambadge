@@ -286,16 +286,21 @@ if ($data->stream) {
     imagettftext($im, $live_font_size, 0, $live_x, $live_y, $black_text_color, $font_bold, $offline);
 }
 
+// php-ga
+require_once("../php-ga/autoload.php");
+use UnitedPrototype\GoogleAnalytics;
+$tracker = new GoogleAnalytics\Tracker('UA-37973757-2', 'streambadge.com');
+$visitor = new GoogleAnalytics\Visitor();
+$visitor->setIpAddress($_SERVER['REMOTE_ADDR']);
+$visitor->setUserAgent($_SERVER['HTTP_USER_AGENT']);
+$session = new GoogleAnalytics\Session();
+$page = new GoogleAnalytics\Page('/twitch/badge.php');
+$page->setTitle('Twitch.tv (image badge)');
+$tracker->trackPageview($page, $session, $visitor);
+
 // Output to browser
 header('Content-Type: image/png');
 
 imagepng($im);
 imagedestroy($im);
-
 ?>
-<script>
-var _gaq=[['_setAccount','UA-37973757-2'],['_trackPageview']];
-(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-s.parentNode.insertBefore(g,s)}(document,'script'));
-</script>
