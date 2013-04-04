@@ -64,7 +64,7 @@ textarea {
 }
 
 body {
-    background: #eee;
+    background: #222;
 }
 
 h3, h4 {
@@ -88,22 +88,39 @@ input {
 }
 
 header {
-    background: #000;
-    padding: 2em 0;
+    background: #171717;
+    border-radius: 0 0 5px 5px;
+    padding: 2em;
+}
+
+.logo {
+    color: #fff;
+    float: left;
+    font-size: 1.8em;
+    margin: 0;
 }
 
 .header-logo {
+    background: #eb7b29;
+    border-radius: 0.2em;
     color: #fff;
+    display: inline-block;
     font-family: 'Sonsie One', cursive;
-    font-size: 4em;
+    font-size: 1.1em;
     font-weight: 400;
     margin: 0;
-	text-align: center;
+    padding: 0 0.25em;
+    text-align: center;
     text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+}
+
+.header-ad {
+    float: right;
 }
 
 .app {
     background: #fff;
+    border-radius: 5px;
     margin: 1em 0;
     padding: 1em 2em 2em 2em;
 }
@@ -159,6 +176,7 @@ header {
 
 .button {
     border: none;
+    border-radius: 5px;
     height: auto;
     width: 100%;
 }
@@ -236,7 +254,8 @@ header {
 }
 
 footer {
-    background: #000;
+    background: #171717;
+    border-radius: 5px 5px 0 0;
     color: #ccc;
     margin: 0;
     padding: 1em 2em;
@@ -264,9 +283,9 @@ footer p {
 }
 
 .footer-section.ad {
-	margin: 1em 0;
-	text-align: center;
-	width: 100%;
+    margin: 1em 0;
+    text-align: center;
+    width: 100%;
 }
 
 .section-header {
@@ -513,6 +532,75 @@ footer p {
     line-height: 1.3;
 }
 
+/* Youtube Widget */
+.youtube-widget {
+    background: #f1f1f1;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #262626;
+    display: block;
+    height: 64px;
+    margin: 0;
+    padding: 10px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.youtube-widget a {
+    color: #438bc5;
+    text-decoration: none;
+}
+
+.youtube-widget a:hover {
+    text-decoration: underline;
+}
+
+.youtube-widget-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.youtube-widget .icon {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.youtube-widget .user-name {
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.youtube-widget .live {
+    font-size: 0.75em;
+    line-height: 1.4;
+}
+
+.youtube-widget .online {
+    background: red;
+    border-radius: 4px;
+    display: inline-block;
+    height: 8px;
+    line-height: 1;
+    width: 8px;
+}
+
+.youtube-widget .icon-eye {
+    display: inline-block;
+    margin: -3px 0 0 0;
+}
+
+.youtube-widget .viewers {
+    color: #808080;
+    display: block;
+    font-size: 0.65em;
+    line-height: 1.3;
+}
+
 .select-theme-list {
     list-style-type: none;
     margin: 0;
@@ -538,8 +626,8 @@ footer p {
    ========================================================================== */
 
 @media only screen and (min-width: 35em) {
-    .header-logo {
-        padding: 0;
+    .logo {
+        font-size: 3em;
     }
 
     .container {
@@ -575,7 +663,7 @@ footer p {
 
     .footer-section.ad {
         text-align: right;
-		width: 32%;
+        width: 32%;
     }
 
     .section-header {
@@ -605,15 +693,15 @@ footer p {
 }
 
 @media only screen and (min-width: 35em) and (max-width: 47.63em) {
-	.footer-section {    
-		float: left;
-		width: 48%;
-	}	
-	
-	.footer-section.ad {     
-		margin: 1em 0;
-		text-align: center;
-		width: 100%;
+    .footer-section {
+        float: left;
+        width: 48%;
+    }
+
+    .footer-section.ad {
+        margin: 1em 0;
+        text-align: center;
+        width: 100%;
     }
 }
 
