@@ -202,57 +202,53 @@
     sb.$selectors.year.html(date.getFullYear());
 
     // Media Queries
-    sb.matchMediaTest = function() {
-        var _media = sb.currentMedia;
+	sb.matchMediaTest = function() {
+		var _media = sb.currentMedia;
 
-        if (matchMedia('only screen and (max-width: 45em)').matches) {
-            sb.currentMedia = "small";
-        } else if (matchMedia('only screen and (min-width: 45em) and (max-width: 60em)').matches) {
-            sb.currentMedia = "medium";
-        } else if (matchMedia('only screen and (min-width: 60em)').matches) {
-            sb.currentMedia = "large";
-        }
+		if (matchMedia('only screen and (max-width: 30em)').matches) {
+			sb.currentMedia = "small";
+		} else if (matchMedia('only screen and (min-width: 30em) and (max-width: 45em)').matches) {
+			sb.currentMedia = "medium";
+		} else if (matchMedia('only screen and (min-width: 45em)').matches) {	
+			sb.currentMedia = "large";
+		}
 
-        // On resize
-        if (_media !== sb.currentMedia) {
-            switch (sb.currentMedia) {
-            case "small":
-                sb.$selectors.header_ad.empty();
-                break;
-            case "medium":
-                sb.$selectors.header_ad.empty();
-                sb.$selectors.header_ad.html("<iframe src='/ads/header-medium.html' style='border:none;height:60px;width:234px;' scroll='no'></iframe>");
-                break;
-            case "large":
-                sb.$selectors.header_ad.empty();
-                sb.$selectors.header_ad.html("<iframe src='/ads/header-wide.html' style='border:none;height:60px;overflow:hidden;width:468px;'></iframe>");
-                break;
-            }
-        }
-    };
+		// On resize
+		if (_media !== sb.currentMedia) {
+			sb.mediaSwitch();
+		}
+	};
+	
+	sb.mediaSwitch = function () {
+		switch (sb.currentMedia) {
+		case "none":
+			$(".header-ad").empty();            			
+			break;
+		case "small":
+			$(".header-ad").empty();            
+			$(".header-ad").html("<iframe src='/ads/header-medium.html' style='border:none;height:60px;width:234px;'></iframe>");
+			break;
+		case "medium":
+			$(".header-ad").empty();
+			$(".header-ad").html("<iframe src='/ads/header-wide.html' style='border:none;height:60px;width:468px;'></iframe>");
+			break;
+		case "large":
+			$(".header-ad").empty();
+			$(".header-ad").html("<iframe src='/ads/header-super.html' style='border:none;height:90px;width:728px;'></iframe>");
+			break;            
+		}
+	};
 
-    // Call on resize
-    window.onresize = function () {
-        sb.matchMediaTest();
-    };
+	// Call on resize
+	window.onresize = function () {
+		sb.matchMediaTest();
+	};
 
-    // Call on load
-    sb.matchMediaTest();
+	// Call on load
+	sb.matchMediaTest();
 
-    // On load
-    switch (sb.currentMedia) {
-    case "small":
-        sb.$selectors.header_ad.empty();
-        break;
-    case "medium":
-        sb.$selectors.header_ad.empty();
-        sb.$selectors.header_ad.html("<iframe src='/ads/header-medium.html' style='border:none;height:60px;width:234px;'></iframe>");
-        break;
-    case "large":
-        sb.$selectors.header_ad.empty();
-        sb.$selectors.header_ad.html("<iframe src='/ads/header-wide.html' style='border:none;height:60px;width:468px;'></iframe>");
-        break;
-    }
+	// On load
+	sb.mediaSwitch();
 
     sb.$selectors.footer_section_ad.html("<iframe src='/ads/footer.html' style='border:none;height:250px;width:250px;'></iframe>");
 

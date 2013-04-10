@@ -90,12 +90,12 @@ input {
 header {
     background: #171717;
     border-radius: 0 0 5px 5px;
-    padding: 2em;
+    padding: 1.5em 2em;
 }
 
 .logo {
-    color: #fff;
-    float: left;
+    color: #fff;    
+	float: left;
     font-size: 1.8em;
     margin: 0;
 }
@@ -114,8 +114,18 @@ header {
     text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
 }
 
+.main-nav {		
+	display: none;
+}
+
+.nav-support, .nav-follow {
+	display: none;
+}
+
 .header-ad {
-    float: right;
+	margin: 1em auto 0 auto;
+	text-align: center;
+	width: 100%;
 }
 
 .app {
@@ -624,11 +634,34 @@ footer p {
 /* ==========================================================================
    Media Queries
    ========================================================================== */
+@media only screen and (min-width: 25.81em) {
+   .main-nav {		
+		display: block;
+		float: right;
+		font-weight: 700;
+		margin: 1em 0 0 0;	
+	}
+
+	.main-nav ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.main-nav li {
+		float: left;
+		margin: 0 0 0 1em;
+	}
+}
 
 @media only screen and (min-width: 35em) {
     .logo {
         font-size: 3em;
-    }
+    }		
+		
+	.main-nav {		
+		margin: 1.8em 0 0 0;	
+	}
 
     .container {
         margin: 0 auto;
@@ -692,7 +725,17 @@ footer p {
     }
 }
 
+@media only screen and (min-width: 42em) {
+	.nav-support, .nav-follow {
+		display: block;
+	}
+}
+
 @media only screen and (min-width: 35em) and (max-width: 47.63em) {
+	.service-logo {
+		padding: 1em 0;
+	}
+	
     .footer-section {
         float: left;
         width: 48%;
