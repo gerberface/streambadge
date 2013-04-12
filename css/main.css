@@ -64,7 +64,7 @@ textarea {
 }
 
 body {
-    background: #222;
+    background: #000;
 }
 
 h3, h4 {
@@ -82,55 +82,41 @@ a:hover {
 
 input {
     border: solid #ccc 2px;
+    border-radius: 5px;
     font-size: 2em;
     padding: 5px;
     width: 100%;
 }
 
 header {
-    background: #171717;
-    border-radius: 0 0 5px 5px;
+    background: #1f1f1f;
     padding: 1.5em 2em;
+    text-align: center;
 }
 
 .logo {
-    color: #fff;    
-	float: left;
     font-size: 1.8em;
-    margin: 0;
-}
-
-.header-logo {
-    background: #eb7b29;
-    border-radius: 0.2em;
     color: #fff;
     display: inline-block;
     font-family: 'Sonsie One', cursive;
-    font-size: 1.1em;
     font-weight: 400;
     margin: 0;
     padding: 0 0.25em;
     text-align: center;
-    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
 }
 
-.main-nav {		
-	display: none;
-}
-
-.nav-support, .nav-follow {
-	display: none;
+.main-nav {
+    display: none;
 }
 
 .header-ad {
-	margin: 1em auto 0 auto;
-	text-align: center;
-	width: 100%;
+    margin: 1em auto 0 auto;
+    text-align: center;
+    width: 100%;
 }
 
 .app {
     background: #fff;
-    border-radius: 5px;
     margin: 1em 0;
     padding: 1em 2em 2em 2em;
 }
@@ -158,6 +144,7 @@ header {
 .code {
     background: #eee;
     border: solid #ccc 2px;
+    border-radius: 5px;
     color: #999;
     font-family: "courier new", serif;
     font-size: 0.8em;
@@ -232,6 +219,7 @@ header {
 .preview {
     background: #ccc;
     border: none;
+    border-radius: 5px;
     color: #777;
     cursor: default;
     display: inline-block;
@@ -251,6 +239,7 @@ header {
 
 .preview.active {
     background: #eb7b29;
+    border-radius: 5px 5px 0 0;
     color: white;
     cursor: pointer;
 }
@@ -264,8 +253,7 @@ header {
 }
 
 footer {
-    background: #171717;
-    border-radius: 5px 5px 0 0;
+    background: #1f1f1f;
     color: #ccc;
     margin: 0;
     padding: 1em 2em;
@@ -318,7 +306,7 @@ footer p {
     text-decoration: none;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 300px;
+    width: 100%;
 }
 
 .twitch-widget a {
@@ -634,38 +622,26 @@ footer p {
 /* ==========================================================================
    Media Queries
    ========================================================================== */
-@media only screen and (min-width: 25.81em) {
-   .main-nav {		
-		display: block;
-		float: right;
-		font-weight: 700;
-		margin: 1em 0 0 0;	
-	}
-
-	.main-nav ul {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-	}
-
-	.main-nav li {
-		float: left;
-		margin: 0 0 0 1em;
-	}
-}
-
 @media only screen and (min-width: 35em) {
+    header {
+        border-radius: 0 0 5px 5px;
+    }
+
     .logo {
         font-size: 3em;
-    }		
-		
-	.main-nav {		
-		margin: 1.8em 0 0 0;	
-	}
+    }
+
+    .main-nav {
+        margin: 1.8em 0 0 0;
+    }
 
     .container {
         margin: 0 auto;
         max-width: 60.000em; /* 960px */
+    }
+
+    .app {
+        border-radius: 5px;
     }
 
     .button-list li {
@@ -682,6 +658,10 @@ footer p {
         display: inline-block;
         font-size: 0.8em;
         margin: 0 0 0 10px;
+    }
+
+    footer {
+        border-radius: 5px 5px 0 0;
     }
 
     .footer-section {
@@ -725,17 +705,34 @@ footer p {
     }
 }
 
-@media only screen and (min-width: 42em) {
-	.nav-support, .nav-follow {
-		display: block;
-	}
+@media only screen and (min-width: 48em) {
+    .logo {
+        float: left;
+    }
+    .main-nav {
+        display: block;
+        float: right;
+        font-weight: 700;
+        margin: 1.5em 0 0 0;
+    }
+
+    .main-nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-nav li {
+        float: left;
+        margin: 0 0 0 1em;
+    }
 }
 
 @media only screen and (min-width: 35em) and (max-width: 47.63em) {
-	.service-logo {
-		padding: 1em 0;
-	}
-	
+    .service-logo {
+        padding: 1em 0;
+    }
+
     .footer-section {
         float: left;
         width: 48%;
