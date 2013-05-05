@@ -1,4 +1,21 @@
 <?php
+function ellipsis($text) {
+    $max = 30;
+    $append = '...';
+
+    if (strlen($text) <= $max) {
+        return $text;
+    }
+
+    $out = substr($text,0,$max);
+
+    /*if (strpos($text,' ') === FALSE) {
+        return $out . $append;
+    }*/
+
+    return preg_replace('/\w+$/', '', $out) . $append;
+}
+
 // Username
 if (isset($_GET['username'])) {
     $username = htmlentities($_GET['username']);
@@ -61,6 +78,7 @@ if ($data->results != null) {
     // Strings
     $live = "LIVE";
     $game = $data->results[0]->title;
+    $game = ellipsis($game);
     $viewers = $data->results[0]->viewersNow;
 
     // Image
@@ -88,7 +106,7 @@ if ($data->results != null) {
     }
 
     // Create the base image
-    $im = imagecreatetruecolor($iWidth, 64);
+    $im = imagecreatetruecolor(300, 64);
 
     // Colors
     $title_text_color = imagecolorallocate($im, $title_text_color_1, $title_text_color_2, $title_text_color_3);
@@ -97,7 +115,7 @@ if ($data->results != null) {
     $bg_color = imagecolorallocate($im, $bg_color_1, $bg_color_2, $bg_color_3);
 
     // Set the background
-    imagefilledrectangle($im, 0, 0, $iWidth, 64, $bg_color);
+    imagefilledrectangle($im, 0, 0, 300, 64, $bg_color);
 
     // User icon
     $size=getimagesize($image);
@@ -335,7 +353,7 @@ $visitor = new GoogleAnalytics\Visitor();
 $visitor->setIpAddress($_SERVER['REMOTE_ADDR']);
 $visitor->setUserAgent($_SERVER['HTTP_USER_AGENT']);
 $session = new GoogleAnalytics\Session();
-$page = new GoogleAnalytics\Page('/ustream/badge.php');
+$page = new GoogleAnalytics\Page('/ustream/badge.php?' . $_SERVER['QUERY_STRING'] . '-' . $_SERVER['HTTP_REFERER']);
 $page->setTitle('UStream (image badge)');
 $tracker->trackPageview($page, $session, $visitor);
 

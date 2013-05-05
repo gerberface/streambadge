@@ -15,41 +15,60 @@
         <link rel="canonical" href="http://streambadge.com/">
         <link rel="shortcut icon" href="/favicon.png">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-        <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/app.css">
         <link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 9]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-        <div class="container">
-            <header class="clearfix">
+        <header role="banner">
+            <section class="header-container clearfix">
                 <h1 id="logo" class="logo">Streambadge</h1>
-                <nav class="main-nav">
+                <nav class="main-nav" role="navigation">
                     <ul>
                         <li><a href="#bot" class="nav-about">About</a></li>
                         <li><a href="#bot" class="nav-support">Support</a></li>
                         <li><a href="#bot" class="nav-follow">Follow</a></li>
                     </ul>
                 </nav>
-            </header>
-            <div class="header-ad"></div>
-            <div class="app">
+            </section>
+        </header>
+        <div class="header-ad"></div>
+        <section class="app-container" role="main">
+            <article class="app">
                 <section id="section-service" class="section active">
                     <h2 class="section-header first">1. Select your streaming service:</h2>
                     <ul class="button-list clearfix">
-                        <li><button id="twitch-button" class="button twitch"><img src="img/twitch-logo.png" width="300" height="64" alt="Twitch.tv logo" class="service-logo" /></button></li>
-                        <li><button id="justin-button" class="button justin"><img src="img/justin-logo.png" width="300" height="64" alt="Justin.tv logo" class="service-logo" /></button></li>
-                        <li><button id="ustream-button" class="button ustream"><img src="img/ustream-logo.png" width="300" height="64" alt="UStream.tv logo" class="service-logo" /></button></li>
+                        <li><button id="twitch-button" class="button twitch" data-button="twitch"><img src="img/twitch-logo.png" width="300" height="64" alt="Twitch.tv logo" class="service-logo" /></button></li>
+                        <li><button id="justin-button" class="button justin" data-button="justin"><img src="img/justin-logo.png" width="300" height="64" alt="Justin.tv logo" class="service-logo" /></button></li>
+                        <li><button id="ustream-button" class="button ustream" data-button="ustream"><img src="img/ustream-logo.png" width="300" height="64" alt="UStream.tv logo" class="service-logo" /></button></li>
                     </ul>
                 </section>
                 <section id="section-theme" class="section section-theme active">
                     <h3 class="section-info-title">Select a theme <span class="usage">(optional)</span></h3>
                     <ul class="select-theme-list">
-                        <li><input type="radio" id="theme-light" name="theme" value="light" class="theme-input"><label for="theme-light">Light</label></li>
-                        <li><input type="radio" id="theme-dark" name="theme" value="dark" class="theme-input"><label for="theme-dark">Dark</label></li>
+                        <li><input type="radio" id="theme-light" name="theme" value="light" class="theme-input" data-theme="light"><label for="theme-light">Light</label></li>
+                        <li><input type="radio" id="theme-dark" name="theme" value="dark" class="theme-input" data-theme="dark"><label for="theme-dark">Dark</label></li>
+                        <li>
+                            <input type="radio" id="theme-custom" name="theme" value="custom" class="theme-input" data-theme="custom"><label for="theme-custom">Custom</label>
+                            <div class="color-selectors">
+                                <table class="color-selectors-table">
+                                    <tr>
+                                        <td><label for="bg-color">Background Color</label></td>
+                                        <td><input type="color" id="bg-color" class="color-selector" value="#2B2B2B" data-color-selector="bg-color"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="link-color">Link Color</label></td>
+                                        <td><input type="color" id="link-color" class="color-selector" value="#B9A3E3" data-color-selector="link-color"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="text-color">Text Color</label></td>
+                                        <td><input type="color" id="text-color" class="color-selector" value="#808080" data-color-selector="text-color"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </li>
                     </ul>
                 </section>
                 <section id="section-username" class="section">
@@ -62,16 +81,16 @@
                     <div class="anchor-link clearfix">
                       <textarea id="iframe-code" class="code desktop" readonly="readonly"></textarea>
                       <div id="iframe-code-mobile" class="code mobile"></div>
-                      <button id="iframe-preview-button" class="preview">Preview</button>
+                      <button id="iframe-preview-button" class="preview" data-preview="iframe">Preview</button>
                       <div class="iframe-preview">
-                        <iframe id="iframe-preview" src="/" style="border:none;height:64px;width:300px"></iframe>
+                        <iframe id="iframe-preview" src="/" style="border:none;height:64px;width:100%"></iframe>
                       </div>
                     </div>
                     <h3 class="section-info-title">HTML Image <span class="usage">(For your website or blog)</span></h3>
                     <div class="anchor-link clearfix">
                       <textarea id="html-code" class="code desktop" readonly="readonly"></textarea>
                       <div id="html-code-mobile" class="code mobile"></div>
-                      <button id="image-preview-button" class="preview">Preview</button>
+                      <button id="image-preview-button" class="preview" data-preview="image">Preview</button>
                       <div class="image-preview">
                         <img id="image-preview" src="/" alt="" />
                       </div>
@@ -80,14 +99,16 @@
                     <div class="anchor-link clearfix">
                       <textarea id="bbcode-code" class="code desktop" readonly="readonly"></textarea>
                       <div id="bbcode-code-mobile" class="code mobile"></div>
-                      <button id="bbcode-preview-button" class="preview">Preview</button>
+                      <button id="bbcode-preview-button" class="preview" data-preview="bbcode">Preview</button>
                       <div class="bbcode-preview">
                         <img id="bbcode-preview" src="/" alt="" />
                       </div>
                     </div>
                 </section>
-            </div>
-            <footer id="bot">
+            </article>
+        </section>
+        <footer id="bot" role="contentinfo">
+            <section class="footer-container">
                 <div class="clearfix">
                     <section class="footer-section">
                         <h4>About</h4>
@@ -108,11 +129,9 @@
                     <p>&copy; <span id="year">2012</span> <a href="http://streambadge.com">Streambadge.com</a>. Design and code by <a href="http://twitter.com/svinkle">@svinkle</a>.</p>
                     <p>Streambadge is not sponsored by or affiliated with Twitch.tv, Justin.tv, or UStream.tv. "Twitch" logo &copy; Justin.tv Inc. "Justin.tv" logo &copy; Justin.tv Inc. "UStream" logo &copy; Ustream Inc.</p>
                 </div>
-            </footer>
-        </div>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
-        <script src="js/main.min.js"></script>
+            </section>
+        </footer>
+        <script defer src="js/app.js"></script>
         <script>
             var _gaq=[['_setAccount','UA-37973757-2'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

@@ -1,4 +1,38 @@
 <?php
+function hex2rgb($hex) {
+   $hex = str_replace("#", "", $hex);
+
+   if(strlen($hex) == 3) {
+      $r = hexdec(substr($hex,0,1).substr($hex,0,1));
+      $g = hexdec(substr($hex,1,1).substr($hex,1,1));
+      $b = hexdec(substr($hex,2,1).substr($hex,2,1));
+   } else {
+      $r = hexdec(substr($hex,0,2));
+      $g = hexdec(substr($hex,2,2));
+      $b = hexdec(substr($hex,4,2));
+   }
+   $rgb = array($r, $g, $b);
+   //return implode(",", $rgb); // returns the rgb values separated by commas
+   return $rgb; // returns an array with the rgb values
+}
+
+function ellipsis($text) {
+    $max = 30;
+    $append = '...';
+
+    if (strlen($text) <= $max) {
+        return $text;
+    }
+
+    $out = substr($text,0,$max);
+
+    /*if (strpos($text,' ') === FALSE) {
+        return $out . $append;
+    }*/
+
+    return preg_replace('/\w+$/', '', $out) . $append;
+}
+
 // Username
 if (isset($_GET['username'])) {
     $username = htmlentities($_GET['username']);
@@ -11,11 +45,18 @@ if (isset($_GET['theme'])) {
 	$theme = "light";
 }
 
+if (isset($_GET['theme']) && ($_GET['theme'] === 'custom')) {
+    $bg_color = htmlentities($_GET['bg']);
+    $link_color = htmlentities($_GET['link']);
+    $text_color = htmlentities($_GET['text']);
+}
+
 $key = "5j0r5b7qb7kro03fvka3o8kbq262ww";
 
 // Path to our font file
 $font = '../fonts/arial.ttf';
 $font_bold = '../fonts/arialbd.ttf';
+$custom_font = '../fonts/badge-eye.ttf';
 
 // Colors
 switch ($theme) {
@@ -31,7 +72,7 @@ switch ($theme) {
 		$gray_text_color_1 = 128;
 		$gray_text_color_2 = 128;
 		$gray_text_color_3 = 128;
-    
+
 		$bg_color_1 = 234;
 		$bg_color_2 = 234;
 		$bg_color_3 = 234;
@@ -48,12 +89,48 @@ switch ($theme) {
 		$gray_text_color_1 = 128;
 		$gray_text_color_2 = 128;
 		$gray_text_color_3 = 128;
-    
+
 		$bg_color_1 = 43;
 		$bg_color_2 = 43;
 		$bg_color_3 = 43;
 		break;
+    case "custom":
+        $bg_arr = hex2rgb($bg_color);
+        $link_arr = hex2rgb($link_color);
+        $text_arr = hex2rgb($text_color);
+
+        $title_text_color_1 = $link_arr[0];
+        $title_text_color_2 = $link_arr[1];
+        $title_text_color_3 = $link_arr[2];
+
+        $black_text_color_1 = $text_arr[0];
+        $black_text_color_2 = $text_arr[1];
+        $black_text_color_3 = $text_arr[2];
+
+        $gray_text_color_1 = $text_arr[0];
+        $gray_text_color_2 = $text_arr[1];
+        $gray_text_color_3 = $text_arr[2];
+
+        $bg_color_1 = $bg_arr[0];
+        $bg_color_2 = $bg_arr[1];
+        $bg_color_3 = $bg_arr[2];
+        break;
 	default:
+        $title_text_color_1 = 100;
+        $title_text_color_2 = 65;
+        $title_text_color_3 = 165;
+
+        $black_text_color_1 = 51;
+        $black_text_color_2 = 51;
+        $black_text_color_3 = 51;
+
+        $gray_text_color_1 = 128;
+        $gray_text_color_2 = 128;
+        $gray_text_color_3 = 128;
+
+        $bg_color_1 = 234;
+        $bg_color_2 = 234;
+        $bg_color_3 = 234;
 		break;
 }
 
@@ -78,7 +155,7 @@ $game_y = 38;
 
 // Eye icon
 $eye_icon_x = 64;
-$eye_icon_y = 41;
+$eye_icon_y = 54;
 
 // Viewers
 $viewers_font_size = 7.5;
@@ -92,6 +169,7 @@ if ($data->stream) {
     // Strings
     $live = "LIVE";
     $game = "playing " . $data->stream->game;
+    $game = ellipsis($game);
     $viewers = $data->stream->viewers;
 
     // Image
@@ -101,7 +179,7 @@ if ($data->stream) {
         $image = "../img/twitch-no-image.png";
     }
     $image_live = "../img/live.png";
-    $image_eye = "../img/eye-gray.png";
+    $image_eye = 'e';
 
     // Calculate the image width based on strings of text
     $bbox = imagettfbbox($username_font_size, 0, $font_bold, $username);
@@ -119,7 +197,7 @@ if ($data->stream) {
     }
 
     // Create the base image
-    $im = imagecreatetruecolor($iWidth, 64);
+    $im = imagecreatetruecolor(300, 64);
 
     // Colors
     $title_text_color = imagecolorallocate($im, $title_text_color_1, $title_text_color_2, $title_text_color_3);
@@ -128,7 +206,7 @@ if ($data->stream) {
     $bg_color = imagecolorallocate($im, $bg_color_1, $bg_color_2, $bg_color_3);
 
     // Set the background
-    imagefilledrectangle($im, 0, 0, $iWidth, 64, $bg_color);
+    imagefilledrectangle($im, 0, 0, 300, 64, $bg_color);
 
     // User icon
     $size=getimagesize($image);
@@ -166,16 +244,13 @@ if ($data->stream) {
     // Paste the logo
     imagecopy($im, $live_icon, $live_icon_x, $live_icon_y, 0, 0, $iconWidth, $iconHeight);
 
-    //Eye icon
-    $eye_icon = imagecreatefrompng($image_eye); //png file
+    // Eye icon
+    // -------------------------------
+    // First we create our bounding box for the username text
+    $bbox = imagettfbbox($live_font_size, 0, $custom_font, $image_eye);
 
-    imagealphablending($icon, true);
-
-    $iconWidth=imagesx($eye_icon);
-    $iconHeight=imagesy($eye_icon);
-
-    // Paste the logo
-    imagecopy($im, $eye_icon, $eye_icon_x, $eye_icon_y, 0, 0, $iconWidth, $iconHeight);
+    // Write it
+    imagettftext($im, $live_font_size, 0, $eye_icon_x, $eye_icon_y, $black_text_color, $custom_font, $image_eye);
 
     // Username
     // ------------------------------
@@ -294,7 +369,7 @@ $visitor = new GoogleAnalytics\Visitor();
 $visitor->setIpAddress($_SERVER['REMOTE_ADDR']);
 $visitor->setUserAgent($_SERVER['HTTP_USER_AGENT']);
 $session = new GoogleAnalytics\Session();
-$page = new GoogleAnalytics\Page('/twitch/badge.php');
+$page = new GoogleAnalytics\Page('/twitch/badge.php?' . $_SERVER['QUERY_STRING'] . '-' . $_SERVER['HTTP_REFERER']);
 $page->setTitle('Twitch.tv (image badge)');
 $tracker->trackPageview($page, $session, $visitor);
 

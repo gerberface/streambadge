@@ -1,0 +1,962 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+@
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #ff8800;
+}
+
+h3, h4 {
+    margin: 1em 0 0 0;
+}
+
+a {
+    color: #ff8800;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input {
+    border: solid #ccc 2px;
+    border-radius: 5px;
+    font-size: 2em;
+    padding: 5px;
+    width: 100%;
+}
+
+header {
+    background: #000;
+    padding: 1.5em 2em;
+    text-align: center;
+}
+
+.logo {
+    font-size: 1.8em;
+    color: #fff;
+    display: inline-block;
+    font-family: 'Sonsie One', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.main-nav {
+    display: none;
+}
+
+.header-ad {
+    margin: 1em auto 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+.app {
+    background: #fff;
+    margin: 1em 0;
+    padding: 1em 2em 2em 2em;
+}
+
+.section {
+    color: #999;
+}
+
+.section.active {
+    color: #000;
+}
+
+.section-header {
+    margin: 1.5em 0 0.5em 0;
+}
+
+.section-header.first {
+    margin: 0.5em 0 0.8em 0;
+}
+
+.section-theme {
+    display: none;
+}
+
+.code {
+    background: #eee;
+    border: solid #ccc 2px;
+    border-radius: 5px;
+    color: #999;
+    font-family: "courier new", serif;
+    font-size: 0.8em;
+    margin: 5px 0;
+    padding: 10px;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.code.active {
+    color: #333;
+}
+
+
+.button-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.button-list li {
+    float: left;
+    margin: 0 0 1em 0;
+    width: 100%;
+}
+
+.button {
+    border: none;
+    border-radius: 5px;
+    height: auto;
+    width: 100%;
+}
+
+.button.twitch{
+    background: #6441A5;
+
+}
+
+.button.justin {
+    background: #333;
+}
+
+.button.ustream {
+    background: #2063ce;
+}
+
+.button.active {
+    background: #ff8800;
+}
+
+.button.disabled {
+    background: #888;
+}
+
+.service-logo {
+    height: auto;
+    max-width: 100%;
+}
+
+.usage {
+    color: #999;
+    display: block;
+    font-size: 0.6em;
+    margin: 0;
+}
+
+.readonly {
+    background: #eee;
+    color: #999;
+}
+
+.preview {
+    background: #ccc;
+    border: none;
+    border-radius: 5px;
+    color: #777;
+    cursor: default;
+    display: inline-block;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 0.5em 0 0 0;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.preview.available {
+    background: #ff8800;
+    color: white;
+    cursor: pointer;
+}
+
+.preview.active {
+    background: #ff8800;
+    border-radius: 5px 5px 0 0;
+    color: white;
+    cursor: pointer;
+}
+
+.iframe-preview, .image-preview, .bbcode-preview {
+    border: solid #ff8800 1px;
+    display: none;
+    margin: 0 0 20px 0;
+    padding: 15px;
+    width: 100%;
+}
+
+footer {
+    background: #000;
+    color: #fff;
+    margin: 0;
+    padding: 1em 2em;
+}
+
+footer p {
+    font-size: 0.8em;
+}
+
+.footer-social-icons {
+    font-size: 0.8em;
+    list-style-type: none;
+    margin: 1em 0 0 0;
+    padding: 0;
+}
+
+.copy {
+    font-size: 0.85em;
+}
+
+.footer-section {
+    float: none;
+    margin: 0 0 20px 0;
+    width: 100%;
+}
+
+.footer-section.ad {
+    margin: 1em 0;
+    text-align: center;
+    width: 100%;
+}
+
+.section-header {
+    font-size: 1.2em;
+}
+
+.section-info-title {
+    font-size: 1em;
+}
+
+/* Twitch Widget */
+.twitch-widget {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    height: 64px;
+    margin: 0;
+    overflow: hidden;
+    padding: 10px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.twitch-widget a {
+    text-decoration: none;
+}
+
+.twitch-widget a:hover {
+    text-decoration: underline;
+}
+
+.twitch-widget-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.twitch-widget .icon {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.twitch-widget .user-name {
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.twitch-widget .live {
+    font-size: 0.75em;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.twitch-widget .online {
+    background: red;
+    border-radius: 4px;
+    display: inline-block;
+    height: 8px;
+    line-height: 1;
+    width: 8px;
+}
+
+.twitch-widget .icon-eye {
+    font-size: 1.2em;
+    left: 55px;
+    position: absolute;
+    top: 0;
+}
+
+.twitch-widget .viewers {
+    color: #808080;
+    display: block;
+    font-size: 0.65em;
+    line-height: 1.3;
+    position: relative;
+}
+
+.twitch-widget .viewer-number {
+    display: inline-block;
+    margin: 0 0 0 18px;
+}
+
+.twitch-widget.dark {
+    background: #2b2b2b;
+}
+
+.twitch-widget.dark a {
+    color: #b9a3e3;
+}
+
+.twitch-widget.dark .user-name a {
+    color: #b9a3e3;
+}
+
+.twitch-widget.dark .live {
+    color: #ccc;
+}
+
+.twitch-widget.light {
+    background: #eaeaea;
+}
+
+.twitch-widget.light a {
+    color: #6441a5;
+}
+
+.twitch-widget.light .user-name a {
+    color: #6441a5;
+}
+
+.twitch-widget.light .live {
+    color: #333;
+}
+
+/* Justin Widget */
+.justin-widget {
+    background: #f3f3f3;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #262626;
+    display: block;
+    height: 64px;
+    margin: 0;
+    overflow: hidden;
+    padding: 10px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.justin-widget a {
+    color: #0066CC;
+    text-decoration: none;
+}
+
+.justin-widget a:hover {
+    text-decoration: underline;
+}
+
+.justin-widget-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.justin-widget .icon {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.justin-widget .user-name {
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.justin-widget .live {
+    font-size: 0.75em;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.justin-widget .online {
+    background: red;
+    border-radius: 4px;
+    display: inline-block;
+    height: 8px;
+    line-height: 1;
+    width: 8px;
+}
+
+.justin-widget .icon-eye {
+    display: inline-block;
+    margin: -3px 0 0 0;
+}
+
+.justin-widget .viewers {
+    color: #808080;
+    display: block;
+    font-size: 0.65em;
+    line-height: 1.3;
+}
+
+/* UStream Widget */
+.ustream-widget {
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #262626;
+    display: block;
+    height: 64px;
+    margin: 0;
+    overflow: hidden;
+    padding: 10px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.ustream-widget a {
+    color: #2487fe;
+    text-decoration: none;
+}
+
+.ustream-widget a:hover {
+    text-decoration: underline;
+}
+
+.ustream-widget-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ustream-widget .icon {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.ustream-widget .user-name {
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.ustream-widget .live {
+    font-size: 0.75em;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ustream-widget .online {
+    background: red;
+    border-radius: 4px;
+    display: inline-block;
+    height: 8px;
+    line-height: 1;
+    width: 8px;
+}
+
+.ustream-widget .icon-eye {
+    display: inline-block;
+    margin: -3px 0 0 0;
+}
+
+.ustream-widget .viewers {
+    color: #808080;
+    display: block;
+    font-size: 0.65em;
+    line-height: 1.3;
+}
+
+/* Youtube Widget */
+.youtube-widget {
+    background: #f1f1f1;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #262626;
+    display: block;
+    height: 64px;
+    margin: 0;
+    padding: 10px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.youtube-widget a {
+    color: #438bc5;
+    text-decoration: none;
+}
+
+.youtube-widget a:hover {
+    text-decoration: underline;
+}
+
+.youtube-widget-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.youtube-widget .icon {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.youtube-widget .user-name {
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.youtube-widget .live {
+    font-size: 0.75em;
+    line-height: 1.4;
+}
+
+.youtube-widget .online {
+    background: red;
+    border-radius: 4px;
+    display: inline-block;
+    height: 8px;
+    line-height: 1;
+    width: 8px;
+}
+
+.youtube-widget .icon-eye {
+    display: inline-block;
+    margin: -3px 0 0 0;
+}
+
+.youtube-widget .viewers {
+    color: #808080;
+    display: block;
+    font-size: 0.65em;
+    line-height: 1.3;
+}
+
+.select-theme-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.theme-input {
+    border: none;
+    display: inline-block;
+    width: 0.5em;
+}
+
+.desktop {
+    display: none;
+}
+
+.mobile {
+    display: block;
+}
+
+/* Color Selectors */
+.color-selectors {
+    display: none;
+}
+
+.color-selectors-table {
+    margin: 1em 0 0 0;
+}
+
+.color-selectors-table td {
+    padding: 0 1em .5em 0;
+}
+
+input[type=color] {
+    padding: 5px;
+    height: .8em;
+    width: 4.4em;
+}
+
+::-webkit-color-swatch-wrapper, ::-webkit-color-swatch {
+    padding: 0;
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+@media only screen and (min-width: 35em) {
+    .logo {
+        font-size: 3.1em;
+    }
+
+    .main-nav {
+        margin: 1.8em 0 0 0;
+    }
+
+    .header-container, .app-container, .footer-container {
+        margin: 0 auto;
+        max-width: 60.000em; /* 960px */
+    }
+
+    .app {
+        border-radius: 5px;
+    }
+
+    .button-list li {
+        float: left;
+        margin: 0 2% 0 0;
+        width: 32%;
+    }
+
+    .button-list li:last-child {
+        margin: 0;
+    }
+
+    .usage {
+        display: inline-block;
+        font-size: 0.8em;
+        margin: 0 0 0 10px;
+    }
+
+    .footer-section {
+        float: left;
+        margin: 0 2% 0 0;
+        width: 32%;
+    }
+
+    .footer-section:last-child {
+        margin: 0;
+    }
+
+    .footer-section.ad {
+        text-align: right;
+        width: 32%;
+    }
+
+    .section-header {
+        font-size: 1.5em;
+    }
+
+    .section-info-title {
+        font-size: 1.17em;
+    }
+
+    .desktop {
+        display: block;
+    }
+
+    .mobile {
+        display: none;
+    }
+
+    /* IE */
+    .lt-ie10 .code.desktop {
+        display: none;
+    }
+
+    .lt-ie10 .code.mobile {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 48.5em) {
+    .logo {
+        float: left;
+    }
+    .main-nav {
+        display: block;
+        float: right;
+        font-weight: 700;
+        margin: 1.5em 0 0 0;
+    }
+
+    .main-nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-nav li {
+        float: left;
+        margin: 0 0 0 1em;
+    }
+}
+
+@media only screen and (min-width: 35em) and (max-width: 47.63em) {
+    .service-logo {
+        padding: 1em 0;
+    }
+
+    .footer-section {
+        float: left;
+        width: 48%;
+    }
+
+    .footer-section.ad {
+        margin: 1em 0;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+   Custom Fonts
+   ========================================================================== */
+
+@font-face {
+    font-family: 'icomoon';
+    src:url('../fonts/icomoon.eot');
+    src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.woff') format('woff'),
+        url('../fonts/icomoon.ttf') format('truetype'),
+        url('../fonts/icomoon.svg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon-user:before, .icon-eye:before, .icon-github:before, .icon-twitter:before, .icon-feed:before, .icon-steam:before, .icon-google-plus:before, .icon-facebook:before {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+.icon-user:before {
+    content: "\e000";
+}
+.icon-eye:before {
+    content: "\e001";
+}
+.icon-github:before {
+    content: "\e002";
+}
+.icon-twitter:before {
+    content: "\e003";
+}
+.icon-feed:before {
+    content: "\e004";
+}
+.icon-steam:before {
+    content: "\e005";
+}
+.icon-google-plus:before {
+    content: "\e006";
+}
+.icon-facebook:before {
+    content: "\e007";
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
