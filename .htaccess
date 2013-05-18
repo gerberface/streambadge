@@ -224,7 +224,7 @@ AddType text/vtt                            vtt
 
 # Media: images, video, audio
   ExpiresByType image/gif                 "access plus 1 month"
-  ExpiresByType image/png                 "access plus 1 month"
+# ExpiresByType image/png                 "access plus 1 month"
   ExpiresByType image/jpeg                "access plus 1 month"
   ExpiresByType video/ogg                 "access plus 1 month"
   ExpiresByType audio/ogg                 "access plus 1 month"
@@ -243,7 +243,7 @@ AddType text/vtt                            vtt
 
 # CSS and JavaScript
   ExpiresByType text/css                  "access plus 1 year"
-  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 week"
 
 </IfModule>
 
