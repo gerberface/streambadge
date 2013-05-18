@@ -92,16 +92,6 @@
         App.dom.html_code_mobile = $('#html-code-mobile');
         App.dom.bbcode_code_mobile = $('#bbcode-code-mobile');
 
-        // Service buttons
-        App.dom.twitch_button = $('#twitch-button');
-        App.dom.justin_button = $('#justin-button');
-        App.dom.ustream_button = $('#ustream-button');
-
-        // Twitch theme controls
-        App.dom.theme_light = $('#theme-light');
-        App.dom.theme_dark = $('#theme-dark');
-        App.dom.theme_custom = $('#theme-custom');
-
         // Custom theme controls
         App.dom.color_selector = $('.color-selector');
         App.dom.color_selectors = $('.color-selectors');
@@ -118,7 +108,7 @@
         // Username input
         App.dom.username_input = $('#username-input');
 
-        //
+        // Code section
         App.dom.section_code_code = $('#section-code, .code');
 
         // Service buttons
@@ -128,17 +118,14 @@
         App.dom.iframe_html_bbcode_code = $('#iframe-code, #html-code, #bbcode-code');
 
         // iframe preview controls
-        App.dom.iframe_preview_button = $('#iframe-preview-button');
         App.dom.iframe_preview = $('#iframe-preview');
         App.dom.iframe_preview_class = $('.iframe-preview');
 
         // image oreview controls
-        App.dom.image_preview_button = $('#image-preview-button');
         App.dom.image_preview = $('#image-preview');
         App.dom.image_preview_class = $('.image-preview');
 
         // bbcode preview controls
-        App.dom.bbcode_preview_button = $('#bbcode-preview-button');
         App.dom.bbcode_preview = $('#bbcode-preview');
         App.dom.bbcode_preview_class = $('.bbcode-preview');
 
@@ -388,12 +375,12 @@
         App.generateCode = function () {
 
             App.dom.iframe_code.html('<iframe src="http://streambadge.com/' + App.service + '/?username=' + App.username + App.iframe_theme + '" style="border:none;height:64px;width:100%"></iframe>');
-            App.dom.html_code.html('<a href="http://' + App.service + '.tv/' + App.username + '"><img src="http://streambadge.com/' + App.service + '/' + App.image_theme + App.username + '.png" width="300" height="64" alt="Image of ' + App.username + '\'s Streambadge"></a>');
+            App.dom.html_code.html('<a href="http://' + App.service + '.tv/' + App.username + '"><img src="http://streambadge.com/' + App.service + '/' + App.image_theme + App.username + '.png" width="300" height="64" alt="' + App.username + '\'s Streambadge"></a>');
             App.dom.bbcode_code.html('[url=http://' + App.service + '.tv/' + App.username + '][img]http://streambadge.com/' + App.service + '/' + App.image_theme + App.username + '.png[/img][/url]');
 
             // Mobile
             App.dom.iframe_code_mobile.html('&lt;iframe src="http://streambadge.com/' + App.service + '/?username=' + App.username + App.iframe_theme + '" style="border:none;height:64px;width:100%"&gt;&lt;/iframe&gt;');
-            App.dom.html_code_mobile.html('&lt;a href="http://' + App.service + '.tv/' + App.username + '"&gt;&lt;img src="http://streambadge.com/' + App.service + '/' + App.image_theme + App.username + '.png" width="300" height="64" alt="Image of ' + App.username + '\'s Streambadge"&gt;&lt;/a&gt;');
+            App.dom.html_code_mobile.html('&lt;a href="http://' + App.service + '.tv/' + App.username + '"&gt;&lt;img src="http://streambadge.com/' + App.service + '/' + App.image_theme + App.username + '.png" width="300" height="64" alt="' + App.username + '\'s Streambadge"&gt;&lt;/a&gt;');
             App.dom.bbcode_code_mobile.html('[url=http://' + App.service + '.tv/' + App.username + '][img]http://streambadge.com/' + App.service + '/' + App.image_theme + App.username + '.png[/img][/url]');
 
         };
@@ -571,7 +558,7 @@
 
                         }
 
-                        App.twitch_widget.$twitch_widget.html('<div class="twitch-widget ' + App.twitch_widget.theme + '" ' + App.twitch_widget.bg_color + '><ul class="twitch-widget-list"><li class="user-name"><a href="http://twitch.tv/"' + App.twitch_widget.username + '" target="_blank" ' + App.twitch_widget.link_color + '><img src="' + App.twitch_widget.image + '" width="44" height="44" alt="' + App.twitch_widget.username + '" channel logo" class="icon">' + App.twitch_widget.username + '</a></li><li class="live" ' + App.twitch_widget.text_color + '><b>LIVE</b> <span class="online"></span> playing ' + (data.stream.game ? '<a href="http://www.twitch.tv/directory/game/' + encodeURIComponent(data.stream.game) + '" target="_blank" ' + App.twitch_widget.link_color + '>' + data.stream.game + '</a>' : '') + '</li><li class="viewers" ' + App.twitch_widget.text_color + '><span aria-hidden="true" class="icon-eye"></span><span class="viewer-number">' + data.stream.viewers + '</span></li></ul></div>');
+                        App.twitch_widget.$twitch_widget.html('<div class="twitch-widget ' + App.twitch_widget.theme + '" ' + App.twitch_widget.bg_color + '><ul class="twitch-widget-list"><li class="user-name"><a href="http://twitch.tv/' + App.twitch_widget.username + '" target="_blank" ' + App.twitch_widget.link_color + '><img src="' + App.twitch_widget.image + '" width="44" height="44" alt="' + App.twitch_widget.username + '" channel logo" class="icon">' + App.twitch_widget.username + '</a></li><li class="live" ' + App.twitch_widget.text_color + '><b>LIVE</b> <span class="online"></span> playing ' + (data.stream.game ? '<a href="http://www.twitch.tv/directory/game/' + encodeURIComponent(data.stream.game) + '" target="_blank" ' + App.twitch_widget.link_color + '>' + data.stream.game + '</a>' : '') + '</li><li class="viewers" ' + App.twitch_widget.text_color + '><span aria-hidden="true" class="icon-eye"></span><span class="viewer-number">' + data.stream.viewers + '</span></li></ul></div>');
 
                     } else {
 
