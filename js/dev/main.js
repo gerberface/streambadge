@@ -29,18 +29,6 @@
         // Initial textarea value
         App.generateCode();
 
-        // Match media
-        App.matchMediaTest();
-        App.mediaSwitch();
-
-        // Call match media on resize
-        window.onresize = function () {
-            App.matchMediaTest();
-        };
-
-        // Load footer ad
-        App.dom.footer_section_ad.html("<iframe src='/ads/footer.html' style='border:none;height:250px;width:250px;'></iframe>");
-
         // Footer year
         var date = new Date();
         App.dom.year.html( date.getFullYear() );
@@ -81,6 +69,9 @@
 
         // Cache selectors
         App.dom = {};
+
+        // Global
+        App.dom.body = $('body');
 
         // Code elements
         App.dom.iframe_code = $('#iframe-code');
@@ -135,6 +126,9 @@
         // Theme radio buttons
         App.dom.theme_input = $('.theme-input');
 
+        App.dom.theme_light = $('#theme-light');
+        App.dom.theme_dark = $('#theme-dark');
+
         //
         App.dom.section_username_section_code_code = $('#section-username, #section-code, .code');
         App.dom.section_username = $('#section-username');
@@ -144,10 +138,6 @@
 
         // Main logo
         App.dom.logo = $('#logo');
-
-        // Ads
-        App.dom.header_ad = $('.header-ad');
-        App.dom.footer_section_ad = $('.footer-section.ad');
 
         // Widgets
         App.dom.twitch_widget = $('#twitch-widget');
@@ -391,6 +381,14 @@
             // Theme
             if ( service === 'twitch' ) {
 
+                App.dom.theme_light.attr('disabled', false);
+                App.dom.theme_dark.attr('disabled', false);
+                App.dom.section_theme.slideDown();
+
+            } else if ( service === 'justin' ) {
+
+                App.dom.theme_light.attr('disabled', true);
+                App.dom.theme_dark.attr('disabled', true);
                 App.dom.section_theme.slideDown();
 
             } else {
@@ -437,67 +435,17 @@
 
         };
 
-        // Media Queries
-        App.matchMediaTest = function () {
-
-            var media = App.currentMedia;
-
-            if ( matchMedia('only screen and (max-width: 30em)').matches ) {
-
-                App.currentMedia = 'small';
-
-            } else if ( matchMedia('only screen and (min-width: 30em) and (max-width: 45em)').matches ) {
-
-                App.currentMedia = 'medium';
-
-            } else if ( matchMedia('only screen and (min-width: 45em)').matches ) {
-
-                App.currentMedia = 'large';
-
-            }
-
-            // On resize
-            if ( media !== App.currentMedia ) {
-
-                App.mediaSwitch();
-
-            }
-
-        };
-
-        App.mediaSwitch = function () {
-
-            switch (App.currentMedia) {
-
-                case 'none':
-                    App.dom.header_ad.empty();
-                    break;
-
-                case 'small':
-                    App.dom.header_ad.empty().html('<iframe src="ads/header-medium.html" style="border:none;height:60px;width:234px;"></iframe>');
-                    break;
-
-                case 'medium':
-                    App.dom.header_ad.empty().html('<iframe src="/ads/header-wide.html" style="border:none;height:60px;width:468px;"></iframe>');
-                    break;
-
-                case 'large':
-                    App.dom.header_ad.empty().html('<iframe src="/ads/header-super.html" style="border:none;height:90px;width:728px;"></iframe>');
-                    break;
-
-                default:
-                    break;
-
-            }
-
-        };
-
         // Justin widget
         App.justinWidget = function () {
 
             App.justin_widget = {};
             App.justin_widget.$justin_widget = App.dom.justin_widget;
             App.justin_widget.username = App.queryString.username;
+            App.justin_widget.bg_color = App.queryString.bg ? 'style="background:#' + App.queryString.bg + '"' : '';
+            App.justin_widget.link_color = App.queryString.link ? 'style="color:#' + App.queryString.link + '"' : '';
+            App.justin_widget.text_color = App.queryString.text ? 'style="color:#' + App.queryString.text + '"' : '';
+
+            App.dom.body.css( 'background', '#' + App.queryString.bg );
 
             if ( typeof App.justin_widget.username === 'undefined' || App.justin_widget.username === '' ) {
 
@@ -509,13 +457,13 @@
 
                     if ( data[0] ) {
 
-                        App.justin_widget.$justin_widget.html('<ul class="justin-widget-list"><li class="user-name"><a href="http://justin.tv/' + App.justin_widget.username + '" target="_blank"><img src="' + data[0].channel.image_url_small + '" width="44" height="44" alt="' + App.justin_widget.username + ' channel logo" class="icon">' + App.justin_widget.username + '</a></li><li class="live"><b>LIVE</b> <span class="online"></span> ' + data[0].title + '</li><li class="viewers"><img src="/img/eye-gray.png" width="14" height="14" alt="" class="icon-eye"> ' + data[0].channel_count + '</li></ul>');
+                        App.justin_widget.$justin_widget.html('<div class="justin-widget" ' + App.justin_widget.bg_color + '><ul class="justin-widget-list"><li class="user-name"><a href="http://justin.tv/' + App.justin_widget.username + '" target="_blank" ' + App.justin_widget.link_color + '><img src="' + data[0].channel.image_url_small + '" width="44" height="44" alt="' + App.justin_widget.username + ' channel logo" class="icon">' + App.justin_widget.username + '</a></li><li class="live" ' + App.justin_widget.text_color + '><b>LIVE</b> <span class="online"></span> ' + data[0].title + '</li><li class="viewers" ' + App.justin_widget.text_color + '><span aria-hidden="true" class="icon-eye"></span><span class="viewer-number">' + data[0].channel_count + '</span></li></ul></div>');
 
                     } else {
 
-                        $.getJSON('http://api.justin.tv/api/channel/show/list.json?channel=' + App.justin_widget.username + '&jsonp=?', function(data) {
+                        $.getJSON('http://api.justin.tv/api/channel/show/' + App.justin_widget.username + '.json?jsonp=?', function(data) {
 
-                           App.justin_widget.$justin_widget.html('<ul class="justin-widget-list"><li><a href="http://justin.tv/' + App.justin_widget.username + '" class="user-name" target="_blank"><img src="' + data.image_url_small + '" width="44" height="44" alt="' + App.justin_widget.username + ' channel logo" class="icon">' + App.justin_widget.username + '</a></li><li class="live"><b>Offline</b></li></ul>');
+                           App.justin_widget.$justin_widget.html('<div class="justin-widget" ' + App.justin_widget.bg_color + '><ul class="justin-widget-list"><li><a href="http://justin.tv/' + App.justin_widget.username + '" class="user-name" target="_blank" ' + App.justin_widget.link_color + '><img src="' + data.image_url_small + '" width="44" height="44" alt="' + App.justin_widget.username + ' channel logo" class="icon">' + App.justin_widget.username + '</a></li><li class="live" ' + App.justin_widget.text_color + '><b>Offline</b></li></ul></div>');
                         });
 
                     }
@@ -537,6 +485,8 @@
             App.twitch_widget.link_color = 'style="color:#' + App.queryString.link + '"';
             App.twitch_widget.text_color = 'style="color:#' + App.queryString.text + '"';
             App.twitch_widget.$twitch_widget = App.dom.twitch_widget;
+
+            App.dom.body.css( 'background', '#' + App.queryString.bg );
 
             if ( typeof App.twitch_widget.username === 'undefined' || App.twitch_widget.username === '' ) {
 
