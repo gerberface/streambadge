@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Streambadge</title>
+        <meta name="description" content="Streambadge helps you gain viewership by displaying your live stream status. Select your video stream service, add your username, and grab the code! Streambadge currently works with Twitch.tv, Justin.tv, and UStream.tv!">
+        <meta name="viewport" content="width=device-width">
+        <meta content='http://streambadge.com/images/streambadge.png' property='og:image'/>
+        <meta content='https://streambadge.com/images/streambadge.png' property='og:image:secure_url'/>
+        <link rel="canonical" href="http://streambadge.com/">
+        <!-- build:css({.tmp,app}) styles/main.min.css -->
+        <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+        <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+        <link href='http://fonts.googleapis.com/css?family=Roboto|Sonsie+One' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <header class="header" role="banner">
+            <div class="container clearfix">
+                <h1 id="logo" class="header__logo">Streambadge</h1>
+                <a href="#main" class="visuallyhidden focusable">Skip to content</a>
+                <nav class="header__main-nav" role="navigation">
+                    <ul class="header__main-nav__list">
+                        <li class="header__main-nav__list__item">
+                            <a href="#about">About</a>
+                        </li>
+                        <li class="header__main-nav__list__item">
+                            <a href="#support">Support</a>
+                        </li>
+                        <li class="header__main-nav__list__item">
+                            <a href="#follow">Follow</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main id="main" class="app" role="main">
+            <div class="container">
+                <noscript>
+                    <div class="notice">
+                        <p>JavaScript is required to generate your Streambadge. Please use a JavaScript enabled browser.</p>
+                    </div>
+                </noscript>
+                <section aria-labelledby="section-service" class="section active">
+                    <h2 id="section-service" class="section-header first">1. Select your streaming service:</h2>
+                    <ul class="button-list clearfix">
+                        <li>
+                            <button id="twitch-button" class="button twitch" data-button="twitch" data-js="service-button">
+                                <img src="/images/twitch-logo.png" width="300" height="64" alt="Twitch.tv logo" class="service-logo">
+                            </button>
+                        </li>
+                        <li>
+                            <button id="justin-button" class="button justin" data-button="justin" data-js="service-button">
+                                <img src="/images/justin-logo.png" width="300" height="64" alt="Justin.tv logo" class="service-logo">
+                            </button>
+                        </li>
+                        <li>
+                            <button id="ustream-button" class="button ustream" data-button="ustream" data-js="service-button">
+                                <img src="/images/ustream-logo.png" width="300" height="64" alt="UStream.tv logo" class="service-logo">
+                            </button>
+                        </li>
+                    </ul>
+                </section>
+                <section aria-labelledby="section-theme" class="section section-theme active" data-js="section-theme">
+                    <h3 id="section-theme" class="section-info-title">Select a theme <span class="usage">(optional)</span></h3>
+                    <ul class="select-theme-list">
+                        <li>
+                            <input type="radio" id="theme-light" name="theme" value="light" class="theme-input" data-theme="light" data-js-theme="theme-light" data-js="theme-input">
+                            <label for="theme-light">Light</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="theme-dark" name="theme" value="dark" class="theme-input" data-theme="dark" data-js-theme="theme-dark" data-js="theme-input">
+                            <label for="theme-dark">Dark</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="theme-custom" name="theme" value="custom" class="theme-input" data-theme="custom" data-js="theme-input">
+                            <label for="theme-custom">Custom</label>
+                            <div class="color-selectors" data-js="color-selectors">
+                                <label for="bg-color">Background Color</label>
+                                <input type="color" id="bg-color" class="color-selector" value="#2B2B2B" data-color-selector="bg-color" data-js-color="bg-color" data-js="color-selector">
+                                <label for="link-color">Link Color</label>
+                                <input type="color" id="link-color" class="color-selector" value="#B9A3E3" data-color-selector="link-color" data-js-color="link-color" data-js="color-selector">
+                                <label for="text-color">Text Color</label>
+                                <input type="color" id="text-color" class="color-selector" value="#808080" data-color-selector="text-color" data-js-color="text-color" data-js="color-selector">
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <section aria-labelledby="section-username" class="section" data-js="section-username">
+                    <h2 id="section-username" class="section-header">2. Enter your service username:</h2>
+                    <input type="text" id="username-input" class="readonly" data-js="username-input" readonly="readonly" />
+                </section>
+                <section aria-labelledby="section-code" class="section" data-js="section-code">
+                    <h2 id="section-code" class="section-header">3. Grab the code:</h2>
+                    <h3 class="section-info-title">iFrame <span class="usage">(HTML and CSS)</span></h3>
+                    <div class="anchor-link clearfix">
+                      <textarea class="code desktop" data-js="iframe-code" data-js-code="service-code" readonly="readonly"></textarea>
+                      <div class="code mobile" data-js="iframe-code-mobile" data-js-code="service-code"></div>
+                      <button id="iframe-preview-button" class="preview" data-preview="iframe" data-js="preview-button">Preview</button>
+                      <div class="iframe-preview" data-js-preview="section-preview" data-js="iframe-preview-section">
+                        <iframe src="/" style="border:none;height:4em;width:100%" data-js="iframe-preview"></iframe>
+                      </div>
+                    </div>
+                    <h3 class="section-info-title">HTML Image <span class="usage">(For your website or blog)</span></h3>
+                    <div class="anchor-link clearfix">
+                      <textarea class="code desktop" data-js="html-code" data-js-code="service-code" readonly="readonly"></textarea>
+                      <div class="code mobile" data-js="html-code-mobile" data-js-code="service-code"></div>
+                      <button id="image-preview-button" class="preview" data-preview="image" data-js="preview-button">Preview</button>
+                      <div class="image-preview" data-js-preview="section-preview" data-js="image-preview-section">
+                        <img src="/" alt="" data-js="image-preview">
+                      </div>
+                    </div>
+                    <h3 class="section-info-title">BBCode Image <span class="usage">(For your forum signature)</span></h3>
+                    <div class="anchor-link clearfix">
+                      <textarea class="code desktop" data-js="bbcode-code" data-js-code="service-code" readonly="readonly"></textarea>
+                      <div class="code mobile" data-js="bbcode-code-mobile" data-js-code="service-code"></div>
+                      <button id="bbcode-preview-button" class="preview" data-preview="bbcode" data-js="preview-button">Preview</button>
+                      <div class="bbcode-preview" data-js-preview="section-preview" data-js="bbcode-preview-section">
+                        <img src="/" alt="" data-js="bbcode-preview">
+                      </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer role="contentinfo">
+            <div class="container">
+                <div class="clearfix">
+                    <section aria-labelledby="about" class="footer-section">
+                        <h4 id="about">About</h4>
+                        <p><b>Streambadge</b> helps you gain viewership by displaying your live stream status. Select your video stream service, add your username, and grab the code! Paste the code to your website, blog, or forum signature.</p>
+                    </section>
+                    <section aria-labelledby="support" class="footer-section">
+                        <h4 id="support">Support</h4>
+                        <p>Questions or concerns? Found a bug? Report any issues on our <a href="https://github.com/svinkle/streambadge/issues"><span aria-hidden="true" class="icon-github"></span> GitHub</a> issues page.</p>
+                    </section>
+                    <section aria-labelledby="follow" class="footer-section">
+                        <h4 id="follow">Follow</h4>
+                        <ul class="footer-social-icons">
+                            <li>Follow us on <a href="http://twitter.com/streambadge"><span aria-hidden="true" class="icon-twitter"></span> Twitter</a> for status, news, and upcoming features!</li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="copy">
+                    <p>&copy; <span data-js="year">2012</span> <a href="http://streambadge.com">Streambadge.com</a>. Design and code by <a href="http://twitter.com/svinkle">@svinkle</a>.</p>
+                    <p>Streambadge is not sponsored by or affiliated with Twitch.tv, Justin.tv, or UStream.tv. "Twitch" logo &copy; Justin.tv Inc. "Justin.tv" logo &copy; Justin.tv Inc. "UStream" logo &copy; Ustream Inc.</p>
+                </div>
+            </div>
+        </footer>
+        <!-- build:js scripts/main.min.js -->
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
+        <script>
+            var _gaq=[['_setAccount','UA-37973757-2'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>
