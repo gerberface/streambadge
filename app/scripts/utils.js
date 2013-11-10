@@ -16,32 +16,32 @@ var utils = (function (document, window, undefined) {
 	// Query string
 	var queryString = function () {
 
-		var query_string = {};
-		var query = window.location.search.substring(1);
-		var vars = query.split("&");
+		var queryString = {},
+			query = window.location.search.substring(1),
+			vars = query.split('&');
 
 		for ( var i = 0; i < vars.length; i++ ) {
 
-				var pair = vars[i].split("=");
+			var pair = vars[i].split('=');
 
-				if ( typeof query_string[pair[0]] === "undefined" ) {
+			if ( typeof queryString[pair[0]] === 'undefined' ) {
 
-						query_string[pair[0]] = pair[1];
+				queryString[pair[0]] = pair[1];
 
-				} else if ( typeof query_string[pair[0]] === "string" ) {
+			} else if ( typeof queryString[pair[0]] === 'string' ) {
 
-						var arr = [ query_string[pair[0]], pair[1] ];
-						query_string[ pair[0] ] = arr;
+				var arr = [ queryString[pair[0]], pair[1] ];
+				queryString[ pair[0] ] = arr;
 
-				} else {
+			} else {
 
-						query_string[pair[0]].push(pair[1]);
+				queryString[pair[0]].push(pair[1]);
 
-				}
+			}
 
 		}
 
-		return query_string;
+		return queryString;
 
 	};
 

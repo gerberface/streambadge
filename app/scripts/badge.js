@@ -26,23 +26,23 @@ var badge = (function (document, window, undefined) {
 
     // Service specific vars
     switch (service) {
-        case 'twitch':
-            apiKey = '5j0r5b7qb7kro03fvka3o8kbq262wwm';
-            theme = utils.queryString().theme ? utils.queryString().theme : 'light';
-            streamURL = 'https://api.twitch.tv/kraken/streams/' + username + '?client_id=' + apiKey + '&callback=';
-            channelURL = 'https://api.twitch.tv/kraken/channels/' + username + '?client_id=' + apiKey + '&callback=';
-            break;
+    case 'twitch':
+        apiKey = '5j0r5b7qb7kro03fvka3o8kbq262wwm';
+        theme = utils.queryString().theme ? utils.queryString().theme : 'light';
+        streamURL = 'https://api.twitch.tv/kraken/streams/' + username + '?client_id=' + apiKey + '&callback=';
+        channelURL = 'https://api.twitch.tv/kraken/channels/' + username + '?client_id=' + apiKey + '&callback=';
+        break;
 
-        case 'justin':
-            streamURL = 'http://api.justin.tv/api/stream/list.json?channel=' + username + '&jsonp=';
-            channelURL = 'http://api.justin.tv/api/channel/show/' + username + '.json?jsonp=';
-            break;
+    case 'justin':
+        streamURL = 'http://api.justin.tv/api/stream/list.json?channel=' + username + '&jsonp=';
+        channelURL = 'http://api.justin.tv/api/channel/show/' + username + '.json?jsonp=';
+        break;
 
-        case 'ustream':
-            apiKey = 'EE028473488E26E1424E67B209A3C423';
-            streamURL = 'http://api.ustream.tv/json/channel/live/search/username:eq:' + username + '?key=' + apiKey + '&callback=';
-            channelURL = 'http://api.ustream.tv/json/user/' + username + '/getInfo?key=' + apiKey + '&callback=';
-            break;
+    case 'ustream':
+        apiKey = 'EE028473488E26E1424E67B209A3C423';
+        streamURL = 'http://api.ustream.tv/json/channel/live/search/username:eq:' + username + '?key=' + apiKey + '&callback=';
+        channelURL = 'http://api.ustream.tv/json/user/' + username + '/getInfo?key=' + apiKey + '&callback=';
+        break;
 
     }
 
@@ -67,50 +67,41 @@ var badge = (function (document, window, undefined) {
 
         // Service specific output
         switch (service) {
-            case 'twitch':
+        case 'twitch':
+            link = 'http://twitch.tv/' + username;
+            if ( data.stream ) {
+                image = data.stream.channel.logo;
+                title = ' playing ' + (data.stream.game ? '<a href="http://www.twitch.tv/directory/game/' + encodeURIComponent(data.stream.game) + '" target="_blank" ' + linkColor + '>' + data.stream.game + '</a>' : '');
+                viewerCount = data.stream.viewers;
+            } else {
+                // Get Channel data
+                utils.requestJSONP(channelURL, 'drawChannel');
+            }
+            break;
 
-                link = 'http://twitch.tv/' + username;
-                if ( data.stream ) {
-                    image = data.stream.channel.logo;
-                    title = ' playing ' + (data.stream.game ? '<a href="http://www.twitch.tv/directory/game/' + encodeURIComponent(data.stream.game) + '" target="_blank" ' + linkColor + '>' + data.stream.game + '</a>' : '');
-                    viewerCount = data.stream.viewers;
-                } else {
-                    // Get Channel data
-                    utils.requestJSONP(channelURL, 'drawChannel');
-                }
+        case 'justin':
+            link = 'http://justin.tv/' + username;
+            if ( data ) {
+                image = data[0].channel.image_url_small;
+                title = data[0].title;
+                viewerCount = data[0].channel_count;
+            } else {
+                // Get Channel data
+                utils.requestJSONP(channelURL, 'drawChannel');
+            }
+            break;
 
-                break;
-
-            case 'justin':
-
-                console.log(data);
-
-                link = 'http://justin.tv/' + username;
-                if ( data ) {
-                    image = data[0].channel.image_url_small;
-                    title = data[0].title;
-                    viewerCount = data[0].channel_count;
-                } else {
-                    // Get Channel data
-                    utils.requestJSONP(channelURL, 'drawChannel');
-                }
-
-                break;
-
-            case 'ustream':
-
-                link = 'http://ustream.tv/' + username;
-                if ( data !== null ) {
-                    image = data[0].imageUrl.small;
-                    title = data[0].title;
-                    viewerCount = data[0].viewersNow;
-                } else {
-                    // Get Channel data
-                    utils.requestJSONP(channelURL, 'drawChannel');
-                }
-
-                break;
-
+        case 'ustream':
+            link = 'http://ustream.tv/' + username;
+            if ( data !== null ) {
+                image = data[0].imageUrl.small;
+                title = data[0].title;
+                viewerCount = data[0].viewersNow;
+            } else {
+                // Get Channel data
+                utils.requestJSONP(channelURL, 'drawChannel');
+            }
+            break;
         }
 
         badge.innerHTML = '<div class="badge badge--' + service + ' ' + theme + '" ' + bgColor + '>' +
@@ -135,26 +126,26 @@ var badge = (function (document, window, undefined) {
 
         // Service specific output
         switch (service) {
-            case 'twitch':
-                link = 'http://twitch.tv/' + username;
-                if ( data.logo ) {
-                    image = data.logo;
-                }
-                break;
+        case 'twitch':
+            link = 'http://twitch.tv/' + username;
+            if ( data.logo ) {
+                image = data.logo;
+            }
+            break;
 
-            case 'justin':
-                link = 'http://justin.tv/' + username;
-                if ( data.image_url_small ) {
-                    image = data.image_url_small;
-                }
-                break;
+        case 'justin':
+            link = 'http://justin.tv/' + username;
+            if ( data.image_url_small ) {
+                image = data.image_url_small;
+            }
+            break;
 
-            case 'ustream':
-                link = 'http://ustream.tv/' + username;
-                if ( data !== null ) {
-                    image = data.imageUrl.small;
-                }
-                break;
+        case 'ustream':
+            link = 'http://ustream.tv/' + username;
+            if ( data !== null ) {
+                image = data.imageUrl.small;
+            }
+            break;
 
         }
 

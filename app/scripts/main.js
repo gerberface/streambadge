@@ -179,38 +179,30 @@ var app = (function (document, window, undefined) {
             var thisTheme = this.getAttribute('data-theme');
 
             switch ( thisTheme ) {
+            case 'light':
+                theme = 'light/';
+                colorSelectors.style.display = 'none';
+                break;
 
-                case 'light':
-                    theme = 'light/';
+            case 'dark':
+                theme = 'dark/';
+                colorSelectors.style.display = 'none';
+                break;
 
+            case 'custom':
+                theme = 'custom/' + bgColor.value.replace('#','') + '/' + linkColor.value.replace('#','') + '/' + textColor.value.replace('#','') + '/';
+
+                if ( colorSelectors.style.display === 'none' || colorSelectors.style.display === '' ) {
+                    colorSelectors.style.display = 'block';
+                } else {
                     colorSelectors.style.display = 'none';
+                }
+                break;
 
-                    break;
-
-                case 'dark':
-                    theme = 'dark/';
-
-                    colorSelectors.style.display = 'none';
-
-                    break;
-
-                case 'custom':
-                    theme = 'custom/' + bgColor.value.replace('#','') + '/' + linkColor.value.replace('#','') + '/' + textColor.value.replace('#','') + '/';
-
-                    if ( colorSelectors.style.display === 'none' || colorSelectors.style.display === '' ) {
-                        colorSelectors.style.display = 'block';
-                    } else {
-                        colorSelectors.style.display = 'none';
-                    }
-
-                    break;
-
-                default:
-                    theme = 'light/';
-
-                    colorSelectors.style.display = 'none';
-
-                    break;
+            default:
+                theme = 'light/';
+                colorSelectors.style.display = 'none';
+                break;
 
             }
 
@@ -246,18 +238,17 @@ var app = (function (document, window, undefined) {
             _thisColor = this.value.replace('#','');
 
             switch ( _colorSelection ) {
+            case 'bg-color':
+                theme = 'custom/' + _thisColor + '/' + _linkColor + '/' + _textColor + '/';
+                break;
 
-                case 'bg-color':
-                    theme = 'custom/' + _thisColor + '/' + _linkColor + '/' + _textColor + '/';
-                    break;
+            case 'link-color':
+                theme = 'custom/' + _bgColor + '/' + _thisColor + '/' + _textColor + '/';
+                break;
 
-                case 'link-color':
-                    theme = 'custom/' + _bgColor + '/' + _thisColor + '/' + _textColor + '/';
-                    break;
-
-                case 'text-color':
-                    theme = 'custom/' + _bgColor + '/' + _linkColor + '/' + _thisColor + '/';
-                    break;
+            case 'text-color':
+                theme = 'custom/' + _bgColor + '/' + _linkColor + '/' + _thisColor + '/';
+                break;
 
             }
 
@@ -369,42 +360,35 @@ var app = (function (document, window, undefined) {
                 previewButton = el.getAttribute('data-preview');
 
             switch ( previewButton ) {
+            case 'iframe':
+                iframePreview.setAttribute('src','http://streambadge.com/' + service + '/' + theme + username + '/');
 
-                case 'iframe':
-                    iframePreview.setAttribute('src','http://streambadge.com/' + service + '/' + theme + username + '/');
+                if ( iframePreviewSection.style.display === 'none' || iframePreviewSection.style.display === '' ) {
+                    iframePreviewSection.style.display = 'block';
+                } else {
+                    iframePreviewSection.style.display = 'none';
+                }
+                break;
 
-                    if ( iframePreviewSection.style.display === 'none' || iframePreviewSection.style.display === '' ) {
-                        iframePreviewSection.style.display = 'block';
-                    } else {
-                        iframePreviewSection.style.display = 'none';
-                    }
+            case 'image':
+                imagePreview.setAttribute('src','http://streambadge.com/' + service + '/' + theme + username + '.png');
 
-                    break;
+                if ( imagePreviewSection.style.display === 'none' || imagePreviewSection.style.display === '' ) {
+                    imagePreviewSection.style.display = 'block';
+                } else {
+                    imagePreviewSection.style.display = 'none';
+                }
+                break;
 
-                case 'image':
-                    imagePreview.setAttribute('src','http://streambadge.com/' + service + '/' + theme + username + '.png');
+            case 'bbcode':
+                bbcodePreview.setAttribute('src','http://streambadge.com/' + service + '/' + theme + username + '.png');
 
-                    if ( imagePreviewSection.style.display === 'none' || imagePreviewSection.style.display === '' ) {
-                        imagePreviewSection.style.display = 'block';
-                    } else {
-                        imagePreviewSection.style.display = 'none';
-                    }
-
-                    break;
-
-                case 'bbcode':
-                    bbcodePreview.setAttribute('src','http://streambadge.com/' + service + '/' + theme + username + '.png');
-
-                    if ( bbcodePreviewSection.style.display === 'none' || bbcodePreviewSection.style.display === '' ) {
-                        bbcodePreviewSection.style.display = 'block';
-                    } else {
-                        bbcodePreviewSection.style.display = 'none';
-                    }
-
-                    break;
-
-                default:
-                    break;
+                if ( bbcodePreviewSection.style.display === 'none' || bbcodePreviewSection.style.display === '' ) {
+                    bbcodePreviewSection.style.display = 'block';
+                } else {
+                    bbcodePreviewSection.style.display = 'none';
+                }
+                break;
 
             }
 
@@ -426,7 +410,7 @@ var app = (function (document, window, undefined) {
         generateCode();
 
         // Footer year
-        //year.innerHTML = date.getFullYear();
+        year.innerHTML = date.getFullYear();
 
     };
 
