@@ -16,6 +16,9 @@ var badge = (function (document, window, undefined) {
     if (window.location.href.indexOf('ustream') !== -1) {
         service = 'ustream';
     }
+    if (window.location.href.indexOf('hitbox') !== -1) {
+        service = 'hitbox';
+    }
 
     username = utils.queryString().username;
     bgColor = utils.queryString().bg ? 'style="background:#' + utils.queryString().bg + '"' : '';
@@ -42,6 +45,11 @@ var badge = (function (document, window, undefined) {
         apiKey = 'EE028473488E26E1424E67B209A3C423';
         streamURL = 'http://api.ustream.tv/json/channel/live/search/username:eq:' + username + '?key=' + apiKey + '&callback=';
         channelURL = 'http://api.ustream.tv/json/user/' + username + '/getInfo?key=' + apiKey + '&callback=';
+        break;
+
+    case 'hitbox':
+        streamURL = 'http://api.hitbox.tv/media/live/' + username + '&jsonp=';
+        channelURL = 'http://api.justin.tv/api/channel/show/' + username + '.json?jsonp=';
         break;
 
     }
@@ -81,7 +89,7 @@ var badge = (function (document, window, undefined) {
 
         case 'justin':
             link = 'http://justin.tv/' + username;
-            if ( data ) {
+            if ( data[0] ) {
                 image = data[0].channel.image_url_small;
                 title = data[0].title;
                 viewerCount = data[0].channel_count;
@@ -102,6 +110,19 @@ var badge = (function (document, window, undefined) {
                 utils.requestJSONP(channelURL, 'drawChannel');
             }
             break;
+
+        case 'hitbox':
+            link = 'http://hitbox.tv/' + username;
+            if ( data !== null ) {
+                image = data[1].channel.user_logo_small;
+                title = data[1].category_name;
+                viewerCount = data[1].category_viewers;
+            } else {
+                // Get Channel data
+                utils.requestJSONP(channelURL, 'drawChannel');
+            }
+            break;
+
         }
 
         badge.innerHTML = '<div class="badge badge--' + service + ' ' + theme + '" ' + bgColor + '>' +

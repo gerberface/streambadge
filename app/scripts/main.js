@@ -1,11 +1,9 @@
-var app = (function (document, window, undefined) {
+var App = (function(document, window, undefined) {
 
     'use strict';
 
-    var service = '',
-        username = '',
-        theme = '',
-        usernameInput = document.querySelector('[data-js=username-input]'),
+    // Selector cache
+    var usernameInput = document.querySelector('[data-js=username-input]'),
         sectionCode = document.querySelector('[data-js=section-code]'),
         serviceButton = document.querySelectorAll('[data-js=service-button]'),
         serviceCode = document.querySelectorAll('[data-js-code=service-code]'),
@@ -32,78 +30,103 @@ var app = (function (document, window, undefined) {
         bbcodePreviewSection = document.querySelector('[data-js=bbcode-preview-section]'),
         iframePreview = document.querySelector('[data-js=iframe-preview]'),
         imagePreview = document.querySelector('[data-js=image-preview]'),
-        bbcodePreview = document.querySelector('[data-js=bbcode-preview]');
+        bbcodePreview = document.querySelector('[data-js=bbcode-preview]'),
+        beta = window.location.href.indexOf('beta') !== -1 ? 'beta.' : '',
+        service = '',
+        username = '',
+        theme = '';
 
-    // Generate the code for copying
-    var generateCode = function () {
+    /**
+     * init() doesn't do much except set the
+     * current year in the footer.
+     *
+     */
+    var init = function() {
+        var date = new Date(),
+            year = document.querySelector('[data-js=year]');
 
-        iframeCode.innerHTML = '<iframe src="http://streambadge.com/' + service + '/' + theme + username + '/" style="border:none;height:4em;width:100%"></iframe>';
-        htmlCode.innerHTML = '<a href="http://' + service + '.tv/' + username + '"><img src="http://streambadge.com/' + service + '/' + theme + username + '.png" width="300" height="64" alt="' + username + '\'s Streambadge"></a>';
-        bbcodeCode.innerHTML = '[url=http://' + service + '.tv/' + username + '][img]http://streambadge.com/' + service + '/' + theme + username + '.png[/img][/url]';
+        // Footer year
+        year.innerHTML = date.getFullYear();
+    };
 
-        // Mobile
-        iframeCodeMobile.innerHTML = '&lt;iframe src="http://streambadge.com/' + service + '/' + theme + username + '/" style="border:none;height:4em;width:100%"&gt;&lt;/iframe&gt;';
-        htmlCodeMobile.innerHTML = '&lt;a href="http://' + service + '.tv/' + username + '"&gt;&lt;img src="http://streambadge.com/' + service + '/' + theme + username + '.png" width="300" height="64" alt="' + username + '\'s Streambadge"&gt;&lt;/a&gt;';
-        bbcodeCodeMobile.innerHTML = '[url=http://' + service + '.tv/' + username + '][img]http://streambadge.com/' + service + '/' + theme + username + '.png[/img][/url]';
+    /**
+     * generateCode() dynamically generates the 'code'
+     * for the user to copy and paste.
+     *
+     */
+    var generateCode = function() {
+        // Desktop (returns within <textarea> for text selection on click)
+        iframeCode.innerHTML = '<iframe src="http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '/" style="border:none;height:4em;width:100%"></iframe>';
+        htmlCode.innerHTML = '<a href="http://' + (service === 'goodgame' ? service + '.ru/channel/' + username + '/' : service + '.tv/' + username) + '"><img src="http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png" width="300" height="64" alt="' + username + '\'s Streambadge"></a>';
+        bbcodeCode.innerHTML = '[url=http://' + (service === 'goodgame' ? service + '.ru/channel/' + username + '/' : service + '.tv/' + username) + '][img]http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png[/img][/url]';
 
+        // Mobile (returns within <div> for long-press text selection)
+        iframeCodeMobile.innerHTML = '&lt;iframe src="http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '/" style="border:none;height:4em;width:100%"&gt;&lt;/iframe&gt;';
+        htmlCodeMobile.innerHTML = '&lt;a href="http://' + (service === 'goodgame' ? service + '.ru/channel/' + username + '/' : service + '.tv/' + username) + '"&gt;&lt;img src="http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png" width="300" height="64" alt="' + username + '\'s Streambadge"&gt;&lt;/a&gt;';
+        bbcodeCodeMobile.innerHTML = '[url=http://' + (service === 'goodgame' ? service + '.ru/channel/' + username + '/' : service + '.tv/' + username) + '][img]http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png[/img][/url]';
     };
 
     // Service button method
-    var serviceButtonClick = function ( button ) {
+    var serviceButtonClick = function() {
+
+        var _this = this;
+        service = _this.classList.contains('active') ? '' : _this.getAttribute('data-button');
 
         // Theme
-        if ( service === 'twitch' ) {
-
+        if (service === 'twitch') {
             themeLight.removeAttribute('disabled');
             themeDark.removeAttribute('disabled');
             sectionTheme.style.display = 'block';
-
-        } else if ( service === 'justin' ) {
-
+        } else if (service === 'justin') {
             themeLight.setAttribute('disabled', true);
             themeDark.setAttribute('disabled', true);
             sectionTheme.style.display = 'block';
-
+        } else if (service === 'goodgame' || service === 'hitbox') {
+            themeLight.setAttribute('disabled', true);
+            themeDark.setAttribute('disabled', true);
+            sectionTheme.style.display = 'block';
+            iframeCode.parentNode.style.display = 'none';
+            iframeCode.parentNode.previousElementSibling.style.display = 'none';
         } else {
-
-            sectionTheme.style.display = 'none';
             theme = '';
 
-            [].forEach.call( themeInput, function (el) {
+            [].forEach.call(themeInput, function(el) {
                 el.setAttribute('checked', false);
             });
 
+            sectionTheme.style.display = 'none';
             colorSelectors.style.display = 'none';
-
         }
 
-        if ( button.classList.contains('active') ) {
+        if (_this.classList.contains('active')) {
 
-            [].forEach.call( serviceButton, function (el) {
+            [].forEach.call(serviceButton, function(el) {
                 el.classList.remove('active');
                 el.classList.remove('disabled');
             });
 
             usernameInput.value = '';
             username = '';
-
             usernameInput.setAttribute('readonly','readonly');
             usernameInput.classList.add('readonly');
 
-            [].forEach.call( serviceCode, function (el) {
+            [].forEach.call(serviceCode, function(el) {
                 el.classList.remove('active');
             });
 
             sectionCode.classList.remove('active');
             sectionUsername.classList.remove('active');
 
-            [].forEach.call( previewButton, function (el) {
+            [].forEach.call(previewButton, function(el) {
                 el.classList.remove('available');
             });
 
+            iframeCode.parentNode.style.display = 'block';
+            iframeCode.parentNode.previousElementSibling.style.display = 'block';
+
         } else {
 
-            [].forEach.call( serviceButton, function (el) {
+            [].forEach.call(serviceButton, function(el) {
                 el.classList.remove('active');
                 el.classList.add('disabled');
             });
@@ -111,314 +134,278 @@ var app = (function (document, window, undefined) {
             usernameInput.removeAttribute('readonly');
             usernameInput.classList.remove('readonly');
             usernameInput.focus();
-
             sectionUsername.classList.add('active');
-
-            button.classList.add('active');
-            button.classList.remove('disabled');
+            _this.classList.add('active');
+            _this.classList.remove('disabled');
 
             if ( usernameInput.value === '' ) {
 
-                [].forEach.call( previewButton, function (el) {
+                [].forEach.call(previewButton, function(el) {
                     el.classList.remove('available');
                 });
 
             } else {
 
-                [].forEach.call( previewButton, function (el) {
+                [].forEach.call(previewButton, function(el) {
                     el.classList.add('available');
                 });
 
             }
+
+            if (service !== 'goodgame' && service !== 'hitbox') {
+                iframeCode.parentNode.style.display = 'block';
+                iframeCode.parentNode.previousElementSibling.style.display = 'block';
+            }
         }
 
-        [].forEach.call( sectionPreview, function (el) {
+        [].forEach.call(sectionPreview, function(el) {
             el.style.display = 'none';
         });
 
-        [].forEach.call( previewButton, function (el) {
+        [].forEach.call(previewButton, function(el) {
             el.classList.remove('active');
         });
 
-        [].forEach.call( themeInput, function (el) {
+        [].forEach.call(themeInput, function(el) {
             el.checked = false;
         });
 
         colorSelectors.style.display = 'none';
-
         theme = '';
-
         generateCode();
 
     };
 
-    // Service button click event
-    [].forEach.call( serviceButton, function (el) {
+    // Theme input click
+    var themeClick = function () {
 
-        el.onclick = function () {
+        var _this = this;
 
-            var el = this;
+        colorSelectors.style.display = 'none';
 
-            if ( el.classList.contains('active') ) {
-                service = '';
+        switch (_this.getAttribute('data-theme')) {
+        case 'light':
+            theme = 'light/';
+            break;
+        case 'dark':
+            theme = 'dark/';
+            break;
+        case 'custom':
+            theme = 'custom/' + bgColor.value.replace('#','') + '/' + linkColor.value.replace('#','') + '/' + textColor.value.replace('#','') + '/';
+
+            if ( colorSelectors.style.display === 'none' || colorSelectors.style.display === '' ) {
+                colorSelectors.style.display = 'block';
             } else {
-                service = el.getAttribute('data-button');
+                colorSelectors.style.display = 'none';
             }
 
-            serviceButtonClick( el );
+            colorSelectors.style.display = 'block';
+            break;
+        default:
+            theme = 'light/';
+            break;
+        }
 
-        };
+        if ( usernameInput === '' ) {
 
-    });
-
-    [].forEach.call( themeInput, function (el) {
-
-        // Theme click event
-        el.onclick = function () {
-
-            var thisTheme = this.getAttribute('data-theme');
-
-            switch ( thisTheme ) {
-            case 'light':
-                theme = 'light/';
-                colorSelectors.style.display = 'none';
-                break;
-
-            case 'dark':
-                theme = 'dark/';
-                colorSelectors.style.display = 'none';
-                break;
-
-            case 'custom':
-                theme = 'custom/' + bgColor.value.replace('#','') + '/' + linkColor.value.replace('#','') + '/' + textColor.value.replace('#','') + '/';
-
-                if ( colorSelectors.style.display === 'none' || colorSelectors.style.display === '' ) {
-                    colorSelectors.style.display = 'block';
-                } else {
-                    colorSelectors.style.display = 'none';
-                }
-                break;
-
-            default:
-                theme = 'light/';
-                colorSelectors.style.display = 'none';
-                break;
-
-            }
-
-            if ( usernameInput === '' ) {
-
-                [].forEach.call( previewButton, function (el) {
-                    el.classList.add('available');
-                    el.classList.remove('active');
-                });
-
-            }
-
-            [].forEach.call( sectionPreview, function (el) {
-                el.style.display = 'none';
+            [].forEach.call(previewButton, function(el) {
+                el.classList.add('available');
+                el.classList.remove('active');
             });
 
-            generateCode();
+        }
 
-        };
+        [].forEach.call(sectionPreview, function(el) {
+            el.style.display = 'none';
+        });
 
-    });
+        generateCode();
+    };
 
-    [].forEach.call( colorSelector, function (el) {
+    // Color Selector click
+    var colorSelectorClick = function() {
 
-        el.onchange = function() {
-
-            var _colorSelection, _bgColor, _linkColor, _textColor, _thisColor;
-
-            _colorSelection = this.getAttribute('data-color-selector');
-            _bgColor = bgColor.value.replace('#','');
-            _linkColor = linkColor.value.replace('#','');
-            _textColor = textColor.value.replace('#','');
+        var _colorSelection = this.getAttribute('data-color-selector'),
+            _bgColor = bgColor.value.replace('#',''),
+            _linkColor = linkColor.value.replace('#',''),
+            _textColor = textColor.value.replace('#',''),
             _thisColor = this.value.replace('#','');
 
-            switch ( _colorSelection ) {
-            case 'bg-color':
-                theme = 'custom/' + _thisColor + '/' + _linkColor + '/' + _textColor + '/';
-                break;
+        switch ( _colorSelection ) {
+        case 'bg-color':
+            theme = 'custom/' + _thisColor + '/' + _linkColor + '/' + _textColor + '/';
+            break;
+        case 'link-color':
+            theme = 'custom/' + _bgColor + '/' + _thisColor + '/' + _textColor + '/';
+            break;
+        case 'text-color':
+            theme = 'custom/' + _bgColor + '/' + _linkColor + '/' + _thisColor + '/';
+            break;
+        }
 
-            case 'link-color':
-                theme = 'custom/' + _bgColor + '/' + _thisColor + '/' + _textColor + '/';
-                break;
+        [].forEach.call(sectionPreview, function(el) {
+            el.style.display = 'none';
+        });
 
-            case 'text-color':
-                theme = 'custom/' + _bgColor + '/' + _linkColor + '/' + _thisColor + '/';
-                break;
+        if (username !== '') {
 
-            }
-
-            [].forEach.call( sectionPreview, function (el) {
-                el.style.display = 'none';
+            [].forEach.call(previewButton, function(el) {
+                el.classList.add('available');
+                el.classList.remove('active');
             });
 
-            if ( username !== '' ) {
+        }
 
-                [].forEach.call( previewButton, function (el) {
-                    el.classList.add('available');
-                    el.classList.remove('active');
-                });
-
-            }
-
-            generateCode();
-
-        };
-
-    });
+        generateCode();
+    };
 
     // Username input event
-    usernameInput.onkeyup = function () {
+    var usernameInputKeyUp = function() {
 
-        var el = this,
+        var _this = this,
             enablePreviewButtons = false;
 
-        if ( el.value === '' ) {
-
-            el = '';
+        if ( _this.value === '' ) {
+            _this = '';
             sectionCode.classList.remove('active');
 
-            [].forEach.call( serviceCode, function ( el ) {
-                el.classList.remove('active');
+            [].forEach.call(serviceCode, function(el) {
+                _this.classList.remove('active');
             });
 
-            [].forEach.call( previewButton, function (el) {
-                el.classList.remove('available');
-                el.classList.remove('active');
+            [].forEach.call(previewButton, function(el) {
+                _this.classList.remove('available');
+                _this.classList.remove('active');
             });
 
         } else {
-
             sectionCode.classList.add('active');
 
-            [].forEach.call( serviceCode, function ( el ) {
-                el.classList.add('active');
+            [].forEach.call(serviceCode, function(el) {
+                _this.classList.add('active');
             });
 
-            [].forEach.call( serviceButton, function ( el ) {
-
-                if ( el.classList.contains('active') ) {
+            [].forEach.call(serviceButton, function(el) {
+                if (el.classList.contains('active')) {
                     enablePreviewButtons = true;
                 }
-
             });
 
-            if ( enablePreviewButtons ) {
-                [].forEach.call( previewButton, function (el) {
-                    el.classList.add('available');
-                    el.classList.remove('active');
+            if (enablePreviewButtons) {
+
+                [].forEach.call(previewButton, function(el) {
+                    _this.classList.add('available');
+                    _this.classList.remove('active');
                 });
+
             } else {
-                [].forEach.call( previewButton, function (el) {
-                    el.classList.remove('available');
-                    el.classList.remove('active');
+                [].forEach.call(previewButton, function(el) {
+                    _this.classList.remove('available');
+                    _this.classList.remove('active');
                 });
             }
 
         }
 
-        username = el.value;
+        username = _this.value;
 
-        [].forEach.call( sectionPreview, function (el) {
+        [].forEach.call(sectionPreview, function(el) {
             el.style.display = 'none';
         });
 
         generateCode();
-
     };
 
-    // Select all on focus
-    [].forEach.call( serviceCode, function (el) {
+    var serviceCodeFocus = function() {
+        var _this = this;
 
-        el.onfocus = function () {
+        _this.select();
 
-            var el = this;
+        _this.onmouseup = function() {
+            _this.onmouseup = null;
 
-            el.select();
-
-            el.onmouseup = function () {
-
-                el.onmouseup = null;
-                return false;
-
-            };
-
+            return false;
         };
+    };
 
+    var previewButtonClick = function() {
+
+        var _this = this,
+            previewButton = _this.getAttribute('data-preview');
+
+        switch ( previewButton ) {
+        case 'iframe':
+            iframePreview.setAttribute('src','http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '/');
+
+            if ( iframePreviewSection.style.display === 'none' || iframePreviewSection.style.display === '' ) {
+                iframePreviewSection.style.display = 'block';
+            } else {
+                iframePreviewSection.style.display = 'none';
+            }
+
+            break;
+
+        case 'image':
+            imagePreview.setAttribute('src','http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png');
+
+            if ( imagePreviewSection.style.display === 'none' || imagePreviewSection.style.display === '' ) {
+                imagePreviewSection.style.display = 'block';
+            } else {
+                imagePreviewSection.style.display = 'none';
+            }
+
+            break;
+
+        case 'bbcode':
+            bbcodePreview.setAttribute('src','http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png');
+
+            if ( bbcodePreviewSection.style.display === 'none' || bbcodePreviewSection.style.display === '' ) {
+                bbcodePreviewSection.style.display = 'block';
+            } else {
+                bbcodePreviewSection.style.display = 'none';
+            }
+
+            break;
+        }
+
+        _this.classList.toggle('available');
+        _this.classList.toggle('active');
+
+        return false;
+    };
+
+    // Service Button event listener
+    [].forEach.call(serviceButton, function(el) {
+        el.addEventListener('click', serviceButtonClick, false);
+    });
+
+    // Theme event listener
+    [].forEach.call(themeInput, function(el) {
+        el.addEventListener('click', themeClick, false);
+    });
+
+    // Color selector event listener
+    [].forEach.call(colorSelector, function(el) {
+        el.addEventListener('click', colorSelectorClick, false);
+    });
+
+    // Username input event listener
+    usernameInput.addEventListener('keyup', usernameInputKeyUp, false);
+
+    // Select all focus event listener
+    [].forEach.call(serviceCode, function(el) {
+        el.addEventListener('onfocus', serviceCodeFocus, false);
     });
 
     // Preview button click event
-    [].forEach.call( previewButton, function (el) {
-
-        el.onclick = function () {
-
-            var el = this,
-                previewButton = el.getAttribute('data-preview');
-
-            switch ( previewButton ) {
-            case 'iframe':
-                iframePreview.setAttribute('src','http://streambadge.com/' + service + '/' + theme + username + '/');
-
-                if ( iframePreviewSection.style.display === 'none' || iframePreviewSection.style.display === '' ) {
-                    iframePreviewSection.style.display = 'block';
-                } else {
-                    iframePreviewSection.style.display = 'none';
-                }
-                break;
-
-            case 'image':
-                imagePreview.setAttribute('src','http://streambadge.com/' + service + '/' + theme + username + '.png');
-
-                if ( imagePreviewSection.style.display === 'none' || imagePreviewSection.style.display === '' ) {
-                    imagePreviewSection.style.display = 'block';
-                } else {
-                    imagePreviewSection.style.display = 'none';
-                }
-                break;
-
-            case 'bbcode':
-                bbcodePreview.setAttribute('src','http://streambadge.com/' + service + '/' + theme + username + '.png');
-
-                if ( bbcodePreviewSection.style.display === 'none' || bbcodePreviewSection.style.display === '' ) {
-                    bbcodePreviewSection.style.display = 'block';
-                } else {
-                    bbcodePreviewSection.style.display = 'none';
-                }
-                break;
-
-            }
-
-            el.classList.toggle('available');
-            el.classList.toggle('active');
-
-            return false;
-
-        };
-
+    [].forEach.call(previewButton, function(el) {
+        el.addEventListener('click', previewButtonClick, false);
     });
-
-    var init = function () {
-
-        var date = new Date(),
-            year = document.querySelector('[data-js=year]');
-
-        // Initial textarea value
-        generateCode();
-
-        // Footer year
-        year.innerHTML = date.getFullYear();
-
-    };
 
     return {
         init: init
     };
 
-
 })(document, window);
 
-app.init();
+App.init();

@@ -274,6 +274,20 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         dot: true,
+                        cwd: '<%= yeoman.app %>/iframe-badge',
+                        dest: '<%= yeoman.dist %>/goodgame',
+                        src: 'index.html'
+                    },
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.app %>/iframe-badge',
+                        dest: '<%= yeoman.dist %>/hitbox',
+                        src: 'index.html'
+                    },
+                    {
+                        expand: true,
+                        dot: true,
                         cwd: '<%= yeoman.app %>/image-badge',
                         dest: '<%= yeoman.dist %>/twitch',
                         src: 'index.php'
@@ -290,6 +304,20 @@ module.exports = function (grunt) {
                         dot: true,
                         cwd: '<%= yeoman.app %>/image-badge',
                         dest: '<%= yeoman.dist %>/ustream',
+                        src: 'index.php'
+                    },
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.app %>/image-badge',
+                        dest: '<%= yeoman.dist %>/goodgame',
+                        src: 'index.php'
+                    },
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.app %>/image-badge',
+                        dest: '<%= yeoman.dist %>/hitbox',
                         src: 'index.php'
                     },
                     {
@@ -323,6 +351,14 @@ module.exports = function (grunt) {
                     {
                         src: '<%= yeoman.dist %>/ustream/index.php',
                         dest: '<%= yeoman.dist %>/ustream/badge.php'
+                    },
+                    {
+                        src: '<%= yeoman.dist %>/goodgame/index.php',
+                        dest: '<%= yeoman.dist %>/goodgame/badge.php'
+                    },
+                    {
+                        src: '<%= yeoman.dist %>/hitbox/index.php',
+                        dest: '<%= yeoman.dist %>/hitbox/badge.php'
                     }
                 ]
             }

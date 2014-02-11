@@ -219,6 +219,10 @@ AddDefaultCharset utf-8
     RewriteRule ^twitch/([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)\.png$ /twitch/badge.php?service=twitch&username=$5&theme=$1&bg=$2&link=$3&text=$4 [L]
     RewriteRule ^justin/([^/]*)\.png$ /justin/badge.php?service=justin&username=$1 [L]
     RewriteRule ^justin/([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)\.png$ /justin/badge.php?service=justin&username=$5&theme=$1&bg=$2&link=$3&text=$4 [L]
+    RewriteRule ^goodgame/([^/]*)\.png$ /goodgame/badge.php?service=goodgame&username=$1 [L]
+    RewriteRule ^goodgame/([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)\.png$ /goodgame/badge.php?service=goodgame&username=$5&theme=$1&bg=$2&link=$3&text=$4 [L]
+    RewriteRule ^hitbox/([^/]*)\.png$ /hitbox/badge.php?service=hitbox&username=$1 [L]
+    RewriteRule ^hitbox/([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)\.png$ /hitbox/badge.php?service=hitbox&username=$5&theme=$1&bg=$2&link=$3&text=$4 [L]
     RewriteRule ^ustream/([^/]*)\.png$ /ustream/badge.php?service=ustream&username=$1 [L]
   # iFrame
     RewriteRule ^twitch/([^/]*)/$ /twitch/?username=$1 [R=301,L]

@@ -10,7 +10,7 @@
 
 body {
     background: transparent;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
 }
 
@@ -219,7 +219,7 @@ input {
 @media only screen and (min-width: 35em) {
     .button-list li {
         float: left;
-        margin: 0 2% 0 0;
+        margin: 0 1% 1% 0;
         width: 32%;
     }
 
@@ -237,7 +237,6 @@ input {
 
 .button.twitch{
     background: #6441A5;
-
 }
 
 .button.justin {
@@ -246,6 +245,14 @@ input {
 
 .button.ustream {
     background: #2063ce;
+}
+
+.button.goodgame {
+    background: #243056;
+}
+
+.button.hitbox {
+    background: #ABD530;
 }
 
 .button.active {

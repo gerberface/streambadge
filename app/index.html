@@ -4,17 +4,20 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Streambadge</title>
-        <meta name="description" content="Streambadge helps you gain viewership by displaying your live stream status. Select your video stream service, add your username, and grab the code! Streambadge currently works with Twitch.tv, Justin.tv, and UStream.tv!">
+        <meta name="description" content="Streambadge helps you gain viewership by displaying your live stream status. Select your video stream service, add your username, and grab the code! Streambadge currently works with Twitch.tv, Justin.tv, UStream.tv, GoodGame.ru, and hitbox.tv!">
         <meta name="viewport" content="width=device-width">
         <meta content='http://streambadge.com/images/streambadge.png' property='og:image'/>
         <meta content='https://streambadge.com/images/streambadge.png' property='og:image:secure_url'/>
         <link rel="canonical" href="http://streambadge.com/">
+        <link rel="canonical" href="http://streambadge.com/">
+        <link rel="shortcut icon" href="/favicon.png">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
         <!-- build:css({.tmp,app}) styles/main.min.css -->
         <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
         <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
-        <link href='http://fonts.googleapis.com/css?family=Roboto|Sonsie+One' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans|Sonsie+One' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -62,6 +65,16 @@
                         <li>
                             <button id="ustream-button" class="button ustream" data-button="ustream" data-js="service-button">
                                 <img src="/images/ustream-logo.png" width="300" height="64" alt="UStream.tv logo" class="service-logo">
+                            </button>
+                        </li>
+                        <li>
+                            <button id="goodgame-button" class="button goodgame" data-button="goodgame" data-js="service-button">
+                                <img src="/images/goodgame-logo.png" width="300" height="64" alt="GoodGame.ru logo" class="service-logo">
+                            </button>
+                        </li>
+                        <li>
+                            <button id="hitbox-button" class="button hitbox" data-button="hitbox" data-js="service-button">
+                                <img src="/images/hitbox-logo.png" width="300" height="64" alt="hitbox.tv logo" class="service-logo">
                             </button>
                         </li>
                     </ul>
@@ -147,7 +160,7 @@
                 </div>
                 <div class="copy">
                     <p>&copy; <span data-js="year">2012</span> <a href="http://streambadge.com">Streambadge.com</a>. Design and code by <a href="http://twitter.com/svinkle">@svinkle</a>.</p>
-                    <p>Streambadge is not sponsored by or affiliated with Twitch.tv, Justin.tv, or UStream.tv. "Twitch" logo &copy; Justin.tv Inc. "Justin.tv" logo &copy; Justin.tv Inc. "UStream" logo &copy; Ustream Inc.</p>
+                    <p>Streambadge is not sponsored by or affiliated with Twitch.tv, Justin.tv, UStream.tv, GoodGame.ru, or hitbox.tv. "Twitch" logo &copy; Justin.tv Inc. "Justin.tv" logo &copy; Justin.tv Inc. "UStream" logo &copy; Ustream Inc. "GoodGame" logo &copy; GoodGame.ru. "hitbox" logo &copy; hitbox Entertainment.</p>
                 </div>
             </div>
         </footer>

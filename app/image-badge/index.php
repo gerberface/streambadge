@@ -266,6 +266,171 @@ switch ($service) {
 
         break;
 
+    case 'goodgame':
+        // Image
+        $image = '../images/goodgame-no-image.png';
+
+        // Custom colors
+        $custom = false;
+
+        if (isset($_GET['bg']) && isset($_GET['link']) && isset($_GET['text'])) {
+            $custom = true;
+
+            $bg_color = htmlentities($_GET['bg']);
+            $link_color = htmlentities($_GET['link']);
+            $text_color = htmlentities($_GET['text']);
+        }
+
+        // Colors
+        if ($custom) {
+            $bg_arr = hex2rgb($bg_color);
+            $link_arr = hex2rgb($link_color);
+            $text_arr = hex2rgb($text_color);
+
+            $title_text_color_1 = $link_arr[0];
+            $title_text_color_2 = $link_arr[1];
+            $title_text_color_3 = $link_arr[2];
+
+            $black_text_color_1 = $text_arr[0];
+            $black_text_color_2 = $text_arr[1];
+            $black_text_color_3 = $text_arr[2];
+
+            $gray_text_color_1 = $text_arr[0];
+            $gray_text_color_2 = $text_arr[1];
+            $gray_text_color_3 = $text_arr[2];
+
+            $bg_color_1 = $bg_arr[0];
+            $bg_color_2 = $bg_arr[1];
+            $bg_color_3 = $bg_arr[2];
+        } else {
+            $title_text_color_1 = 115;
+            $title_text_color_2 = 173;
+            $title_text_color_3 = 255;
+
+            $black_text_color_1 = 255;
+            $black_text_color_2 = 255;
+            $black_text_color_3 = 255;
+
+            $gray_text_color_1 = 128;
+            $gray_text_color_2 = 128;
+            $gray_text_color_3 = 128;
+
+            $bg_color_1 = 20;
+            $bg_color_2 = 20;
+            $bg_color_3 = 20;
+        }
+
+        // Get Stream data
+        $data = json_decode(file_get_contents('http://goodgame.ru/api/getchannelstatus?id=' . $username . '&fmt=json'), true);
+
+        foreach($data as $key=>$value) {
+            foreach($value as $key=>$value) {
+
+                if ($key == 'status') {
+                    if ($value == 'Live') {
+                        $streaming = true;
+                    }
+                }
+
+                if ($key == 'description') {
+                    $game = strip_tags($value);
+                }
+
+                if ($key == 'viewers') {
+                    $viewers = $value;
+                }
+
+                if ($key == 'thumb') {
+                    if ($value != '') {
+                        $image = $value;
+                    }
+                }
+
+            }
+        }
+
+        break;
+
+    case 'hitbox':
+        // Image
+        $image = '../images/hitbox-no-image.png';
+
+        // Custom colors
+        $custom = false;
+
+        if (isset($_GET['bg']) && isset($_GET['link']) && isset($_GET['text'])) {
+            $custom = true;
+
+            $bg_color = htmlentities($_GET['bg']);
+            $link_color = htmlentities($_GET['link']);
+            $text_color = htmlentities($_GET['text']);
+        }
+
+        // Colors
+        if ($custom) {
+            $bg_arr = hex2rgb($bg_color);
+            $link_arr = hex2rgb($link_color);
+            $text_arr = hex2rgb($text_color);
+
+            $title_text_color_1 = $link_arr[0];
+            $title_text_color_2 = $link_arr[1];
+            $title_text_color_3 = $link_arr[2];
+
+            $black_text_color_1 = $text_arr[0];
+            $black_text_color_2 = $text_arr[1];
+            $black_text_color_3 = $text_arr[2];
+
+            $gray_text_color_1 = $text_arr[0];
+            $gray_text_color_2 = $text_arr[1];
+            $gray_text_color_3 = $text_arr[2];
+
+            $bg_color_1 = $bg_arr[0];
+            $bg_color_2 = $bg_arr[1];
+            $bg_color_3 = $bg_arr[2];
+        } else {
+            $title_text_color_1 = 171;
+            $title_text_color_2 = 213;
+            $title_text_color_3 = 48;
+
+            $black_text_color_1 = 255;
+            $black_text_color_2 = 255;
+            $black_text_color_3 = 255;
+
+            $gray_text_color_1 = 128;
+            $gray_text_color_2 = 128;
+            $gray_text_color_3 = 128;
+
+            $bg_color_1 = 51;
+            $bg_color_2 = 51;
+            $bg_color_3 = 51;
+        }
+
+        // Get Stream data
+        $data = json_decode(file_get_contents('http://api.hitbox.tv/media/live/' . $username));
+
+        if ($data->livestream[0]->media_is_live) {
+            $streaming = true;
+
+            // Strings
+            $game = $data->livestream[0]->category_name;
+            $viewers = $data->livestream[0]->media_views;
+
+            // Image
+            if ($data->livestream[0]->channel->user_logo) {
+                $image = 'http://edge.vie.hitbox.tv/' . $data->livestream[0]->channel->user_logo;
+            }
+        } else {
+            // Get Channel data
+            $data = json_decode(file_get_contents('http://api.hitbox.tv/media/live/' . $username));
+
+            // Image
+            if ($data->livestream[0]->channel->user_logo) {
+                $image = 'http://edge.vie.hitbox.tv/' . $data->livestream[0]->channel->user_logo;
+            }
+        }
+
+        break;
+
 }
 
 // Strings
