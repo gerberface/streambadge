@@ -1,11 +1,39 @@
 /**
  * font-size
  *
- * $Param: sizeValue, desired font size in PX
+ * @param: {number} sizeValue, desired font size in PX
  *
- * Output pixel based font size in REMs with a PX fallback.
+ * @returns {string} Output pixel based font size in REMs with a PX fallback.
  */
 @mixin font-size($sizeValue) {
 	font-size: $sizeValue + px;
 	font-size: ($sizeValue / 16) + rem;
+}
+
+/**
+ * clearfix
+ *
+ * Use this placeholder selector and @extend for clearfix
+ */
+%clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/**
+ * pxtoem
+ *
+ * @param: {number} value, desired padding/margin in PX
+ * @param {number} base, specify base font size, default 16
+ *
+ * @returns {string} EM value converted from PX.
+ */
+@function pxtoem($value, $base: 16) {
+	@return ($value / $base) + em;
 }

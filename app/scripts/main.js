@@ -31,6 +31,7 @@ var App = (function(document, window, undefined) {
         iframePreview = document.querySelector('[data-js=iframe-preview]'),
         imagePreview = document.querySelector('[data-js=image-preview]'),
         bbcodePreview = document.querySelector('[data-js=bbcode-preview]'),
+        featuredStreams = document.querySelector('[data-js=featured-streams]'),
         beta = window.location.href.indexOf('beta') !== -1 ? 'beta.' : '',
         service = '',
         username = '',
@@ -47,6 +48,42 @@ var App = (function(document, window, undefined) {
 
         // Footer year
         year.innerHTML = date.getFullYear();
+
+        // Get featured streams
+        if (window.matchMedia("(min-width: 960px)").matches) {
+            getFeatured();
+        }
+    };
+
+    /**
+     * displayFeatured() outputs 3 featured streams on to page
+     *
+     */
+    var displayFeatured = function(data) {
+        var output = '<ul class="featured-streams__list">',
+            colorArr = ['2b2b2b/b9a3e3/808080', '484848/ABD530/D5D5D5', '243056/F80F80/eeeeee'];
+
+        for (var i = 0, dataFeatured = data.featured.length; i < dataFeatured; i++) {
+            output += '<li class="featured-streams__list__item"><iframe src="http://' + beta + 'streambadge.com/twitch/custom/' + colorArr[i] + '/' + data.featured[i].stream.channel.display_name + '/" style="border:none;height:4em;width:100%"></iframe></li>';
+        }
+
+        output += '</ul>';
+
+        featuredStreams.innerHTML = output;
+    };
+
+    /**
+     * getFeatured() grabs the current 3 featured streams from Twitch
+     *
+     */
+    var getFeatured = function() {
+
+        // Get data
+        var script = document.createElement('script');
+        script.src = 'https://api.twitch.tv/kraken/streams/featured?limit=3&callback=App.displayFeatured';
+        script.type = 'text/javascript';
+        document.getElementsByTagName('body')[0].appendChild(script);
+
     };
 
     /**
@@ -107,7 +144,7 @@ var App = (function(document, window, undefined) {
 
             usernameInput.value = '';
             username = '';
-            usernameInput.setAttribute('readonly','readonly');
+            usernameInput.setAttribute('readonly', 'readonly');
             usernameInput.classList.add('readonly');
 
             [].forEach.call(serviceCode, function(el) {
@@ -138,7 +175,7 @@ var App = (function(document, window, undefined) {
             _this.classList.add('active');
             _this.classList.remove('disabled');
 
-            if ( usernameInput.value === '' ) {
+            if (usernameInput.value === '') {
 
                 [].forEach.call(previewButton, function(el) {
                     el.classList.remove('available');
@@ -177,36 +214,36 @@ var App = (function(document, window, undefined) {
     };
 
     // Theme input click
-    var themeClick = function () {
+    var themeClick = function() {
 
         var _this = this;
 
         colorSelectors.style.display = 'none';
 
         switch (_this.getAttribute('data-theme')) {
-        case 'light':
-            theme = 'light/';
-            break;
-        case 'dark':
-            theme = 'dark/';
-            break;
-        case 'custom':
-            theme = 'custom/' + bgColor.value.replace('#','') + '/' + linkColor.value.replace('#','') + '/' + textColor.value.replace('#','') + '/';
+            case 'light':
+                theme = 'light/';
+                break;
+            case 'dark':
+                theme = 'dark/';
+                break;
+            case 'custom':
+                theme = 'custom/' + bgColor.value.replace('#', '') + '/' + linkColor.value.replace('#', '') + '/' + textColor.value.replace('#', '') + '/';
 
-            if ( colorSelectors.style.display === 'none' || colorSelectors.style.display === '' ) {
+                if (colorSelectors.style.display === 'none' || colorSelectors.style.display === '') {
+                    colorSelectors.style.display = 'block';
+                } else {
+                    colorSelectors.style.display = 'none';
+                }
+
                 colorSelectors.style.display = 'block';
-            } else {
-                colorSelectors.style.display = 'none';
-            }
-
-            colorSelectors.style.display = 'block';
-            break;
-        default:
-            theme = 'light/';
-            break;
+                break;
+            default:
+                theme = 'light/';
+                break;
         }
 
-        if ( usernameInput === '' ) {
+        if (usernameInput === '') {
 
             [].forEach.call(previewButton, function(el) {
                 el.classList.add('available');
@@ -226,21 +263,21 @@ var App = (function(document, window, undefined) {
     var colorSelectorClick = function() {
 
         var _colorSelection = this.getAttribute('data-color-selector'),
-            _bgColor = bgColor.value.replace('#',''),
-            _linkColor = linkColor.value.replace('#',''),
-            _textColor = textColor.value.replace('#',''),
-            _thisColor = this.value.replace('#','');
+            _bgColor = bgColor.value.replace('#', ''),
+            _linkColor = linkColor.value.replace('#', ''),
+            _textColor = textColor.value.replace('#', ''),
+            _thisColor = this.value.replace('#', '');
 
-        switch ( _colorSelection ) {
-        case 'bg-color':
-            theme = 'custom/' + _thisColor + '/' + _linkColor + '/' + _textColor + '/';
-            break;
-        case 'link-color':
-            theme = 'custom/' + _bgColor + '/' + _thisColor + '/' + _textColor + '/';
-            break;
-        case 'text-color':
-            theme = 'custom/' + _bgColor + '/' + _linkColor + '/' + _thisColor + '/';
-            break;
+        switch (_colorSelection) {
+            case 'bg-color':
+                theme = 'custom/' + _thisColor + '/' + _linkColor + '/' + _textColor + '/';
+                break;
+            case 'link-color':
+                theme = 'custom/' + _bgColor + '/' + _thisColor + '/' + _textColor + '/';
+                break;
+            case 'text-color':
+                theme = 'custom/' + _bgColor + '/' + _linkColor + '/' + _thisColor + '/';
+                break;
         }
 
         [].forEach.call(sectionPreview, function(el) {
@@ -265,7 +302,7 @@ var App = (function(document, window, undefined) {
         var _this = this,
             enablePreviewButtons = false;
 
-        if ( _this.value === '' ) {
+        if (_this.value === '') {
             _this = '';
             sectionCode.classList.remove('active');
 
@@ -333,39 +370,39 @@ var App = (function(document, window, undefined) {
         var _this = this,
             previewButton = _this.getAttribute('data-preview');
 
-        switch ( previewButton ) {
-        case 'iframe':
-            iframePreview.setAttribute('src','http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '/');
+        switch (previewButton) {
+            case 'iframe':
+                iframePreview.setAttribute('src', 'http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '/');
 
-            if ( iframePreviewSection.style.display === 'none' || iframePreviewSection.style.display === '' ) {
-                iframePreviewSection.style.display = 'block';
-            } else {
-                iframePreviewSection.style.display = 'none';
-            }
+                if (iframePreviewSection.style.display === 'none' || iframePreviewSection.style.display === '') {
+                    iframePreviewSection.style.display = 'block';
+                } else {
+                    iframePreviewSection.style.display = 'none';
+                }
 
-            break;
+                break;
 
-        case 'image':
-            imagePreview.setAttribute('src','http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png');
+            case 'image':
+                imagePreview.setAttribute('src', 'http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png');
 
-            if ( imagePreviewSection.style.display === 'none' || imagePreviewSection.style.display === '' ) {
-                imagePreviewSection.style.display = 'block';
-            } else {
-                imagePreviewSection.style.display = 'none';
-            }
+                if (imagePreviewSection.style.display === 'none' || imagePreviewSection.style.display === '') {
+                    imagePreviewSection.style.display = 'block';
+                } else {
+                    imagePreviewSection.style.display = 'none';
+                }
 
-            break;
+                break;
 
-        case 'bbcode':
-            bbcodePreview.setAttribute('src','http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png');
+            case 'bbcode':
+                bbcodePreview.setAttribute('src', 'http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png');
 
-            if ( bbcodePreviewSection.style.display === 'none' || bbcodePreviewSection.style.display === '' ) {
-                bbcodePreviewSection.style.display = 'block';
-            } else {
-                bbcodePreviewSection.style.display = 'none';
-            }
+                if (bbcodePreviewSection.style.display === 'none' || bbcodePreviewSection.style.display === '') {
+                    bbcodePreviewSection.style.display = 'block';
+                } else {
+                    bbcodePreviewSection.style.display = 'none';
+                }
 
-            break;
+                break;
         }
 
         _this.classList.toggle('available');
@@ -403,7 +440,8 @@ var App = (function(document, window, undefined) {
     });
 
     return {
-        init: init
+        init: init,
+        displayFeatured: displayFeatured
     };
 
 })(document, window);

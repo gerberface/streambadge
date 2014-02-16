@@ -439,8 +439,8 @@ $game = ellipsis($game);
 $offline = 'Offline';
 
 // Fonts
-$font = '../styles/fonts/arial.ttf';
-$font_bold = '../styles/fonts/arialbd.ttf';
+$font = '../styles/fonts/OpenSans-Bold.ttf';
+$font_bold = '../styles/fonts/OpenSans-Regular.ttf';
 $custom_font = '../styles/fonts/badge-eye.ttf';
 
 // Live image/icon

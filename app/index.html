@@ -17,33 +17,49 @@
         <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans|Sonsie+One' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800|Sonsie+One' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <header class="header" role="banner">
-            <div class="container clearfix">
-                <h1 id="logo" class="header__logo">Streambadge</h1>
+            <div class="container">
+                <div class="header__logo-container">
+                    <h1 id="logo" class="header__logo"><span aria-hidden="true">S</span><span class="visuallyhidden">Streambadge</span></h1>
+                </div>
                 <a href="#main" class="visuallyhidden focusable">Skip to content</a>
                 <nav class="header__main-nav" role="navigation">
                     <ul class="header__main-nav__list">
                         <li class="header__main-nav__list__item">
-                            <a href="#about">About</a>
+                            <a href="#about" class="header__main-nav__list__item__link">About</a>
                         </li>
                         <li class="header__main-nav__list__item">
-                            <a href="#support">Support</a>
+                            <a href="#support" class="header__main-nav__list__item__link">Support</a>
                         </li>
                         <li class="header__main-nav__list__item">
-                            <a href="#follow">Follow</a>
+                            <a href="#follow" class="header__main-nav__list__item__link">Follow</a>
                         </li>
                     </ul>
                 </nav>
+                <div class="subscribe">
+                    <ul class="subscribe__list">
+                        <li class="subscribe__list__item">
+                            <a href="http://twitter.com/streambadge" class="subscribe__list__item__link"><span aria-hidden="true" class="icon-twitter"></span><span class="visuallyhidden">Twitter</span></a>
+                        </li>
+                        <li class="subscribe__list__item">
+                            <a href="http://github.com/svinkle/streambadge/" class="subscribe__list__item__link"><span aria-hidden="true" class="icon-github"></span><span class="visuallyhidden">GitHub</span></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </header>
-        <main id="main" class="app" role="main">
-            <div class="container">
+        <main id="main" class="main" role="main">
+            <div class="container group">
+                <div class="intro"><strong>Streambadge</strong> helps you gain viewership by displaying your live stream status!</div>
+                <div class="featured-streams" data-js="featured-streams"></div>
+            </div>
+            <div class="container app">
                 <noscript>
                     <div class="notice">
                         <p>JavaScript is required to generate your Streambadge. Please use a JavaScript enabled browser.</p>
@@ -51,7 +67,7 @@
                 </noscript>
                 <section aria-labelledby="section-service" class="section active">
                     <h2 id="section-service" class="section-header first">1. Select your streaming service:</h2>
-                    <ul class="button-list clearfix">
+                    <ul class="button-list">
                         <li>
                             <button id="twitch-button" class="button twitch" data-button="twitch" data-js="service-button">
                                 <img src="/images/twitch-logo.png" width="300" height="64" alt="Twitch.tv logo" class="service-logo">
@@ -111,7 +127,7 @@
                 <section aria-labelledby="section-code" class="section" data-js="section-code">
                     <h2 id="section-code" class="section-header">3. Grab the code:</h2>
                     <h3 class="section-info-title">iFrame <span class="usage">(HTML and CSS)</span></h3>
-                    <div class="anchor-link clearfix">
+                    <div class="group">
                       <textarea class="code desktop" data-js="iframe-code" data-js-code="service-code" readonly="readonly"></textarea>
                       <div class="code mobile" data-js="iframe-code-mobile" data-js-code="service-code"></div>
                       <button id="iframe-preview-button" class="preview" data-preview="iframe" data-js="preview-button">Preview</button>
@@ -120,7 +136,7 @@
                       </div>
                     </div>
                     <h3 class="section-info-title">HTML Image <span class="usage">(For your website or blog)</span></h3>
-                    <div class="anchor-link clearfix">
+                    <div class="group">
                       <textarea class="code desktop" data-js="html-code" data-js-code="service-code" readonly="readonly"></textarea>
                       <div class="code mobile" data-js="html-code-mobile" data-js-code="service-code"></div>
                       <button id="image-preview-button" class="preview" data-preview="image" data-js="preview-button">Preview</button>
@@ -129,7 +145,7 @@
                       </div>
                     </div>
                     <h3 class="section-info-title">BBCode Image <span class="usage">(For your forum signature)</span></h3>
-                    <div class="anchor-link clearfix">
+                    <div class="group">
                       <textarea class="code desktop" data-js="bbcode-code" data-js-code="service-code" readonly="readonly"></textarea>
                       <div class="code mobile" data-js="bbcode-code-mobile" data-js-code="service-code"></div>
                       <button id="bbcode-preview-button" class="preview" data-preview="bbcode" data-js="preview-button">Preview</button>
@@ -140,26 +156,24 @@
                 </section>
             </div>
         </main>
-        <footer role="contentinfo">
+        <footer class="footer" role="contentinfo">
             <div class="container">
-                <div class="clearfix">
+                <div class="group">
                     <section aria-labelledby="about" class="footer-section">
                         <h4 id="about">About</h4>
                         <p><b>Streambadge</b> helps you gain viewership by displaying your live stream status. Select your video stream service, add your username, and grab the code! Paste the code to your website, blog, or forum signature.</p>
                     </section>
                     <section aria-labelledby="support" class="footer-section">
                         <h4 id="support">Support</h4>
-                        <p>Questions or concerns? Found a bug? Report any issues on our <a href="https://github.com/svinkle/streambadge/issues"><span aria-hidden="true" class="icon-github"></span> GitHub</a> issues page.</p>
+                        <p>Questions or concerns? Found a bug? Report any issues on our <a href="http://github.com/svinkle/streambadge/issues"><span aria-hidden="true" class="icon-github"></span> GitHub</a> issues page.</p>
                     </section>
                     <section aria-labelledby="follow" class="footer-section">
                         <h4 id="follow">Follow</h4>
-                        <ul class="footer-social-icons">
-                            <li>Follow us on <a href="http://twitter.com/streambadge"><span aria-hidden="true" class="icon-twitter"></span> Twitter</a> for status, news, and upcoming features!</li>
-                        </ul>
+                        <p>Follow us on <a href="http://twitter.com/streambadge"><span aria-hidden="true" class="icon-twitter"></span> Twitter</a> for status, news, and upcoming features!</p>
                     </section>
                 </div>
                 <div class="copy">
-                    <p>&copy; <span data-js="year">2012</span> <a href="http://streambadge.com">Streambadge.com</a>. Design and code by <a href="http://twitter.com/svinkle">@svinkle</a>.</p>
+                    <p>&copy; <span data-js="year">2012</span> <a href="http://streambadge.com">Streambadge.com</a>.</p>
                     <p>Streambadge is not sponsored by or affiliated with Twitch.tv, Justin.tv, UStream.tv, GoodGame.ru, or hitbox.tv. "Twitch" logo &copy; Justin.tv Inc. "Justin.tv" logo &copy; Justin.tv Inc. "UStream" logo &copy; Ustream Inc. "GoodGame" logo &copy; GoodGame.ru. "hitbox" logo &copy; hitbox Entertainment.</p>
                 </div>
             </div>

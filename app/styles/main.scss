@@ -18,18 +18,8 @@ h3, h4 {
     margin: 1em 0 0 0;
 }
 
-a {
-    color: $orange;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 input {
     border: solid #ccc .063em;
-    border-radius: .156em;
     @include font-size(32);
     padding: .156em;
     width: 100%;
@@ -45,119 +35,152 @@ input {
 .notice {
     background-color: #ffffcb;
     border: solid #d2ca99 2px;
-    border-radius: .313em;
     margin: 0 2em 2em 2em;
     padding: 1em;
     text-align: center;
 }
 
-@media only screen and (min-width: 35em) {
-    .container {
-        margin: 0 auto;
-        max-width: 50em;
-    }
+.group {
+    @extend %clearfix;
+}
+
+.container {
+    @extend %clearfix;
+    margin: 0 auto;
+    max-width: 60em;
+    position: relative;
 }
 
 .header {
-    background: #000;
-    padding: 1.5em 2em;
-    text-align: center;
+    background: #454545;
+}
+
+.header__logo-container {
+    background-color: $orange;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: pxtoem(153);
 }
 
 .header__logo {
-    color: #fff;
-    display: inline-block;
+    color: white;
     font-family: 'Sonsie One', sans-serif;
-    @include font-size(20);
-    font-weight: 400;
+    @include font-size(100);
+    font-weight: 700;
+    line-height: 1.2;
     margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-@media only screen and (min-width: 20em) {
-    .header__logo {
-        @include font-size(26);
-    }
-}
-
-@media only screen and (min-width: 25em) {
-    .header__logo {
-        @include font-size(32);
-    }
-}
-
-@media only screen and (min-width: 30em) {
-    .header__logo {
-        @include font-size(42);
-    }
-}
-
-@media only screen and (min-width: 35em) {
-    .header__logo {
-        @include font-size(50);
-    }
-}
-
-@media only screen and (min-width: 48.5em) {
-    .header__logo {
-        float: left;
-    }
+    padding: 0 .3em;
 }
 
 .header__main-nav {
+    background-color: #282828;
+    font-weight: 700;
+    height: pxtoem(60);
+    line-height: 3.5;
+    margin: 0;
+    padding: 0 1em;
+    width: 100%;
+}
+
+.header__main-nav__list {
     display: none;
-}
-
-@media only screen and (min-width: 35em) {
-    .header__main-nav {
-        margin: 1.8em 0 0 0;
-    }
-}
-
-@media only screen and (min-width: 48.5em) {
-    .header__main-nav {
+    float: right;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    @media only screen and (min-width: 440px) {
         display: block;
-        float: right;
-        font-weight: 700;
-        margin: 1.5em 0 0 0;
     }
 }
 
-@media only screen and (min-width: 48.5em) {
-    .header__main-nav__list {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
+.header__main-nav__list__item {
+    float: left;
+    margin: 0 1em 0 0;
+}
 
-    .header__main-nav__list__item {
-        float: left;
-        margin: 0 0 0 1em;
+.header__main-nav__list__item__link {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+
+.subscribe {
+    background-color: #6D6E71;
+    height: pxtoem(60);
+    line-height: 1.7;
+    margin: 0;
+    overflow: hidden;
+    width: 100%;
+    @media only screen and (min-width: 440px) {
+        padding: 0 .7em;
+    }
+}
+
+.subscribe__list {
+    float: right;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.subscribe__list__item {
+    float: left;
+    margin: 0 1.5em 0 0;
+}
+
+.subscribe__list__item__link {
+    @include font-size(38);
+    color: white;
+    text-decoration: none;
+}
+
+.main {
+    background: #EAEBEC;
+    padding-bottom: 2em;
+}
+
+.intro {
+    background-color: #0079C2;
+    color: white;
+    @include font-size(32);
+    line-height: 1;
+    margin: .5em 0;
+    padding: 1em;
+    width: 100%;
+    @media only screen and (min-width: 35em) {
+        @include font-size(48);
+    }
+}
+
+.featured-streams {
+    @extend %clearfix;
+    display: none;
+    @media only screen and (min-width: 960px) {
+        display: block;
+        margin-bottom: 1em;
+    }
+}
+
+.featured-streams__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.featured-streams__list__item {
+    float: left;
+
+    &:nth-child(2) {
+        margin: 0 1.87em;
     }
 }
 
 .app {
     background: #fff;
-    margin: 1em 0;
+    margin: 0 auto;
     padding: 1em 2em 2em 2em;
-}
-
-@media only screen and (min-width: 35em) {
-    .app {
-        border-radius: .313em;
-    }
-}
-
-.app-container {
-    //background: $orange;
-    padding: .1em 0;
-}
-
-@media only screen and (min-width: 35em) {
-    .app-container {
-        padding: 1em 0;
-    }
 }
 
 .section {
@@ -169,8 +192,13 @@ input {
 }
 
 .section-header {
-    @include font-size(19);
+    color: #999;
+    @include font-size(21);
     margin: 1.5em 0 0.5em 0;
+
+    .active & {
+        color: #383838;
+    }
 }
 
 .section-header.first {
@@ -179,7 +207,7 @@ input {
 
 @media only screen and (min-width: 35em) {
     .section-header {
-        @include font-size(24);
+        @include font-size(32);
     }
 }
 
@@ -190,7 +218,6 @@ input {
 .code {
     background: #eee;
     border: solid #ccc .154em;
-    border-radius: .385em;
     color: #999;
     font-family: "courier new", serif;
     @include font-size(13);
@@ -205,6 +232,7 @@ input {
 }
 
 .button-list {
+    @extend %clearfix;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -230,8 +258,8 @@ input {
 
 .button {
     border: none;
-    border-radius: .313em;
     height: auto;
+    padding: 1em 0;
     width: 100%;
 }
 
@@ -268,12 +296,6 @@ input {
     max-width: 100%;
 }
 
-@media only screen and (min-width: 35em) and (max-width: 47.63em) {
-    .service-logo {
-        padding: 1em 0;
-    }
-}
-
 .usage {
     color: #999;
     display: block;
@@ -297,7 +319,6 @@ input {
 .preview {
     background: #ccc;
     border: none;
-    border-radius: .385em;
     color: #777;
     cursor: default;
     display: inline-block;
@@ -317,7 +338,6 @@ input {
 
 .preview.active {
     background: $orange;
-    border-radius: .313em .313em 0 0;
     color: white;
     cursor: pointer;
 }
@@ -330,15 +350,16 @@ input {
     width: 100%;
 }
 
-footer {
-    background: #000;
-    color: #fff;
+.footer {
+    background: #282828;
+    color: white;
     margin: 0;
     padding: 1em 2em;
-}
 
-footer p {
-    @include font-size(13);
+    a {
+        color: $orange;
+        text-decoration: none;
+    }
 }
 
 .footer-social-icons {
@@ -350,7 +371,7 @@ footer p {
 
 .copy {
     color: #888;
-    @include font-size(14);
+    @include font-size(12);
 }
 
 .footer-section {

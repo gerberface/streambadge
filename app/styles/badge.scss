@@ -2,6 +2,11 @@
 @import "colors";
 @import "mixins";
 
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
 /* Badge */
 .badge {
     -webkit-box-sizing: border-box;
