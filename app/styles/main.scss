@@ -44,6 +44,17 @@ input {
     @extend %clearfix;
 }
 
+.donate-button {
+    @include font-size(16);
+    background-color: $orange;
+    border: none;
+    color: white;
+    display: inline-block;
+    font-weight: 700;
+    padding: .5em 0;
+    text-transform: uppercase;
+}
+
 .container {
     @extend %clearfix;
     margin: 0 auto;
@@ -52,7 +63,10 @@ input {
 }
 
 .header {
-    background: #454545;
+    background: #282828;
+    position: fixed;
+    width: 100%;
+    z-index: 9;
 }
 
 .header__logo-container {
@@ -60,13 +74,13 @@ input {
     left: 0;
     position: absolute;
     top: 0;
-    width: pxtoem(153);
+    width: pxtoem(80);
 }
 
 .header__logo {
     color: white;
     font-family: 'Sonsie One', sans-serif;
-    @include font-size(100);
+    @include font-size(50);
     font-weight: 700;
     line-height: 1.2;
     margin: 0;
@@ -74,13 +88,12 @@ input {
 }
 
 .header__main-nav {
-    background-color: #282828;
+    float: left;
     font-weight: 700;
     height: pxtoem(60);
     line-height: 3.5;
-    margin: 0;
+    margin-left: pxtoem(90);
     padding: 0 1em;
-    width: 100%;
 }
 
 .header__main-nav__list {
@@ -89,7 +102,7 @@ input {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    @media only screen and (min-width: 440px) {
+    @media only screen and (min-width: 600px) {
         display: block;
     }
 }
@@ -107,15 +120,11 @@ input {
 
 
 .subscribe {
-    background-color: #6D6E71;
+    float: right;
     height: pxtoem(60);
     line-height: 1.7;
     margin: 0;
     overflow: hidden;
-    width: 100%;
-    @media only screen and (min-width: 440px) {
-        padding: 0 .7em;
-    }
 }
 
 .subscribe__list {
@@ -128,6 +137,9 @@ input {
 .subscribe__list__item {
     float: left;
     margin: 0 1.5em 0 0;
+    @media only screen and (min-width: 960px) {
+        margin: 0 0 0 1.5em;
+    }
 }
 
 .subscribe__list__item__link {
@@ -137,12 +149,13 @@ input {
 }
 
 .main {
-    background: #EAEBEC;
+    background: #454545;
+    padding-top: pxtoem(60);
     padding-bottom: 2em;
 }
 
 .intro {
-    background-color: #0079C2;
+    background-color: #323232;
     color: white;
     @include font-size(32);
     line-height: 1;
@@ -156,10 +169,11 @@ input {
 
 .featured-streams {
     @extend %clearfix;
+    @include font-size(16);
     display: none;
     @media only screen and (min-width: 960px) {
         display: block;
-        margin-bottom: 1em;
+        margin-top: 2em;
     }
 }
 
@@ -171,8 +185,9 @@ input {
 
 .featured-streams__list__item {
     float: left;
+    width: 31%;
 
-    &:nth-child(2) {
+    &:nth-child(3n+2) {
         margin: 0 1.87em;
     }
 }
@@ -281,6 +296,10 @@ input {
 
 .button.hitbox {
     background: #ABD530;
+}
+
+.button.livestream {
+    background: #D42329;
 }
 
 .button.active {

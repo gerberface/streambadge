@@ -224,6 +224,8 @@ AddDefaultCharset utf-8
     RewriteRule ^hitbox/([^/]*)\.png$ /hitbox/badge.php?service=hitbox&username=$1 [L]
     RewriteRule ^hitbox/([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)\.png$ /hitbox/badge.php?service=hitbox&username=$5&theme=$1&bg=$2&link=$3&text=$4 [L]
     RewriteRule ^ustream/([^/]*)\.png$ /ustream/badge.php?service=ustream&username=$1 [L]
+    RewriteRule ^livestream/([^/]*)\.png$ /livestream/badge.php?service=livestream&username=$1 [L]
+    RewriteRule ^livestream/([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)\.png$ /livestream/badge.php?service=livestream&username=$5&theme=$1&bg=$2&link=$3&text=$4 [L]
   # iFrame
     RewriteRule ^twitch/([^/]*)/$ /twitch/?username=$1 [R=301,L]
     RewriteRule ^twitch/([^/]*)/([^/]*)/$ /twitch/?username=$2&theme=$1 [R=301,L]
@@ -231,6 +233,8 @@ AddDefaultCharset utf-8
     RewriteRule ^justin/([^/]*)/$ /justin/?username=$1 [R=301,L]
     RewriteRule ^justin/([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)/$ /justin/?username=$5&theme=$1&bg=$2&link=$3&text=$4 [R=301,L]
     RewriteRule ^ustream/([^/]*)/$ /ustream/?username=$1 [R=301,L]
+    RewriteRule ^livestream/([^/]*)/$ /livestream/?username=$1 [R=301,L]
+    RewriteRule ^livestream/([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)/$ /livestream/?username=$5&theme=$1&bg=$2&link=$3&text=$4 [R=301,L]
 </IfModule>
 
 # ------------------------------------------------------------------------------

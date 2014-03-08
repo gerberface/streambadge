@@ -288,6 +288,13 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         dot: true,
+                        cwd: '<%= yeoman.app %>/iframe-badge',
+                        dest: '<%= yeoman.dist %>/livestream',
+                        src: 'index.html'
+                    },
+                    {
+                        expand: true,
+                        dot: true,
                         cwd: '<%= yeoman.app %>/image-badge',
                         dest: '<%= yeoman.dist %>/twitch',
                         src: 'index.php'
@@ -318,6 +325,13 @@ module.exports = function (grunt) {
                         dot: true,
                         cwd: '<%= yeoman.app %>/image-badge',
                         dest: '<%= yeoman.dist %>/hitbox',
+                        src: 'index.php'
+                    },
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.app %>/image-badge',
+                        dest: '<%= yeoman.dist %>/livestream',
                         src: 'index.php'
                     },
                     {
@@ -359,6 +373,10 @@ module.exports = function (grunt) {
                     {
                         src: '<%= yeoman.dist %>/hitbox/index.php',
                         dest: '<%= yeoman.dist %>/hitbox/badge.php'
+                    },
+                    {
+                        src: '<%= yeoman.dist %>/livestream/index.php',
+                        dest: '<%= yeoman.dist %>/livestream/badge.php'
                     }
                 ]
             }

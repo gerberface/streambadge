@@ -61,10 +61,10 @@ var App = (function(document, window, undefined) {
      */
     var displayFeatured = function(data) {
         var output = '<ul class="featured-streams__list">',
-            colorArr = ['2b2b2b/b9a3e3/808080', '484848/ABD530/D5D5D5', '243056/F80F80/eeeeee'];
+            colorArr = ['2b2b2b/b9a3e3/808080', '101010/ABD530/D5D5D5', '243056/F80F80/eeeeee'];
 
         for (var i = 0, dataFeatured = data.featured.length; i < dataFeatured; i++) {
-            output += '<li class="featured-streams__list__item"><iframe src="http://' + beta + 'streambadge.com/twitch/custom/' + colorArr[i] + '/' + data.featured[i].stream.channel.display_name + '/" style="border:none;height:4em;width:100%"></iframe></li>';
+            output += '<li class="featured-streams__list__item"><iframe src="http://' + beta + 'streambadge.com/twitch/custom/' + colorArr[i] + '/' + data.featured[i].stream.channel.name + '/" style="border:none;height:4em;width:100%"></iframe></li>';
         }
 
         output += '</ul>';
@@ -92,15 +92,32 @@ var App = (function(document, window, undefined) {
      *
      */
     var generateCode = function() {
+        var url;
+
+        switch (service) {
+            case 'twitch':
+            case 'justin':
+            case 'ustream':
+            case 'hitbox':
+                url = 'http://' + service + '.tv/' + username;
+                break;
+            case 'goodgame':
+                url = 'http://' + service + '.ru/channel/' + username + '/';
+                break;
+            case 'livestream':
+                url = 'http://new.' + service + '.com/' + username + '/';
+                break;
+        }
+
         // Desktop (returns within <textarea> for text selection on click)
         iframeCode.innerHTML = '<iframe src="http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '/" style="border:none;height:4em;width:100%"></iframe>';
-        htmlCode.innerHTML = '<a href="http://' + (service === 'goodgame' ? service + '.ru/channel/' + username + '/' : service + '.tv/' + username) + '"><img src="http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png" width="300" height="64" alt="' + username + '\'s Streambadge"></a>';
-        bbcodeCode.innerHTML = '[url=http://' + (service === 'goodgame' ? service + '.ru/channel/' + username + '/' : service + '.tv/' + username) + '][img]http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png[/img][/url]';
+        htmlCode.innerHTML = '<a href="' + url + '"><img src="http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png" width="300" height="64" alt="' + username + '\'s Streambadge"></a>';
+        bbcodeCode.innerHTML = '[url=' + url + '][img]http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png[/img][/url]';
 
         // Mobile (returns within <div> for long-press text selection)
         iframeCodeMobile.innerHTML = '&lt;iframe src="http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '/" style="border:none;height:4em;width:100%"&gt;&lt;/iframe&gt;';
-        htmlCodeMobile.innerHTML = '&lt;a href="http://' + (service === 'goodgame' ? service + '.ru/channel/' + username + '/' : service + '.tv/' + username) + '"&gt;&lt;img src="http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png" width="300" height="64" alt="' + username + '\'s Streambadge"&gt;&lt;/a&gt;';
-        bbcodeCodeMobile.innerHTML = '[url=http://' + (service === 'goodgame' ? service + '.ru/channel/' + username + '/' : service + '.tv/' + username) + '][img]http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png[/img][/url]';
+        htmlCodeMobile.innerHTML = '&lt;a href="' + url + '"&gt;&lt;img src="http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png" width="300" height="64" alt="' + username + '\'s Streambadge"&gt;&lt;/a&gt;';
+        bbcodeCodeMobile.innerHTML = '[url=' + url + '][img]http://' + beta + 'streambadge.com/' + service + '/' + theme + username + '.png[/img][/url]';
     };
 
     // Service button method
@@ -115,6 +132,10 @@ var App = (function(document, window, undefined) {
             themeDark.removeAttribute('disabled');
             sectionTheme.style.display = 'block';
         } else if (service === 'justin') {
+            themeLight.setAttribute('disabled', true);
+            themeDark.setAttribute('disabled', true);
+            sectionTheme.style.display = 'block';
+        } else if (service === 'livestream') {
             themeLight.setAttribute('disabled', true);
             themeDark.setAttribute('disabled', true);
             sectionTheme.style.display = 'block';

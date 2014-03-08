@@ -137,6 +137,16 @@ body {
     }
 }
 
+// Livestream
+.badge--livestream {
+    background: #121212;
+    color: #fff;
+
+    a {
+        color: #D42329;
+    }
+}
+
 @font-face {
     font-family: 'icomoon';
     src:url('fonts/icomoon.eot');

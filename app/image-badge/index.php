@@ -117,6 +117,7 @@ switch ($service) {
             $streaming = true;
 
             // Strings
+            $username = urldecode($data->stream->channel->display_name);
             $game = 'playing ' . $data->stream->game;
             $viewers = $data->stream->viewers;
 
@@ -127,6 +128,9 @@ switch ($service) {
         } else {
             // Get Channel data
             $data = json_decode(file_get_contents('https://api.twitch.tv/kraken/channels/' . $username . '?client_id=' . $key));
+
+            // Strings
+            $username = urldecode($data->display_name);
 
             // Image
             if ($data->logo) {
@@ -431,6 +435,86 @@ switch ($service) {
 
         break;
 
+    case 'livestream':
+        // Image
+        $image = '../images/livestream-no-image.png';
+
+        // Custom colors
+        $custom = false;
+
+        if (isset($_GET['bg']) && isset($_GET['link']) && isset($_GET['text'])) {
+            $custom = true;
+
+            $bg_color = htmlentities($_GET['bg']);
+            $link_color = htmlentities($_GET['link']);
+            $text_color = htmlentities($_GET['text']);
+        }
+
+        // Colors
+        if ($custom) {
+            $bg_arr = hex2rgb($bg_color);
+            $link_arr = hex2rgb($link_color);
+            $text_arr = hex2rgb($text_color);
+
+            $title_text_color_1 = $link_arr[0];
+            $title_text_color_2 = $link_arr[1];
+            $title_text_color_3 = $link_arr[2];
+
+            $black_text_color_1 = $text_arr[0];
+            $black_text_color_2 = $text_arr[1];
+            $black_text_color_3 = $text_arr[2];
+
+            $gray_text_color_1 = $text_arr[0];
+            $gray_text_color_2 = $text_arr[1];
+            $gray_text_color_3 = $text_arr[2];
+
+            $bg_color_1 = $bg_arr[0];
+            $bg_color_2 = $bg_arr[1];
+            $bg_color_3 = $bg_arr[2];
+        } else {
+            $title_text_color_1 = 212;
+            $title_text_color_2 = 35;
+            $title_text_color_3 = 41;
+
+            $black_text_color_1 = 255;
+            $black_text_color_2 = 255;
+            $black_text_color_3 = 255;
+
+            $gray_text_color_1 = 128;
+            $gray_text_color_2 = 128;
+            $gray_text_color_3 = 128;
+
+            $bg_color_1 = 18;
+            $bg_color_2 = 18;
+            $bg_color_3 = 18;
+        }
+
+        // Get Stream data
+        $data = json_decode(file_get_contents('http://api.new.livestream.com/accounts/' . $username . '/'));
+
+        if ($data->upcoming_events->data[0]->in_progress) {
+            $streaming = true;
+
+            // Strings
+            $game = $data->upcoming_events->data[0]->description;
+            $viewers = $data->upcoming_events->data[0]->viewer_count;
+
+            // Image
+            if ($data->picture->thumb_url) {
+                $image = $data->picture->thumb_url;
+            }
+        } else {
+            // Get Channel data
+            $data = json_decode(file_get_contents('http://api.new.livestream.com/accounts/' . $username . '/'));
+
+            // Image
+            if ($data->picture->thumb_url) {
+                $image = $data->picture->thumb_url;
+            }
+        }
+
+        break;
+
 }
 
 // Strings
@@ -439,8 +523,8 @@ $game = ellipsis($game);
 $offline = 'Offline';
 
 // Fonts
-$font = '../styles/fonts/OpenSans-Bold.ttf';
-$font_bold = '../styles/fonts/OpenSans-Regular.ttf';
+$font = '../styles/fonts/OpenSans-Regular.ttf';
+$font_bold = '../styles/fonts/OpenSans-Bold.ttf';
 $custom_font = '../styles/fonts/badge-eye.ttf';
 
 // Live image/icon

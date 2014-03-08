@@ -19,6 +19,9 @@ var badge = (function(document, window, undefined) {
     if (window.location.href.indexOf('hitbox') !== -1) {
         service = 'hitbox';
     }
+    if (window.location.href.indexOf('livestream') !== -1) {
+        service = 'livestream';
+    }
 
     username = utils.queryString().username;
     bgColor = utils.queryString().bg ? 'style="background:#' + utils.queryString().bg + '"' : '';
@@ -52,6 +55,11 @@ var badge = (function(document, window, undefined) {
             channelURL = 'http://api.justin.tv/api/channel/show/' + username + '.json?jsonp=';
             break;
 
+        case 'livestream':
+            streamURL = 'http://api.new.livestream.com/accounts/' + username + '/?callback=';
+            channelURL = 'http://api.new.livestream.com/accounts/' + username + '/?callback=';
+            break;
+
     }
 
     var init = function() {
@@ -78,6 +86,7 @@ var badge = (function(document, window, undefined) {
             case 'twitch':
                 link = 'http://twitch.tv/' + username;
                 if (data.stream) {
+                    username = decodeURIComponent(data.stream.channel.display_name);
                     image = data.stream.channel.logo;
                     title = ' playing ' + (data.stream.game ? '<a href="http://www.twitch.tv/directory/game/' + encodeURIComponent(data.stream.game) + '" target="_blank" ' + linkColor + '>' + data.stream.game + '</a>' : '');
                     viewerCount = data.stream.viewers;
@@ -123,6 +132,18 @@ var badge = (function(document, window, undefined) {
                 }
                 break;
 
+            case 'livestream':
+                link = 'http://new.livestream.com/' + username + '/';
+                if (data.upcoming_events.data[0].in_progress) {
+                    image = data.picture.thumb_url;
+                    title = data.upcoming_events.data[0].description;
+                    viewerCount = data.upcoming_events.data[0].viewer_count;
+                } else {
+                    // Get Channel data
+                    utils.requestJSONP(channelURL, 'drawChannel');
+                }
+                break;
+
         }
 
         badge.innerHTML = '<div class="badge badge--' + service + ' ' + theme + '" ' + bgColor + '>' +
@@ -149,6 +170,7 @@ var badge = (function(document, window, undefined) {
         switch (service) {
             case 'twitch':
                 link = 'http://twitch.tv/' + username;
+                username = data.display_name;
                 if (data.logo) {
                     image = data.logo;
                 }
@@ -165,6 +187,13 @@ var badge = (function(document, window, undefined) {
                 link = 'http://ustream.tv/' + username;
                 if (data !== null) {
                     image = data.imageUrl.small;
+                }
+                break;
+
+            case 'livestream':
+                link = 'http://new.livestream.com/' + username + '/';
+                if (data !== null) {
+                    image = data.picture.thumb_url;
                 }
                 break;
 
