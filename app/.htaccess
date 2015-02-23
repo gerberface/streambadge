@@ -489,13 +489,13 @@ FileETag None
     ExpiresByType text/cache-manifest                   "access plus 0 seconds"
 
   # Media
-    ExpiresByType audio/ogg                             "access plus 1 month"
-    ExpiresByType image/gif                             "access plus 1 month"
-    ExpiresByType image/jpeg                            "access plus 1 month"
-    ExpiresByType image/png                             "access plus 1 month"
-    ExpiresByType video/mp4                             "access plus 1 month"
-    ExpiresByType video/ogg                             "access plus 1 month"
-    ExpiresByType video/webm                            "access plus 1 month"
+  # ExpiresByType audio/ogg                             "access plus 1 month"
+  # ExpiresByType image/gif                             "access plus 1 month"
+  # ExpiresByType image/jpeg                            "access plus 1 month"
+  # ExpiresByType image/png                             "access plus 1 month"
+  # ExpiresByType video/mp4                             "access plus 1 month"
+  # ExpiresByType video/ogg                             "access plus 1 month"
+  # ExpiresByType video/webm                            "access plus 1 month"
 
   # Web feeds
     ExpiresByType application/atom+xml                  "access plus 1 hour"
